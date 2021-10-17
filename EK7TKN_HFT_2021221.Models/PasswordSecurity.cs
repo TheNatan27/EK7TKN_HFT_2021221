@@ -2,16 +2,20 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace EK7TKN_HFT_2021221.Models
 {
+    [Table("Passwords")]
     public class PasswordSecurity
     {
-        [Key]
+        [ForeignKey(nameof(UserInformation))]
         public int UserID { get; set; }
+        [Key]
+        public int PasswordID { get; set; }
         public string TotallySecureVeryHashedPassword { get; set; }
 
 
@@ -19,7 +23,7 @@ namespace EK7TKN_HFT_2021221.Models
 
     public class PasswordSecurityContext : DbContext
     {
-        public virtual DbSet<PasswordSecurity> Users { get; set; }
+        public virtual DbSet<PasswordSecurity> Passwords { get; set; }
 
         public PasswordSecurityContext()
         {
