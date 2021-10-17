@@ -42,16 +42,9 @@ namespace EK7TKN_HFT_2021221
             //run.SaveChanges();
             #endregion
 
-            RunBetterAppContext AppDataBase = new RunBetterAppContext();
 
-            AppDataBase.Users.Add(new UserInformation() { UserID = 05, Weight = 87 });
-
-            AppDataBase.SaveChanges();
-
-            foreach (var item in AppDataBase.Users)
-            {
-                Console.WriteLine(item.UserID);
-            }
+            
+            
 
         }
     }
