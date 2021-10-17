@@ -23,26 +23,26 @@ namespace EK7TKN_HFT_2021221.Models
 
     }
 
-    public class UserInformationContext : DbContext
-    {
-        public virtual DbSet<UserInformation> Users { get; set; }
+    //public class UserInformationContext : DbContext
+    //{
+    //    public virtual DbSet<UserInformation> Users { get; set; }
 
-        public UserInformationContext()
-        {
-            this.Database.EnsureCreated();
-        }
+    //    public UserInformationContext()
+    //    {
+    //        this.Database.EnsureCreated();
+    //    }
 
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            if (!optionsBuilder.IsConfigured)
-            {
-                optionsBuilder
-                    .UseLazyLoadingProxies()
-                    .UseSqlServer(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\Database1.mdf;Integrated Security=True");
+    //    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+    //    {
+    //        if (!optionsBuilder.IsConfigured)
+    //        {
+    //            optionsBuilder
+    //                .UseLazyLoadingProxies()
+    //                .UseSqlServer(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\Database1.mdf;Integrated Security=True");
 
-            }
-        }
+    //        }
+    //    }
 
 
-    }
+    //}
 }

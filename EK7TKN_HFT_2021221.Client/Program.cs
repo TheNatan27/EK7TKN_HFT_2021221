@@ -7,6 +7,9 @@ namespace EK7TKN_HFT_2021221
     {
         static void Main(string[] args)
         {
+
+            #region probably should delete this later
+
             ////Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\Nátán\source\repos\TheNatan27\EK7TKN_HFT_2021221\EK7TKN_HFT_2021221.Data\Database1.mdf;Integrated Security=True
 
 
@@ -14,7 +17,7 @@ namespace EK7TKN_HFT_2021221
 
             //UserInformationContext use = new UserInformationContext();
 
-            //use.Users.Add(new UserInformation() { UserID = 01, Weight = 77 });
+            //use.Users.Add(new UserInformation() { UserID = 05, Weight = 55 });
             //use.Users.Add(new UserInformation() { UserID = 02, Weight = 55 });
             //use.Users.Add(new UserInformation() { UserID = 03, Weight = 79 });
             //use.Users.Add(new UserInformation() { UserID = 04, Weight = 87 });
@@ -37,8 +40,19 @@ namespace EK7TKN_HFT_2021221
             //run.Runs.Add(new RunInformation() { UserID = 04, Distance = 22, Time = "03:22:02" });
 
             //run.SaveChanges();
+            #endregion
 
-            
+            RunBetterAppContext AppDataBase = new RunBetterAppContext();
+
+            AppDataBase.Users.Add(new UserInformation() { UserID = 05, Weight = 87 });
+
+            AppDataBase.SaveChanges();
+
+            foreach (var item in AppDataBase.Users)
+            {
+                Console.WriteLine(item.UserID);
+            }
+
         }
     }
 }

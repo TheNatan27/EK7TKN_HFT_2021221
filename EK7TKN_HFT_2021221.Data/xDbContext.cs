@@ -6,8 +6,12 @@ namespace EK7TKN_HFT_2021221.Data
 {
     public class xDbContext : DbContext
     {
-
         //Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\Database1.mdf;Integrated Security=True
+
+
+
+        
+
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             if (!optionsBuilder.IsConfigured)
@@ -39,6 +43,7 @@ namespace EK7TKN_HFT_2021221.Data
             RunInformation run3 = new RunInformation() { UserID = 03, Distance = 12.3, RunID = 01, Time = "01:32:03" };
             RunInformation run4 = new RunInformation() { UserID = 04, Distance = 12.3, RunID = 01, Time = "01:32:03" };
 
+            
 
             #region comments
 

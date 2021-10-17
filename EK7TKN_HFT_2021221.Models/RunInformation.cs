@@ -23,24 +23,24 @@ namespace EK7TKN_HFT_2021221.Models
 
     }
 
-    public class RunInformationContext : DbContext
-    {
-        public virtual DbSet<RunInformation> Runs { get; set; }
+    //public class RunInformationContext : DbContext
+    //{
+    //    public virtual DbSet<RunInformation> Runs { get; set; }
 
-        public RunInformationContext()
-        {
-            this.Database.EnsureCreated();
-        }
+    //    public RunInformationContext()
+    //    {
+    //        this.Database.EnsureCreated();
+    //    }
 
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            if (!optionsBuilder.IsConfigured)
-            {
-                optionsBuilder
-                    .UseLazyLoadingProxies()
-                    .UseSqlServer(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\Database1.mdf;Integrated Security=True");
+    //    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+    //    {
+    //        if (!optionsBuilder.IsConfigured)
+    //        {
+    //            optionsBuilder
+    //                .UseLazyLoadingProxies()
+    //                .UseSqlServer(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\Database1.mdf;Integrated Security=True");
 
-            }
-        }
-    }
+    //        }
+    //    }
+    //}
 }
