@@ -12,7 +12,7 @@ namespace EK7TKN_HFT_2021221.Data
         public virtual DbSet<PasswordSecurity> Passwords { get; set; }
         public virtual DbSet<UserInformation> Users { get; set; }
 
-        public xDbContext()
+        public xDbContext(DbContextOptions<xDbContext> options) : base(options)
         {
             this.Database.EnsureCreated();
         }
@@ -32,6 +32,17 @@ namespace EK7TKN_HFT_2021221.Data
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             Console.WriteLine("Hello World DATABASE!");
+
+            modelBuilder.Entity<UserInformation>(entity =>
+            {
+                entity
+                .HasKey(Users => Users.UserID)
+                .ok
+                .OnDelete(DeleteBehavior.ClientSetNull);
+
+
+            });
+
 
             //UserInformationContext use = new UserInformationContext();
 
