@@ -17,6 +17,8 @@ namespace EK7TKN_HFT_2021221.Models
         //public string First_Name { get; set; }
         //public string Last_Name { get; set; }
         //public int Age { get; set; }
+        public List<RunInformation> RunInformations { get; set; }
+        public PasswordSecurity passwordSecurity { get; set; }
         public double Weight { get; set; }
         //public double Height { get; set; }
 

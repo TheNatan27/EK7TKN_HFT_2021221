@@ -31,18 +31,48 @@ namespace EK7TKN_HFT_2021221.Data
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            Console.WriteLine("Hello World DATABASE!");
+            UserInformation user1 = new UserInformation() { UserID = 01, Weight = 77 };
+            UserInformation user2 = new UserInformation() { UserID = 02, Weight = 77 };
+            UserInformation user3 = new UserInformation() { UserID = 03, Weight = 77 };
+            UserInformation user4 = new UserInformation() { UserID = 04, Weight = 77 };
 
-            modelBuilder.Entity<UserInformation>(entity =>
+            PasswordSecurity pass1 = new PasswordSecurity() { PasswordID = 01, UserID = 01, TotallySecureVeryHashedPassword = "pass" };
+            PasswordSecurity pass2 = new PasswordSecurity() { PasswordID = 02, UserID = 02, TotallySecureVeryHashedPassword = "pass" };
+            PasswordSecurity pass3 = new PasswordSecurity() { PasswordID = 03, UserID = 03, TotallySecureVeryHashedPassword = "pass" };
+            PasswordSecurity pass4 = new PasswordSecurity() { PasswordID = 04, UserID = 04, TotallySecureVeryHashedPassword = "pass" };
+
+            RunInformation run1 = new RunInformation() { UserID = 01, Distance = 12.3, RunID = 01, Time = "01:32:03" };
+            RunInformation run2 = new RunInformation() { UserID = 02, Distance = 12.3, RunID = 01, Time = "01:32:03" };
+            RunInformation run3 = new RunInformation() { UserID = 03, Distance = 12.3, RunID = 01, Time = "01:32:03" };
+            RunInformation run4 = new RunInformation() { UserID = 04, Distance = 12.3, RunID = 01, Time = "01:32:03" };
+
+            
+
+            modelBuilder.Entity<RunInformation>(entity =>
             {
                 entity
-                .HasKey(Users => Users.UserID)
-                .ok
+                .HasOne(x => x.userInformation)
+                .WithMany(x => x.RunInformations)
+                .HasForeignKey(x => x.UserID)
                 .OnDelete(DeleteBehavior.ClientSetNull);
-
-
+                
             });
 
+            modelBuilder.Entity<PasswordSecurity>(entity =>
+            {
+                entity
+                    .HasOne(x => x.userInformation)
+                    .WithOne(x => x.passwordSecurity)
+                    .OnDelete(DeleteBehavior.ClientSetNull);
+            });
+            modelBuilder.Entity<RunInformation>().HasData(run1, run2, run3, run4);
+            modelBuilder.Entity<PasswordSecurity>().HasData(pass1, pass2, pass3, pass4);
+            modelBuilder.Entity<UserInformation>().HasData(user1, user2, user3, user4);
+
+
+
+
+            #region commented outmight needed later
 
             //UserInformationContext use = new UserInformationContext();
 
@@ -60,10 +90,6 @@ namespace EK7TKN_HFT_2021221.Data
             //RunInformation run2 = new RunInformation() { UserID = 02, Distance = 12.3, RunID = 01, Time = "01:32:03" };
             //RunInformation run3 = new RunInformation() { UserID = 03, Distance = 12.3, RunID = 01, Time = "01:32:03" };
             //RunInformation run4 = new RunInformation() { UserID = 04, Distance = 12.3, RunID = 01, Time = "01:32:03" };
-
-            
-
-            #region commented outmight needed later
 
 
             //use.Users.Add(new UserInformation() { UserID = 01, Weight = 77 });
@@ -92,7 +118,7 @@ namespace EK7TKN_HFT_2021221.Data
 
             #endregion
 
-            
+
 
         }
 
