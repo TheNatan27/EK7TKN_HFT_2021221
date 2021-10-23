@@ -47,9 +47,9 @@ namespace EK7TKN_HFT_2021221.Data
             PasswordSecurity pass4 = new PasswordSecurity() { PasswordID = 04, UserID = 04, TotallySecureVeryHashedPassword = "pass" };
 
             RunInformation run1 = new RunInformation() { UserID = 01, Distance = 12.3, RunID = 01, Time = "01:32:03" };
-            RunInformation run2 = new RunInformation() { UserID = 02, Distance = 12.3, RunID = 01, Time = "01:32:03" };
-            RunInformation run3 = new RunInformation() { UserID = 03, Distance = 12.3, RunID = 01, Time = "01:32:03" };
-            RunInformation run4 = new RunInformation() { UserID = 04, Distance = 12.3, RunID = 01, Time = "01:32:03" };
+            RunInformation run2 = new RunInformation() { UserID = 02, Distance = 12.3, RunID = 02, Time = "01:32:03" };
+            RunInformation run3 = new RunInformation() { UserID = 03, Distance = 12.3, RunID = 03, Time = "01:32:03" };
+            RunInformation run4 = new RunInformation() { UserID = 04, Distance = 12.3, RunID = 04, Time = "01:32:03" };
 
             modelBuilder.Entity<RunInformation>().HasData(run1,run2,run3,run4);
             modelBuilder.Entity<PasswordSecurity>().HasData(pass1, pass2, pass3, pass4);

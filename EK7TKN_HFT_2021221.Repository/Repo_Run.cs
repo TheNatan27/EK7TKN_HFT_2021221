@@ -10,8 +10,10 @@ namespace EK7TKN_HFT_2021221.Repository
 {
     public class Repo_Run : AbRepo<RunInformation>
     {
-        public Repo_Run(xDbContext Context) : base(Context)
+        public Repo_Run(xDbContext context) : base(context)
         {
+
         }
+
     }
 }

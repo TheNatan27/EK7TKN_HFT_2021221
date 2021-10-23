@@ -16,31 +16,19 @@ namespace EK7TKN_HFT_2021221.Endpoint
         public static void Main(string[] args)
         {
 
-            //UserTest users = new UserTest(context);
+            
 
-            //foreach (var item in users.userId)
-            //{
-            //    Console.WriteLine(item.ToString());
-            //}
+            CreateHostBuilder(args).Build().Run();
+            xDbContext context = new xDbContext();
+            Repo_User testUser = new Repo_User(context);
+
+            testUser.GetAllUserIDs();
 
             Console.WriteLine("Hello honlap");
 
-            CreateHostBuilder(args).Build().Run();
-
-
         }
 
-        //public class UserTest : Repo_User
-        //{
-        //    public List<int> userId { get; set; }
-        //    public UserTest(xDbContext Context) : base(context)
-        //    {
-        //        foreach (var item in Context.Users)
-        //        {
-        //            userId.Add(item.UserID);
-        //        }
-        //    }
-        //}
+        
 
         public static IHostBuilder CreateHostBuilder(string[] args) =>
             Host.CreateDefaultBuilder(args)

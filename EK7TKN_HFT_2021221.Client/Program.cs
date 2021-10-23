@@ -1,4 +1,6 @@
-﻿using EK7TKN_HFT_2021221.Models;
+﻿using EK7TKN_HFT_2021221.Data;
+using EK7TKN_HFT_2021221.Models;
+using EK7TKN_HFT_2021221.Repository;
 using System;
 
 namespace EK7TKN_HFT_2021221
@@ -42,9 +44,13 @@ namespace EK7TKN_HFT_2021221
             //run.SaveChanges();
             #endregion
 
+            
+            xDbContext context = new xDbContext();
+            Repo_User testUser = new Repo_User(context);
 
-            
-            
+            testUser.GetAllUserIDs();
+
+
 
         }
     }

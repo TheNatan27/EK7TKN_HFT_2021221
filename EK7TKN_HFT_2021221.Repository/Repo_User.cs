@@ -1,4 +1,6 @@
-﻿using System;
+﻿using EK7TKN_HFT_2021221.Data;
+using EK7TKN_HFT_2021221.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,15 +8,21 @@ using System.Threading.Tasks;
 
 namespace EK7TKN_HFT_2021221.Repository
 {
-    public class Repo_User
+    public class Repo_User : AbRepo<UserInformation>
     {
-        public int UserId { get; set; }
-        public int Weight { get; set; }
-
-        public Repo_User(int userId, int weight)
+        xDbContext CTX;
+        public void GetAllUserIDs()
         {
-            UserId = userId;
-            Weight = weight;
+            List<UserInformation> users = CTX.Users.ToList();
+
+            foreach (var item in users)
+            {
+                Console.WriteLine(item.UserID);
+            }
+        }
+        public Repo_User(xDbContext context) : base(context)
+        {
+            this.CTX = context;
         }
     }
 }
