@@ -12,7 +12,12 @@ namespace EK7TKN_HFT_2021221.Data
         public virtual DbSet<PasswordSecurity> Passwords { get; set; }
         public virtual DbSet<UserInformation> Users { get; set; }
 
-        public xDbContext(DbContextOptions<xDbContext> options) : base(options)
+
+        public xDbContext(DbContextOptions<xDbContext> options) 
+        {
+            this.Database.EnsureCreated();
+        }
+        public xDbContext() 
         {
             this.Database.EnsureCreated();
         }
@@ -22,9 +27,9 @@ namespace EK7TKN_HFT_2021221.Data
             if (!optionsBuilder.IsConfigured)
             {
                 optionsBuilder
-                   
 
-                    .UseLazyLoadingProxies()
+
+                    //.UseLazyLoadingProxies()
                     .UseSqlServer(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\Database1.mdf;Integrated Security=True");
 
             }
@@ -48,23 +53,25 @@ namespace EK7TKN_HFT_2021221.Data
 
             
 
-            modelBuilder.Entity<RunInformation>(entity =>
-            {
-                entity
-                .HasOne(x => x.userInformation)
-                .WithMany(x => x.RunInformations)
-                .HasForeignKey(x => x.UserID)
-                .OnDelete(DeleteBehavior.ClientSetNull);
+            //modelBuilder.Entity<RunInformation>(entity =>
+            //{
+            //    entity
+            //    .HasOne(x => x.userInformation)
+            //    .WithMany(x => x.RunInformations)
+            //    .HasForeignKey(x => x.UserID)
+            //    .OnDelete(DeleteBehavior.ClientSetNull);
                 
-            });
+            //});
 
-            modelBuilder.Entity<PasswordSecurity>(entity =>
-            {
-                entity
-                    .HasOne(x => x.userInformation)
-                    .WithOne(x => x.passwordSecurity)
-                    .OnDelete(DeleteBehavior.ClientSetNull);
-            });
+            //modelBuilder.Entity<PasswordSecurity>(entity =>
+            //{
+            //    entity
+            //        .HasOne(x => x.userInformation)
+            //        .WithOne(x => x.passwordSecurity)
+            //        .OnDelete(DeleteBehavior.ClientSetNull);
+            //});
+
+            
             modelBuilder.Entity<RunInformation>().HasData(run1, run2, run3, run4);
             modelBuilder.Entity<PasswordSecurity>().HasData(pass1, pass2, pass3, pass4);
             modelBuilder.Entity<UserInformation>().HasData(user1, user2, user3, user4);

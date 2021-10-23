@@ -1,3 +1,5 @@
+using EK7TKN_HFT_2021221.Data;
+using EK7TKN_HFT_2021221.Repository;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
@@ -13,7 +15,31 @@ namespace EK7TKN_HFT_2021221.Endpoint
     {
         public static void Main(string[] args)
         {
+            xDbContext context = new xDbContext();
+            UserTest users = new UserTest(context);
+
+            foreach (var item in users.userId)
+            {
+                Console.WriteLine(item.ToString());
+            }
+
+
+
             CreateHostBuilder(args).Build().Run();
+
+
+        }
+
+        public class UserTest : Repo_User
+        {
+            public List<int> userId { get; set; }
+            public UserTest(xDbContext Context) : base(Context)
+            {
+                foreach (var item in Context.Users)
+                {
+                    userId.Add(item.UserID);
+                }
+            }
         }
 
         public static IHostBuilder CreateHostBuilder(string[] args) =>
