@@ -13,13 +13,18 @@ namespace EK7TKN_HFT_2021221.Models
     public class RunInformation
     {
         [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int RunID { get; set; }
         [ForeignKey(nameof(UserInformation))]
         public int UserID { get; set; }
         public virtual UserInformation userInformation { get; set; }
         public double Distance { get; set; }
         public string Time { get; set; }
-        
+
+        public override string ToString()
+        {
+            return $"Id: {UserID}, RunId: {RunID}, Time: {Time}, Distance: {Distance}";
+        }
 
 
     }

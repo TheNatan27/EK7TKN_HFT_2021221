@@ -47,9 +47,30 @@ namespace EK7TKN_HFT_2021221
             
             xDbContext context = new xDbContext();
             Repo_User testUser = new Repo_User(context);
+            Repo_Run testRun = new Repo_Run(context);
 
-            testUser.GetAllUserIDs();
+            //testUser.GetAllUserIDs();
+            //testUser.GetChonkers();
+            Console.WriteLine();
+            //testUser.UpdateWeight();
+            //testUser.GetChonkers();
+            //testUser.AddUser();
+            //testUser.GetAllUserIDs();
+            //testUser.GetSmurfs();
+            //testUser.GetRuns();
 
+
+            //testUser.Delete();
+            //testUser.ReadAll();
+            testUser.ReadRunsOfUsers();
+
+            //testRun.ReadAllRuns();
+            //testRun.DeleteRun();
+            //testRun.UpdateRun();
+            //testRun.CreateRun();
+            //testRun.ReadAllRuns();
+            //testRun.ReadRun();
+            
 
 
         }
