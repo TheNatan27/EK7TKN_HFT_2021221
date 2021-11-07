@@ -1,5 +1,4 @@
 ﻿using EK7TKN_HFT_2021221.Data;
-using EK7TKN_HFT_2021221.Models;
 using EK7TKN_HFT_2021221.Repository;
 using System;
 

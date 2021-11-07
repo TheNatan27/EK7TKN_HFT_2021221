@@ -344,29 +344,26 @@ namespace EK7TKN_HFT_2021221.Repository
             Console.WriteLine("Enter userId: ");
             int id = int.Parse(Console.ReadLine());
 
-            //var us = from x in CTX.Runs
-            //         where x.UserID.Equals(id)
-            //         select x;
-
-            //foreach (var item in us)
-            //{
-            //    Console.WriteLine(item.ToString());
-            //}
-
-            var se = from x in CTX.Users
+            var us = from x in CTX.Runs
                      where x.UserID.Equals(id)
                      select x;
 
-            List<UserInformation> selist = se.ToList();
-
-            RunInformation ruList = new RunInformation();
-
-            foreach (var item in selist)
+            foreach (var item in us)
             {
-                ruList = (RunInformation)item.runInfo;
+                Console.WriteLine(item.ToString());
             }
 
-            Console.WriteLine(ruList);
+            //var se = from x in CTX.Users
+            //         where x.UserID.Equals(id)
+            //         select x;
+
+            //List<UserInformation> selist = se.ToList();
+
+            //foreach (var item in se)
+            //{
+            //    Console.WriteLine(item);
+            //}
+
         }
     }
 }
