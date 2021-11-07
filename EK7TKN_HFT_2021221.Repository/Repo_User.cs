@@ -354,14 +354,19 @@ namespace EK7TKN_HFT_2021221.Repository
             //}
 
             var se = from x in CTX.Users
+                     where x.UserID.Equals(id)
                      select x;
 
             List<UserInformation> selist = se.ToList();
 
-            //foreach (var item in selist)
-            //{
-            //    item.runInformation.ForEach(x => Console.WriteLine(x.Distance.ToString()) );
-            //}
+            RunInformation ruList = new RunInformation();
+
+            foreach (var item in selist)
+            {
+                ruList = (RunInformation)item.runInfo;
+            }
+
+            Console.WriteLine(ruList);
         }
     }
 }

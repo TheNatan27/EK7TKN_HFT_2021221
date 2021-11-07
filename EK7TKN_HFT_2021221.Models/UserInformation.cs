@@ -21,7 +21,7 @@ namespace EK7TKN_HFT_2021221.Models
         public double Weight { get; set; }
         public int Height { get; set; }
         public string Email { get; set; }
-        public virtual List<RunInformation> runInformation { get; set; }
+        public virtual ICollection<RunInformation> runInfo{ get; set; }
 
 
        

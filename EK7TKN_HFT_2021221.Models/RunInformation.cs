@@ -17,7 +17,7 @@ namespace EK7TKN_HFT_2021221.Models
         public int RunID { get; set; }
         [ForeignKey(nameof(UserInformation))]
         public int UserID { get; set; }
-        public virtual UserInformation userInformation { get; set; }
+        public virtual UserInformation userInfo { get; set; }
         public double Distance { get; set; }
         public string Time { get; set; }
 

@@ -36,7 +36,7 @@ namespace EK7TKN_HFT_2021221.Data
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
 
-            var listau = new List<UserInformation>()
+            List<UserInformation> listau = new List<UserInformation>()
             {
 
 new UserInformation() { First_Name = "	Delly	", Last_Name="	Caldwall	",Email="	dcaldwall0@ifeng.com	",Age=  39  ,Height=    169 ,Weight=    80  ,UserID=    1   },
@@ -143,11 +143,108 @@ new UserInformation() { First_Name = "	Brion	", Last_Name="	McQuaide	",Email="	b
 
         };
 
-
-            PasswordSecurity pass1 = new PasswordSecurity() { PasswordID = 01, UserID = 01, TotallySecureVeryHashedPassword = "pass" };
-            PasswordSecurity pass2 = new PasswordSecurity() { PasswordID = 02, UserID = 02, TotallySecureVeryHashedPassword = "pass" };
-            PasswordSecurity pass3 = new PasswordSecurity() { PasswordID = 03, UserID = 03, TotallySecureVeryHashedPassword = "pass" };
-            PasswordSecurity pass4 = new PasswordSecurity() { PasswordID = 04, UserID = 04, TotallySecureVeryHashedPassword = "pass" };
+            List<PasswordSecurity> lista2 = new List<PasswordSecurity>() {
+new PasswordSecurity( ) { UserId=   1   , TotallySecureVeryHashedPassword="	yI2bKY	"},
+new PasswordSecurity( ) { UserId=   2   , TotallySecureVeryHashedPassword="	DSkdBDDK	"},
+new PasswordSecurity( ) { UserId=   3   , TotallySecureVeryHashedPassword="	5kZbaneT	"},
+new PasswordSecurity( ) { UserId=   4   , TotallySecureVeryHashedPassword="	hjj4m0	"},
+new PasswordSecurity( ) { UserId=   5   , TotallySecureVeryHashedPassword="	APovPQz	"},
+new PasswordSecurity( ) { UserId=   6   , TotallySecureVeryHashedPassword="	0NqSafqyas	"},
+new PasswordSecurity( ) { UserId=   7   , TotallySecureVeryHashedPassword="	yvdmiSgAikd	"},
+new PasswordSecurity( ) { UserId=   8   , TotallySecureVeryHashedPassword="	2JsZs8YJm	"},
+new PasswordSecurity( ) { UserId=   9   , TotallySecureVeryHashedPassword="	xuyaVl	"},
+new PasswordSecurity( ) { UserId=   10  , TotallySecureVeryHashedPassword="	SzhCtf	"},
+new PasswordSecurity( ) { UserId=   11  , TotallySecureVeryHashedPassword="	QS7p04hgc	"},
+new PasswordSecurity( ) { UserId=   12  , TotallySecureVeryHashedPassword="	JmKDQ8	"},
+new PasswordSecurity( ) { UserId=   13  , TotallySecureVeryHashedPassword="	QuXwXGLPx3y	"},
+new PasswordSecurity( ) { UserId=   14  , TotallySecureVeryHashedPassword="	14zY7vO	"},
+new PasswordSecurity( ) { UserId=   15  , TotallySecureVeryHashedPassword="	r0J6dOt	"},
+new PasswordSecurity( ) { UserId=   16  , TotallySecureVeryHashedPassword="	moNAJhuAs5	"},
+new PasswordSecurity( ) { UserId=   17  , TotallySecureVeryHashedPassword="	XhTohYmIf	"},
+new PasswordSecurity( ) { UserId=   18  , TotallySecureVeryHashedPassword="	ws8PFp	"},
+new PasswordSecurity( ) { UserId=   19  , TotallySecureVeryHashedPassword="	yEAue0vRvVMT	"},
+new PasswordSecurity( ) { UserId=   20  , TotallySecureVeryHashedPassword="	iHklG36sxZbi	"},
+new PasswordSecurity( ) { UserId=   21  , TotallySecureVeryHashedPassword="	7mTfSz	"},
+new PasswordSecurity( ) { UserId=   22  , TotallySecureVeryHashedPassword="	UaGVII7zm5	"},
+new PasswordSecurity( ) { UserId=   23  , TotallySecureVeryHashedPassword="	RU9q1l0akrp	"},
+new PasswordSecurity( ) { UserId=   24  , TotallySecureVeryHashedPassword="	zXaiwBEdD8ED	"},
+new PasswordSecurity( ) { UserId=   25  , TotallySecureVeryHashedPassword="	sQKGckhg	"},
+new PasswordSecurity( ) { UserId=   26  , TotallySecureVeryHashedPassword="	a4AZ1u	"},
+new PasswordSecurity( ) { UserId=   27  , TotallySecureVeryHashedPassword="	S7C7ewQ	"},
+new PasswordSecurity( ) { UserId=   28  , TotallySecureVeryHashedPassword="	KHFcevbpgy	"},
+new PasswordSecurity( ) { UserId=   29  , TotallySecureVeryHashedPassword="	SfrdvjIKYH	"},
+new PasswordSecurity( ) { UserId=   30  , TotallySecureVeryHashedPassword="	vcnqs0x6	"},
+new PasswordSecurity( ) { UserId=   31  , TotallySecureVeryHashedPassword="	20TVYw8MJ6A7	"},
+new PasswordSecurity( ) { UserId=   32  , TotallySecureVeryHashedPassword="	hcHF9WlzK	"},
+new PasswordSecurity( ) { UserId=   33  , TotallySecureVeryHashedPassword="	ThrigJr3jpb8	"},
+new PasswordSecurity( ) { UserId=   34  , TotallySecureVeryHashedPassword="	Jj33Xh2g	"},
+new PasswordSecurity( ) { UserId=   35  , TotallySecureVeryHashedPassword="	nGZVshJbi9AF	"},
+new PasswordSecurity( ) { UserId=   36  , TotallySecureVeryHashedPassword="	G0bEUXsBqU	"},
+new PasswordSecurity( ) { UserId=   37  , TotallySecureVeryHashedPassword="	QWG7u2O	"},
+new PasswordSecurity( ) { UserId=   38  , TotallySecureVeryHashedPassword="	u8kskzZE	"},
+new PasswordSecurity( ) { UserId=   39  , TotallySecureVeryHashedPassword="	OHMhFBWY	"},
+new PasswordSecurity( ) { UserId=   40  , TotallySecureVeryHashedPassword="	8gEG2IgLPV	"},
+new PasswordSecurity( ) { UserId=   41  , TotallySecureVeryHashedPassword="	CWq848Fd	"},
+new PasswordSecurity( ) { UserId=   42  , TotallySecureVeryHashedPassword="	iUMDgC	"},
+new PasswordSecurity( ) { UserId=   43  , TotallySecureVeryHashedPassword="	PIQoJD6b4s	"},
+new PasswordSecurity( ) { UserId=   44  , TotallySecureVeryHashedPassword="	EYACFqOf0bSU	"},
+new PasswordSecurity( ) { UserId=   45  , TotallySecureVeryHashedPassword="	ARW1DJzyP	"},
+new PasswordSecurity( ) { UserId=   46  , TotallySecureVeryHashedPassword="	xcMxBb	"},
+new PasswordSecurity( ) { UserId=   47  , TotallySecureVeryHashedPassword="	Z6kPOcdOcN	"},
+new PasswordSecurity( ) { UserId=   48  , TotallySecureVeryHashedPassword="	SCpQEQZgXy7F	"},
+new PasswordSecurity( ) { UserId=   49  , TotallySecureVeryHashedPassword="	dNQdH8ZU9	"},
+new PasswordSecurity( ) { UserId=   50  , TotallySecureVeryHashedPassword="	Nm7nFCmk4LV	"},
+new PasswordSecurity( ) { UserId=   51  , TotallySecureVeryHashedPassword="	MslNef	"},
+new PasswordSecurity( ) { UserId=   52  , TotallySecureVeryHashedPassword="	wdcnBmZ512oi	"},
+new PasswordSecurity( ) { UserId=   53  , TotallySecureVeryHashedPassword="	8NsFnUb0hAva	"},
+new PasswordSecurity( ) { UserId=   54  , TotallySecureVeryHashedPassword="	69k0S2u	"},
+new PasswordSecurity( ) { UserId=   55  , TotallySecureVeryHashedPassword="	jZIcl362fD	"},
+new PasswordSecurity( ) { UserId=   56  , TotallySecureVeryHashedPassword="	16NY59	"},
+new PasswordSecurity( ) { UserId=   57  , TotallySecureVeryHashedPassword="	VJ3rbxU7V	"},
+new PasswordSecurity( ) { UserId=   58  , TotallySecureVeryHashedPassword="	T8K7vBeiEk	"},
+new PasswordSecurity( ) { UserId=   59  , TotallySecureVeryHashedPassword="	uQA4TO	"},
+new PasswordSecurity( ) { UserId=   60  , TotallySecureVeryHashedPassword="	UdSa5nP2xZur	"},
+new PasswordSecurity( ) { UserId=   61  , TotallySecureVeryHashedPassword="	19N66ZJgw8uj	"},
+new PasswordSecurity( ) { UserId=   62  , TotallySecureVeryHashedPassword="	TuPOX0Jgr6s	"},
+new PasswordSecurity( ) { UserId=   63  , TotallySecureVeryHashedPassword="	yRqpVYaV4	"},
+new PasswordSecurity( ) { UserId=   64  , TotallySecureVeryHashedPassword="	WJiVA3q87f	"},
+new PasswordSecurity( ) { UserId=   65  , TotallySecureVeryHashedPassword="	FR4bABY5E1	"},
+new PasswordSecurity( ) { UserId=   66  , TotallySecureVeryHashedPassword="	aMwOprmXGV	"},
+new PasswordSecurity( ) { UserId=   67  , TotallySecureVeryHashedPassword="	AutjO54c	"},
+new PasswordSecurity( ) { UserId=   68  , TotallySecureVeryHashedPassword="	0SSyDhiSysP	"},
+new PasswordSecurity( ) { UserId=   69  , TotallySecureVeryHashedPassword="	zoaI4dZE7Z	"},
+new PasswordSecurity( ) { UserId=   70  , TotallySecureVeryHashedPassword="	HWP6rb7vf	"},
+new PasswordSecurity( ) { UserId=   71  , TotallySecureVeryHashedPassword="	JgRUYyKa	"},
+new PasswordSecurity( ) { UserId=   72  , TotallySecureVeryHashedPassword="	0HTyDsmohtUc	"},
+new PasswordSecurity( ) { UserId=   73  , TotallySecureVeryHashedPassword="	dtEdItinXS	"},
+new PasswordSecurity( ) { UserId=   74  , TotallySecureVeryHashedPassword="	q1fHuJnDV	"},
+new PasswordSecurity( ) { UserId=   75  , TotallySecureVeryHashedPassword="	YSWFO1	"},
+new PasswordSecurity( ) { UserId=   76  , TotallySecureVeryHashedPassword="	7bXG4CZPbO	"},
+new PasswordSecurity( ) { UserId=   77  , TotallySecureVeryHashedPassword="	rGG733K	"},
+new PasswordSecurity( ) { UserId=   78  , TotallySecureVeryHashedPassword="	QqD35W7NYQB	"},
+new PasswordSecurity( ) { UserId=   79  , TotallySecureVeryHashedPassword="	wnV4DZqA	"},
+new PasswordSecurity( ) { UserId=   80  , TotallySecureVeryHashedPassword="	Bnu6YMr3a6	"},
+new PasswordSecurity( ) { UserId=   81  , TotallySecureVeryHashedPassword="	MNEOiiS	"},
+new PasswordSecurity( ) { UserId=   82  , TotallySecureVeryHashedPassword="	QS9rC4LSHh	"},
+new PasswordSecurity( ) { UserId=   83  , TotallySecureVeryHashedPassword="	yeIsUh6	"},
+new PasswordSecurity( ) { UserId=   84  , TotallySecureVeryHashedPassword="	a6Aox1KU	"},
+new PasswordSecurity( ) { UserId=   85  , TotallySecureVeryHashedPassword="	WwFdF1e	"},
+new PasswordSecurity( ) { UserId=   86  , TotallySecureVeryHashedPassword="	k4BOB7I	"},
+new PasswordSecurity( ) { UserId=   87  , TotallySecureVeryHashedPassword="	4qSaM6T	"},
+new PasswordSecurity( ) { UserId=   88  , TotallySecureVeryHashedPassword="	tMcVGgfqR	"},
+new PasswordSecurity( ) { UserId=   89  , TotallySecureVeryHashedPassword="	sJdn3FOk	"},
+new PasswordSecurity( ) { UserId=   90  , TotallySecureVeryHashedPassword="	ZIq2J77mtfR	"},
+new PasswordSecurity( ) { UserId=   91  , TotallySecureVeryHashedPassword="	z9olBG	"},
+new PasswordSecurity( ) { UserId=   92  , TotallySecureVeryHashedPassword="	HRtPaH	"},
+new PasswordSecurity( ) { UserId=   93  , TotallySecureVeryHashedPassword="	tPYLaS4	"},
+new PasswordSecurity( ) { UserId=   94  , TotallySecureVeryHashedPassword="	ysPoninOG7y	"},
+new PasswordSecurity( ) { UserId=   95  , TotallySecureVeryHashedPassword="	KrYqM6	"},
+new PasswordSecurity( ) { UserId=   96  , TotallySecureVeryHashedPassword="	FbtEo7Qf0V	"},
+new PasswordSecurity( ) { UserId=   97  , TotallySecureVeryHashedPassword="	NRzJmF2	"},
+new PasswordSecurity( ) { UserId=   98  , TotallySecureVeryHashedPassword="	LN7xPVmZ	"},
+new PasswordSecurity( ) { UserId=   99  , TotallySecureVeryHashedPassword="	i5hgh2	"},
+new PasswordSecurity( ) { UserId=   100 , TotallySecureVeryHashedPassword="	LL9G5HjURl	"}
+        };
 
             List<RunInformation> lista3 = new List<RunInformation>()
             {
@@ -388,10 +485,13 @@ new RunInformation(){ RunID=    234 ,UserID=    72  ,Distance=  73.9    ,Time="0
 
             };
 
+
             
 
+
+
             modelBuilder.Entity<RunInformation>().HasData(lista3);
-            modelBuilder.Entity<PasswordSecurity>().HasData(pass1, pass2, pass3, pass4);
+            modelBuilder.Entity<PasswordSecurity>().HasData(lista2);
             modelBuilder.Entity<UserInformation>().HasData(listau);
 
 
