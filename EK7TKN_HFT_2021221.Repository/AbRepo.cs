@@ -7,12 +7,13 @@ using System.Threading.Tasks;
 
 namespace EK7TKN_HFT_2021221.Repository
 {
-    public abstract class AbRepo<T>
+    public abstract class AbRepo<T> 
     {
         protected xDbContext context;
         public AbRepo(xDbContext Context)
         {
             context = Context;
         }
+
     }
 }

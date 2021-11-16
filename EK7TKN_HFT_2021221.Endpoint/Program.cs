@@ -19,10 +19,7 @@ namespace EK7TKN_HFT_2021221.Endpoint
             
 
             CreateHostBuilder(args).Build().Run();
-            xDbContext context = new xDbContext();
-            Repo_User testUser = new Repo_User(context);
-
-            testUser.GetAllUserIDs();
+            
 
             Console.WriteLine("Hello honlap");
 

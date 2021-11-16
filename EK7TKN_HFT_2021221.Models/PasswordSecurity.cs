@@ -13,6 +13,7 @@ namespace EK7TKN_HFT_2021221.Models
     public class PasswordSecurity
     {
         [Key]
+        public int PassId { get; set; }
         [ForeignKey(nameof(UserInformation))]
         public int UserId { get; set; }
         public virtual UserInformation userInformation { get; set; }

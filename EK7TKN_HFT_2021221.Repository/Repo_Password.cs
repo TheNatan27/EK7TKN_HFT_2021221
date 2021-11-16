@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace EK7TKN_HFT_2021221.Repository
 {
-    public class Repo_Password : AbRepo<Repo_Password>
+    public class Repo_Password : AbRepo<Repo_Password>, IRepo
     {
         xDbContext ctx;
         public Repo_Password(xDbContext context) : base(context)
@@ -17,7 +17,7 @@ namespace EK7TKN_HFT_2021221.Repository
         }
 
         //CRUD Methods
-        public void CreateRun()
+        public void Create()
         {
             Console.WriteLine("Enter Password:");
             string pass = (Console.ReadLine());
@@ -31,7 +31,7 @@ namespace EK7TKN_HFT_2021221.Repository
             ctx.SaveChanges();
 
         }
-        public void ReadRun()
+        public void Read()
         {
             Console.WriteLine("Enter PasswordID: ");
             int id = int.Parse(Console.ReadLine());
@@ -44,9 +44,9 @@ namespace EK7TKN_HFT_2021221.Repository
             }
 
         }
-        public void UpdateRun()
+        public void Update()
         {
-            bool menu = true;
+           
 
             Console.WriteLine("Enter Id of password you would like to update: ");
             int id = int.Parse(Console.ReadLine());
@@ -73,7 +73,7 @@ namespace EK7TKN_HFT_2021221.Repository
 
             
         }
-        public void DeleteRun()
+        public void Delete()
         {
             Console.WriteLine("Enter Id of password you would like to delete:");
             int id = int.Parse(Console.ReadLine());
@@ -91,17 +91,13 @@ namespace EK7TKN_HFT_2021221.Repository
             ctx.SaveChanges();
 
         }
-        public IQueryable<PasswordSecurity> ReadAllRuns()
+        public IQueryable<PasswordSecurity> ReadAll()
         {
             var us = from x in ctx.Passwords
                      select x;
 
             IQueryable<PasswordSecurity> list = us.AsQueryable().Select(x => x);
 
-            foreach (var item in list)
-            {
-                Console.WriteLine(item.ToString());
-            }
 
             return list;
         }

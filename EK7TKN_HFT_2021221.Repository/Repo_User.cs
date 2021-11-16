@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace EK7TKN_HFT_2021221.Repository
 {
-    public class Repo_User : AbRepo<UserInformation>
+    public class Repo_User : AbRepo<UserInformation>, IRepo
     {
         xDbContext CTX;
 
@@ -99,7 +99,7 @@ namespace EK7TKN_HFT_2021221.Repository
 
         //CRUD Methods
 
-        public void CreateUser()
+        public void Create()
         {
             
             Console.WriteLine("Enter first name:");
@@ -125,7 +125,7 @@ namespace EK7TKN_HFT_2021221.Repository
             Console.WriteLine("User added!");
 
         }
-        public void ReadUser()
+        public void Read()
         {
             Console.WriteLine("Enter id: ");
             int id = int.Parse(Console.ReadLine());
@@ -141,23 +141,17 @@ namespace EK7TKN_HFT_2021221.Repository
                 
             }
         }
-        public IQueryable<UserInformation> ReadAllUsers()
+        public IQueryable<UserInformation> ReadAll()
         {
             var us = from x in CTX.Users
                      select x;
 
             IQueryable<UserInformation> list = us.AsQueryable().Select(x => x);
 
-            foreach (var item in list)
-            {
-                Console.WriteLine(item.ToString());
-            }
-
-
             return list;
         }
         
-        public void UpdateUser()
+        public void Update()
         {
             bool menu = true;
 
@@ -320,7 +314,7 @@ namespace EK7TKN_HFT_2021221.Repository
                 throw;
             }
         }
-        public void DeleteUser()
+        public void Delete()
         {
             Console.WriteLine("Enter Id of user you would like to delete:");
             int id = int.Parse(Console.ReadLine());

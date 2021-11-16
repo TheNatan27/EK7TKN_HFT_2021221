@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace EK7TKN_HFT_2021221.Repository
 {
-    public class Repo_Run : AbRepo<RunInformation>
+    public class Repo_Run : AbRepo<RunInformation>, IRepo
     {
         xDbContext ctx;
         public Repo_Run(xDbContext context) : base(context)
@@ -18,7 +18,7 @@ namespace EK7TKN_HFT_2021221.Repository
 
         //CRUD Methos
 
-        public void CreateRun()
+        public void Create()
         {
             Console.WriteLine("Enter Distance:");
             double distance = double.Parse(Console.ReadLine());
@@ -38,7 +38,7 @@ namespace EK7TKN_HFT_2021221.Repository
             ctx.SaveChanges();
 
         }
-        public void ReadRun()
+        public void Read()
         {
             Console.WriteLine("Enter RunId: ");
             int id = int.Parse(Console.ReadLine());
@@ -51,7 +51,7 @@ namespace EK7TKN_HFT_2021221.Repository
             }
             
         }
-        public void UpdateRun()
+        public void Update()
         {
             bool menu = true;
 
@@ -134,7 +134,7 @@ namespace EK7TKN_HFT_2021221.Repository
                 throw;
             }
         }
-        public void DeleteRun()
+        public void Delete()
         {
             Console.WriteLine("Enter Id of run you would like to delete:");
             int id = int.Parse(Console.ReadLine());
@@ -152,17 +152,14 @@ namespace EK7TKN_HFT_2021221.Repository
             ctx.SaveChanges();
 
         }
-        public IQueryable<RunInformation> ReadAllRuns()
+        public IQueryable<RunInformation> ReadAll()
         {
             var us = from x in ctx.Runs
                      select x;
 
             IQueryable<RunInformation> list = us.AsQueryable().Select(x => x);
 
-            foreach (var item in list)
-            {
-                Console.WriteLine(item.ToString());
-            }
+
 
             return list;
         }
