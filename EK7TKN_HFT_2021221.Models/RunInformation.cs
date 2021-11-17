@@ -20,7 +20,8 @@ namespace EK7TKN_HFT_2021221.Models
         public virtual UserInformation userInfo { get; set; }
         public double Distance { get; set; }
         public string Time { get; set; }
-
+        public bool IsCompetition { get; set; }
+        public string Location { get; set; }
         public override string ToString()
         {
             return $"Id: {UserID}, RunId: {RunID}, Time: {Time}, Distance: {Distance}";

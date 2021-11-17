@@ -20,6 +20,13 @@ namespace EK7TKN_HFT_2021221.Logic
             this.runRepo = (Repo_Run)run;
         }
 
+        //CRUD Methods
+
+        //public IEnumerable<>
+
+
+
+        //Non CRUD Methods
         public void Create()
         {
             runRepo.Create();

@@ -102,10 +102,8 @@ namespace EK7TKN_HFT_2021221.Repository
         public void Create()
         {
             
-            Console.WriteLine("Enter first name:");
-            string first = Console.ReadLine();
-            Console.WriteLine("Enter last name:");
-            string last = Console.ReadLine();
+            Console.WriteLine("Enter name:");
+            string name = Console.ReadLine();
             Console.WriteLine("Enter age: ");
             int age = int.Parse(Console.ReadLine());
             Console.WriteLine("Enter weight: ");
@@ -115,7 +113,7 @@ namespace EK7TKN_HFT_2021221.Repository
             Console.WriteLine("Enter email: ");
             string email = Console.ReadLine();
 
-            UserInformation newUser = new UserInformation() { First_Name = first, Last_Name = last, Age = age, Weight = weight, Height = height, Email = email };
+            UserInformation newUser = new UserInformation() { Full_Name=name, Age = age, Weight = weight, Height = height, Email = email };
 
             Console.Clear();
 
@@ -167,13 +165,12 @@ namespace EK7TKN_HFT_2021221.Repository
             while (menu)
             {
                 Console.WriteLine("What would you like to update?");
-                Console.WriteLine("1: First name");
-                Console.WriteLine("2: Last name");
-                Console.WriteLine("3: Age");
-                Console.WriteLine("4: Weight");
-                Console.WriteLine("5: Height");
-                Console.WriteLine("6: Email adress");
-                Console.WriteLine("7: Exit");
+                Console.WriteLine("1: Full name");
+                Console.WriteLine("2: Age");
+                Console.WriteLine("3: Weight");
+                Console.WriteLine("4: Height");
+                Console.WriteLine("5: Email adress");
+                Console.WriteLine("6: Exit");
 
 
                 int input = int.Parse(Console.ReadLine());
@@ -188,39 +185,22 @@ namespace EK7TKN_HFT_2021221.Repository
                     {
                             foreach (var item in use)
                             {
-                                Console.WriteLine("Old name: " + item.First_Name);
+                                Console.WriteLine("Old name: " + item.Full_Name);
                             }
                             Console.WriteLine("Enter new name:");
                             string change = Console.ReadLine();
 
                             foreach (var item in use)
                             {
-                                item.First_Name = change;
+                                item.Full_Name = change;
                             }
                             Console.WriteLine("Done!");
                             Console.ReadLine();
                             Console.Clear();
                         break;
                     }
-                    case 2:
-                        {
-                            foreach (var item in use)
-                            {
-                                Console.WriteLine("Old name: " + item.Last_Name);
-                            }
-                            Console.WriteLine("Enter new name:");
-                            string change = Console.ReadLine();
 
-                            foreach (var item in use)
-                            {
-                                item.Last_Name = change;
-                            }
-                            Console.WriteLine("Done!");
-                            Console.ReadLine();
-                            Console.Clear();
-                            break;
-                        }
-                    case 3:
+                    case 2:
                         {
                             foreach (var item in use)
                             {
@@ -239,7 +219,7 @@ namespace EK7TKN_HFT_2021221.Repository
                             break;
                             
                         }
-                    case 4:
+                    case 3:
                         {
                             foreach (var item in use)
                             {
@@ -257,7 +237,7 @@ namespace EK7TKN_HFT_2021221.Repository
                             Console.Clear();
                             break;
                         }
-                    case 5:
+                    case 4:
                         {
                             foreach (var item in use)
                             {
@@ -275,7 +255,7 @@ namespace EK7TKN_HFT_2021221.Repository
                             Console.Clear();
                             break;
                         }
-                    case 6:
+                    case 5:
                         {
                             foreach (var item in use)
                             {
@@ -293,7 +273,7 @@ namespace EK7TKN_HFT_2021221.Repository
                             Console.Clear();
                             break;
                         }
-                    case 7:
+                    case 6:
                         {
                             menu = false;
                             break;

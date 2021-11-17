@@ -24,7 +24,7 @@ namespace EK7TKN_HFT_2021221.Repository
 
             PasswordSecurity newPass = new PasswordSecurity()
             {
-                TotallySecureVeryHashedPassword = pass
+                TotallySecuredVeryHashedPassword = pass
             };
 
             ctx.Passwords.Attach(newPass);
@@ -57,14 +57,14 @@ namespace EK7TKN_HFT_2021221.Repository
 
             foreach (var item in use)
             {
-                Console.WriteLine("Old password: " + item.TotallySecureVeryHashedPassword);
+                Console.WriteLine("Old password: " + item.TotallySecuredVeryHashedPassword);
             }
             Console.WriteLine("Enter new password:");
             string change = Console.ReadLine();
 
             foreach (var item in use)
             {
-                item.TotallySecureVeryHashedPassword = change;
+                item.TotallySecuredVeryHashedPassword = change;
             }
             Console.WriteLine("Done!");
             Console.ReadLine();
