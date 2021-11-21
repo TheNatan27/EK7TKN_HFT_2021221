@@ -18,7 +18,7 @@ namespace EK7TKN_HFT_2021221.Repository
 
         //CRUD Methos
 
-        public void Create()
+        public void Create(string filename)
         {
             Console.WriteLine("Enter Distance:");
             double distance = double.Parse(Console.ReadLine());

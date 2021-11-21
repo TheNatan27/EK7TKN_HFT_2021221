@@ -17,7 +17,7 @@ namespace EK7TKN_HFT_2021221.Repository
         }
 
         //CRUD Methods
-        public void Create()
+        public void Create(string filename)
         {
             Console.WriteLine("Enter Password:");
             string pass = (Console.ReadLine());

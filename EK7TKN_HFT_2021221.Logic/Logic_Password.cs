@@ -170,9 +170,9 @@ namespace EK7TKN_HFT_2021221.Logic
 
 
         //CRUD Methods
-        public void Create()
+        public void Create(string filename)
         {
-            passwordRepo.Create();
+            passwordRepo.Create(filename);
         }
 
         public void Delete()

@@ -3,95 +3,23 @@ using EK7TKN_HFT_2021221.Models;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace EK7TKN_HFT_2021221.Repository
 {
+    public class MissingNameException : Exception
+    {
+        public MissingNameException()
+        {
+
+        }
+    }
     public class Repo_User : AbRepo<UserInformation>, IUserRepository
     {
         xDbContext CTX;
-
-        #region Practice
-
-        //public void GetAllUserIDs()
-        //{
-        //    List<UserInformation> users = CTX.Users.ToList();
-
-        //    foreach (var item in users)
-        //    {
-        //        Console.WriteLine(item.UserID);
-        //    }
-        //}
-        //public void GetChonkers()
-        //{
-        //    List<UserInformation> users = CTX.Users.ToList();
-
-        //    var elemek = from x in CTX.Users
-        //                 where x.Weight > 70
-        //                 select x;
-        //    foreach (var item in elemek)
-        //    {
-        //        Console.WriteLine("Id: "+item.UserID + "Weight: "+item.Weight);
-        //    }
-        //}
-        //public void UpdateWeight()
-        //{
-
-        //    var elemek =
-        //        from x in CTX.Users
-        //        select x;
-
-        //    foreach (var item in elemek)
-        //    {
-        //        item.Weight -= 10;
-        //    }
-        //    CTX.SaveChanges();
-        //}
-        ////public void AddUser()
-        ////{
-        ////    CTX.Users.Attach(new UserInformation() { UserID = 621, Weight = 100 });
-        ////    CTX.Update(CTX.Users);
-        ////}
-        //public void LoseWeight()
-        //{
-        //    var elemek =
-        //        from x in CTX.Users
-        //        where  x.Weight > 40 && x.Weight <80
-        //        select x;
-
-        //    foreach (var item in elemek)
-        //    {
-        //        item.Weight -= 20;
-        //    }
-            
-        //}
-        //public void GetSmurfs()
-        //{
-        //    var elemek =
-        //        from x in CTX.Users
-        //        where x.Height < 165
-        //        select x;
-
-        //    foreach (var item in elemek)
-        //    {
-        //        Console.WriteLine(item.UserID + "  " + item.Height);
-        //    }
-        //}
-        //public void GetRuns()
-        //{
-        //    var elemek =
-        //        from x in CTX.Users
-        //        select x;
-
-        //    foreach (var item in elemek)
-        //    {
-        //        Console.WriteLine($"Id: {item.UserID}, Age: {item.Age}, Weight: {item.Weight}, Height: {item.Height}");
-        //    }
-        //}
-
-        #endregion
         public Repo_User(xDbContext context) : base(context)
         {
             this.CTX = context;
@@ -99,30 +27,35 @@ namespace EK7TKN_HFT_2021221.Repository
 
         //CRUD Methods
 
-        public void Create()
+        public void Create(string filename)
         {
-            
-            Console.WriteLine("Enter name:");
-            string name = Console.ReadLine();
-            Console.WriteLine("Enter age: ");
-            int age = int.Parse(Console.ReadLine());
-            Console.WriteLine("Enter weight: ");
-            double weight = double.Parse(Console.ReadLine());
-            Console.WriteLine("Enter height: ");
-            int height = int.Parse(Console.ReadLine());
-            Console.WriteLine("Enter email: ");
-            string email = Console.ReadLine();
+            string[] lines = File.ReadAllLines(filename);
 
-            UserInformation newUser = new UserInformation() { Full_Name=name, Age = age, Weight = weight, Height = height, Email = email };
+            UserInformation newUser = new UserInformation(){
+                Full_Name = lines[0],
+                Email = lines[1],
+                Age = int.Parse(lines[2]), 
+                Height = int.Parse(lines[3]),
+                Weight = int.Parse(lines[4]),
+                Premium = bool.Parse(lines[5]) };
 
-            Console.Clear();
+            Console.WriteLine(newUser.ToString());
 
+            if (lines[0] == "")
+            {
+                throw new MissingNameException();
+            }
             CTX.Users.Attach(newUser);
             CTX.SaveChanges();
 
             Console.WriteLine("User added!");
+      
+
+
+
 
         }
+
         public void Read()
         {
             Console.WriteLine("Enter id: ");

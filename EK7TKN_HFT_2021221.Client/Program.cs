@@ -2,6 +2,7 @@
 using EK7TKN_HFT_2021221.Logic;
 using EK7TKN_HFT_2021221.Repository;
 using System;
+using System.IO;
 
 namespace EK7TKN_HFT_2021221
 {
@@ -51,32 +52,19 @@ namespace EK7TKN_HFT_2021221
             Repo_Password testPass = new Repo_Password(context);
 
             Logic_Run loRun = new Logic_Run(testUser, testPass, testRun);
-            //loRun.GetRunIDOfPremiumUsers();
-            //loRun.GetTimeOfPremiumCompetitors();
-            //loRun.GetRunIDOfLongDistanceJuniorRunners();
-            //loRun.GetLocationOfChonkers();
-            //loRun.GetLocationOfJuniorPremiumUsers();
 
             Logic_Password loPass = new Logic_Password(testUser, testPass, testRun);
-            //loPass.GetOldPeoplesPassID();
-            //loPass.GetPeoplesPassIDWithWeakPasswords();
-            //loPass.GetOldPeoplesPassIDWithWeakPassword();
-            //loPass.GetPhoneNumberOfPremiumUsers();
-            //loPass.GetPhoneNumberOfCompetitors();
-            //loPass.GetPasswordOfUserByName();
+
 
             Logic_User loUser = new Logic_User(testUser, testPass, testRun);
-            //loUser.GetEmailOfWeakPasswordUsers();
-            
-            //loPass.GetOldPeoplesPasswords();
-            //loPass.test();
 
+            loUser.Create("testUser3.txt");
 
 
 
             //testUser.GetAllUserIDs();
             //testUser.GetChonkers();
-            Console.WriteLine();
+            
             //testUser.UpdateWeight();
             //testUser.GetChonkers();
             //testUser.AddUser();

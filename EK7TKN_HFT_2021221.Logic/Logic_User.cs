@@ -122,9 +122,9 @@ namespace EK7TKN_HFT_2021221.Logic
         }
 
         //CRUD Methods
-        public void Create()
+        public void Create(string filename)
         {
-            userRepo.Create();
+            userRepo.Create(filename);
         }
 
         public void Delete()

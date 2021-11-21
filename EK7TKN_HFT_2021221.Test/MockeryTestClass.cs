@@ -162,8 +162,9 @@ new UserInformation() { Full_Name="	Nada Grgic	",Email="	ngrgic4@sitemeter.com	"
             this.mockeryContext = contextMock;
             #endregion
 
-
         }
+
+
 
 
         //CRUD Method Tests
@@ -278,7 +279,7 @@ new UserInformation() { Full_Name="	Nada Grgic	",Email="	ngrgic4@sitemeter.com	"
             Assert.That(testResult, Is.EqualTo(actual));
         }
         [Test]
-        public void GetLocationOfChonkers()
+        public void GetLocationOfChonkers_Test()
         {
             //ARRANGE
             IRunRepository runRepository = new Repo_Run(mockeryContext.Object);
@@ -305,17 +306,37 @@ new UserInformation() { Full_Name="	Nada Grgic	",Email="	ngrgic4@sitemeter.com	"
             Assert.That(testResult, Is.EqualTo(actual));
             
         }
+        [Test]
+        public void GetTimeOfPremiumCompetitors_Test()
+        {
+            //ARRANGE
+            IRunRepository runRepository = new Repo_Run(mockeryContext.Object);
+            IPassRepository passRepository = new Repo_Password(mockeryContext.Object);
+            IUserRepository userRepository = new Repo_User(mockeryContext.Object);
 
+            IRunLogic runLogic = new Logic_Run(userRepository, passRepository, runRepository);
 
+            //ACT
+
+            var to = runLogic.GetTimeOfPremiumCompetitors();
+
+            List<string> testResult = new List<string>();
+
+            foreach (var item in to)
+            {
+                testResult.Add(item.Trim());
+            }
+
+            List<string> actual = new List<string> {
+                "00:32:41"};
+
+            //ASSERT
+            Assert.That(testResult, Is.EqualTo(actual));
+        }
 
     }
 }
 
-//var oke = from u in userRepository.ReadAll()
-//          join r in runRepository.ReadAll()
-//          on u.UserID equals r.UserID
-//          where r.IsCompetition.Equals(true)
-//          select u.Email;
 
 //List<string> lista = new List<string>();
 

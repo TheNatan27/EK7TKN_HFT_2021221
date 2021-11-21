@@ -25,6 +25,9 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Others", "Others", "{3ABA269F-B0F2-4DDE-8ED0-EEFE61F206DA}"
 	ProjectSection(SolutionItems) = preProject
 		.gitignore = .gitignore
+		testUser1.txt = testUser1.txt
+		EK7TKN_HFT_2021221.Client\bin\Debug\net5.0\testUser1.txt = EK7TKN_HFT_2021221.Client\bin\Debug\net5.0\testUser1.txt
+		testUser2.txt = testUser2.txt
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Shared", "Shared", "{A766B114-8C04-4A75-A73D-57B7688D5242}"
