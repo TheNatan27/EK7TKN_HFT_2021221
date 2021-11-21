@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 namespace EK7TKN_HFT_2021221.Models
 {
     [Table("Passwords")]
-    public class PasswordSecurity
+    public class PasswordSecurity : IModelClass
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]

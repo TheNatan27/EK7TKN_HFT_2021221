@@ -50,18 +50,24 @@ namespace EK7TKN_HFT_2021221
             Repo_Run testRun = new Repo_Run(context);
             Repo_Password testPass = new Repo_Password(context);
 
-            
+            Logic_Run loRun = new Logic_Run(testUser, testPass, testRun);
+            //loRun.GetRunIDOfPremiumUsers();
+            //loRun.GetTimeOfPremiumCompetitors();
+            //loRun.GetRunIDOfLongDistanceJuniorRunners();
+            //loRun.GetLocationOfChonkers();
+            //loRun.GetLocationOfJuniorPremiumUsers();
+
             Logic_Password loPass = new Logic_Password(testUser, testPass, testRun);
             //loPass.GetOldPeoplesPassID();
             //loPass.GetPeoplesPassIDWithWeakPasswords();
             //loPass.GetOldPeoplesPassIDWithWeakPassword();
             //loPass.GetPhoneNumberOfPremiumUsers();
             //loPass.GetPhoneNumberOfCompetitors();
-            loPass.GetPasswordOfUserByName();
+            //loPass.GetPasswordOfUserByName();
 
             Logic_User loUser = new Logic_User(testUser, testPass, testRun);
             //loUser.GetEmailOfWeakPasswordUsers();
-
+            
             //loPass.GetOldPeoplesPasswords();
             //loPass.test();
 

@@ -19,7 +19,7 @@ namespace EK7TKN_HFT_2021221.Data
         }
         public xDbContext() 
         {
-            Database.EnsureCreated();
+            Database?.EnsureCreated();
         }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -345,19 +345,19 @@ new RunInformation() { RunID=   96  ,UserID=    51  ,Distance=  29.9    ,Time="0
 new RunInformation() { RunID=   97  ,UserID=    84  ,Distance=  10.2    ,Time="00:23:20", IsCompetition=    false   ,Location="	United States	"},
 new RunInformation() { RunID=   98  ,UserID=    92  ,Distance=  3.5 ,Time="00:22:49", IsCompetition=    false   ,Location="	Poland	"},
 new RunInformation() { RunID=   99  ,UserID=    99  ,Distance=  45.5    ,Time="00:17:05", IsCompetition=    false   ,Location="	Poland	"},
-//new RunInformation() { RunID=   100 ,UserID=    58  ,Distance=  14.8    ,Time="00:45:13", IsCompetition=    true    ,Location="	Poland	"},
-//new RunInformation() { RunID=   101 ,UserID=    26  ,Distance=  4.9 ,Time="00:16:25", IsCompetition=    false   ,Location="	Japan	"},
-//new RunInformation() { RunID=   102 ,UserID=    77  ,Distance=  4.8 ,Time="00:31:15", IsCompetition=    false   ,Location="	United States	"},
-//new RunInformation() { RunID=   103 ,UserID=    58  ,Distance=  29.8    ,Time="00:47:73", IsCompetition=    false   ,Location="	Poland	"},
-//new RunInformation() { RunID=   104 ,UserID=    45  ,Distance=  2.6 ,Time="00:76:27", IsCompetition=    true    ,Location="	Japan	"},
-//new RunInformation() { RunID=   105 ,UserID=    94  ,Distance=  24.2    ,Time="00:47:64", IsCompetition=    false   ,Location="	United States	"},
-//new RunInformation() { RunID=   106 ,UserID=    91  ,Distance=  18.3    ,Time="00:37:05", IsCompetition=    true    ,Location="	Poland	"},
-//new RunInformation() { RunID=   107 ,UserID=    90  ,Distance=  20.9    ,Time="00:71:38", IsCompetition=    false   ,Location="	Germany	"},
-//new RunInformation() { RunID=   108 ,UserID=    71  ,Distance=  45.6    ,Time="00:17:92", IsCompetition=    true    ,Location="	Australia	"},
-//new RunInformation() { RunID=   109 ,UserID=    94  ,Distance=  30.5    ,Time="00:83:44", IsCompetition=    true    ,Location="	Poland	"},
-//new RunInformation() { RunID=   110 ,UserID=    74  ,Distance=  31  ,Time="00:70:15", IsCompetition=    false   ,Location="	Japan	"},
-//new RunInformation() { RunID=   111 ,UserID=    90  ,Distance=  37.8    ,Time="00:96:14", IsCompetition=    true    ,Location="	United States	"},
-//new RunInformation() { RunID=   112 ,UserID=    20  ,Distance=  43.7    ,Time="00:41:73", IsCompetition=    false   ,Location="	Poland	"},
+new RunInformation() { RunID=   100 ,UserID=    58  ,Distance=  14.8    ,Time="00:45:13", IsCompetition=    true    ,Location="	Poland	"},
+new RunInformation() { RunID=   101 ,UserID=    26  ,Distance=  4.9 ,Time="00:16:25", IsCompetition=    false   ,Location="	Japan	"},
+new RunInformation() { RunID=   102 ,UserID=    77  ,Distance=  4.8 ,Time="00:31:15", IsCompetition=    false   ,Location="	United States	"},
+new RunInformation() { RunID=   103 ,UserID=    58  ,Distance=  29.8    ,Time="00:47:73", IsCompetition=    false   ,Location="	Poland	"},
+new RunInformation() { RunID=   104 ,UserID=    45  ,Distance=  2.6 ,Time="00:76:27", IsCompetition=    true    ,Location="	Japan	"},
+new RunInformation() { RunID=   105 ,UserID=    94  ,Distance=  24.2    ,Time="00:47:64", IsCompetition=    false   ,Location="	United States	"},
+new RunInformation() { RunID=   106 ,UserID=    9  ,Distance=  18.3    ,Time="00:37:05", IsCompetition=    true    ,Location="	Poland	"},
+new RunInformation() { RunID=   107 ,UserID=    90  ,Distance=  20.9    ,Time="00:71:38", IsCompetition=    false   ,Location="	Germany	"},
+new RunInformation() { RunID=   108 ,UserID=    71  ,Distance=  45.6    ,Time="00:17:92", IsCompetition=    true    ,Location="	Australia	"},
+new RunInformation() { RunID=   109 ,UserID=    94  ,Distance=  30.5    ,Time="00:83:44", IsCompetition=    true    ,Location="	Poland	"},
+new RunInformation() { RunID=   110 ,UserID=    74  ,Distance=  31  ,Time="00:70:15", IsCompetition=    false   ,Location="	Japan	"},
+new RunInformation() { RunID=   111 ,UserID=    90  ,Distance=  37.8    ,Time="00:96:14", IsCompetition=    true    ,Location="	United States	"},
+new RunInformation() { RunID=   112 ,UserID=    20  ,Distance=  43.7    ,Time="00:41:73", IsCompetition=    false   ,Location="	Poland	"},
 //new RunInformation() { RunID=   113 ,UserID=    2   ,Distance=  4.9 ,Time="00:76:31", IsCompetition=    false   ,Location="	Poland	"},
 //new RunInformation() { RunID=   114 ,UserID=    67  ,Distance=  17.1    ,Time="00:90:20", IsCompetition=    false   ,Location="	United States	"},
 //new RunInformation() { RunID=   115 ,UserID=    73  ,Distance=  7   ,Time="00:28:56", IsCompetition=    true    ,Location="	Japan	"},

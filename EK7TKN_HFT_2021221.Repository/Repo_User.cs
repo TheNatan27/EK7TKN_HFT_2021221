@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace EK7TKN_HFT_2021221.Repository
 {
-    public class Repo_User : AbRepo<UserInformation>, IRepo
+    public class Repo_User : AbRepo<UserInformation>, IUserRepository
     {
         xDbContext CTX;
 

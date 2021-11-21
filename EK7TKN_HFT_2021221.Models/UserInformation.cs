@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 namespace EK7TKN_HFT_2021221.Models
 {
     [Table("Users")]
-    public class UserInformation 
+    public class UserInformation : IModelClass
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]

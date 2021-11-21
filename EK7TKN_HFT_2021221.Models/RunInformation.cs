@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 namespace EK7TKN_HFT_2021221.Models
 {
     [Table("Runs")]
-    public class RunInformation
+    public class RunInformation : IModelClass
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]

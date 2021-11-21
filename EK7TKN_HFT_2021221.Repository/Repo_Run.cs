@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace EK7TKN_HFT_2021221.Repository
 {
-    public class Repo_Run : AbRepo<RunInformation>, IRepo
+    public class Repo_Run : AbRepo<RunInformation>, IRunRepository
     {
         xDbContext ctx;
         public Repo_Run(xDbContext context) : base(context)

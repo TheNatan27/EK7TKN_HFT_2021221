@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace EK7TKN_HFT_2021221.Repository
 {
-    public class Repo_Password : AbRepo<Repo_Password>, IRepo
+    public class Repo_Password : AbRepo<Repo_Password>, IPassRepository
     {
         xDbContext ctx;
         public Repo_Password(xDbContext context) : base(context)

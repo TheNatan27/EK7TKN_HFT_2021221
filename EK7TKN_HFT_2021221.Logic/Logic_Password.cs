@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace EK7TKN_HFT_2021221.Logic
 {
-    public class Logic_Password : AbLogic, ILogic
+    public class Logic_Password : AbLogic, IPassLogic
     {
         Repo_Password passwordRepo;
         Repo_Run runRepo;

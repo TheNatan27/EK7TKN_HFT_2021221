@@ -5,6 +5,16 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="EntityFramework" Version="6.4.4" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.InMemory" Version="5.0.12" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="5.0.12" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.0.0" />
+    <PackageReference Include="Moq" Version="4.16.1" />
+    <PackageReference Include="NUnit" Version="3.13.2" />
+    <PackageReference Include="NUnit3TestAdapter" Version="4.1.0" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\EK7TKN_HFT_2021221.Logic\EK7TKN_HFT_2021221.Logic.csproj" />
     <ProjectReference Include="..\EK7TKN_HFT_2021221.Models\EK7TKN_HFT_2021221.Models.csproj" />
     <ProjectReference Include="..\EK7TKN_HFT_2021221.Repository\EK7TKN_HFT_2021221.Repository.csproj" />

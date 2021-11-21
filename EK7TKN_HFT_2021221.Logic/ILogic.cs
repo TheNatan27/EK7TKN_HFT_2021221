@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace EK7TKN_HFT_2021221.Logic
 {
-    interface ILogic
+    public interface ILogic
     {
         public void Create();
         public void Read();
