@@ -33,23 +33,17 @@ namespace EK7TKN_HFT_2021221.Test
 
         }
 
-        //[TestCase("testuser", 1, "testmail", 10,100, true)]
-        //[TestCase("testUser1.txt")]
-        
-        [TestCase("testUser3.txt")]
+        [TestCase("testUser_noname.txt")]
+        [TestCase("testUser_noemail.txt")]
+        [TestCase("testUser_noage.txt")]
+        [TestCase("testUser_nopremium.txt")]
         public void CreateUser_Test(string filename)
         {
             //ARRANGE
             IUserRepository repository = new Repo_User(testContext);
 
-            //ACT
-            repository.Create(filename);
-            List<UserInformation> information = repository.ReadAll().ToList();
-
-            //ASSERT
-            //Assert.Throws<MissingNameException>(repository.Create(filename);
-            
-
+            //ACT-ASSERT
+            Assert.That(() => repository.Create(filename), Throws.Exception);
         }
     }
 

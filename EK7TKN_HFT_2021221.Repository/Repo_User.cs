@@ -14,7 +14,28 @@ namespace EK7TKN_HFT_2021221.Repository
     {
         public MissingNameException()
         {
-
+            Console.WriteLine("Error: No name specified");
+        }
+    }
+    public class MissingEmailException : Exception
+    {
+        public MissingEmailException()
+        {
+            Console.WriteLine("Error: No email provided");
+        }
+    }
+    public class MissingAgeException : Exception
+    {
+        public MissingAgeException()
+        {
+            Console.WriteLine("Error: No age provided");
+        }
+    }
+    public class PremiumStatusNotSpecifiedException : Exception
+    {
+        public PremiumStatusNotSpecifiedException()
+        {
+            Console.WriteLine("Error: Premium status is not specified");
         }
     }
     public class Repo_User : AbRepo<UserInformation>, IUserRepository
@@ -31,6 +52,24 @@ namespace EK7TKN_HFT_2021221.Repository
         {
             string[] lines = File.ReadAllLines(filename);
 
+
+            if (lines[0] == "")
+            {
+                throw new MissingNameException();
+            }
+            else if (lines[1] == "")
+            {
+                throw new MissingEmailException();
+            }
+            else if (lines[2] == "")
+            {
+                throw new MissingAgeException();
+            }
+            else if (lines[5] == "")
+            {
+                throw new PremiumStatusNotSpecifiedException();
+            }
+
             UserInformation newUser = new UserInformation(){
                 Full_Name = lines[0],
                 Email = lines[1],
@@ -41,10 +80,6 @@ namespace EK7TKN_HFT_2021221.Repository
 
             Console.WriteLine(newUser.ToString());
 
-            if (lines[0] == "")
-            {
-                throw new MissingNameException();
-            }
             CTX.Users.Attach(newUser);
             CTX.SaveChanges();
 

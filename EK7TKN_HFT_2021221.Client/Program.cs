@@ -58,10 +58,6 @@ namespace EK7TKN_HFT_2021221
 
             Logic_User loUser = new Logic_User(testUser, testPass, testRun);
 
-            loUser.Create("testUser3.txt");
-
-
-
             //testUser.GetAllUserIDs();
             //testUser.GetChonkers();
             
