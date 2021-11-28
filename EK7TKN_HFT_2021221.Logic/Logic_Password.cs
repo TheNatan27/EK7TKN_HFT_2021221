@@ -8,12 +8,12 @@ using System.Threading.Tasks;
 
 namespace EK7TKN_HFT_2021221.Logic
 {
-    public class Logic_Password : AbLogic, IPassLogic
+    public class Logic_Password : IPassLogic
     {
         Repo_Password passwordRepo;
         Repo_Run runRepo;
         Repo_User userRepo;
-        public Logic_Password(IRepo user, IRepo pass, IRepo run) : base(user, pass, run)
+        public Logic_Password(IUserRepository user, IPassRepository pass, IRunRepository run) 
         {
             this.userRepo = (Repo_User)user;
             this.passwordRepo = (Repo_Password)pass;
@@ -175,19 +175,19 @@ namespace EK7TKN_HFT_2021221.Logic
             passwordRepo.Create(filename);
         }
 
-        public void Delete()
+        public void Delete(int passId)
         {
-            passwordRepo.Delete();
+            passwordRepo.Delete(passId);
         }
 
-        public void Read()
+        public IQueryable<PasswordSecurity> Read(int userId)
         {
-            passwordRepo.Read();
+            return(passwordRepo.Read(userId));
         }
 
-        public void Update()
+        public void Update(string filenameU, int userId)
         {
-            passwordRepo.Update();
+            passwordRepo.Update(filenameU, userId);
         }
         public IQueryable<PasswordSecurity> ReadAll()
         {

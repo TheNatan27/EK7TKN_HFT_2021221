@@ -8,12 +8,12 @@ using System.Threading.Tasks;
 
 namespace EK7TKN_HFT_2021221.Logic
 {
-    public class Logic_Run : AbLogic, IRunLogic
+    public class Logic_Run : IRunLogic
     {
         Repo_Password passwordRepo;
         Repo_Run runRepo;
         Repo_User userRepo;
-        public Logic_Run(IRepo user, IRepo pass, IRepo run) : base(user, pass, run)
+        public Logic_Run(IUserRepository user, IPassRepository pass, IRunRepository run) 
         {
             this.userRepo = (Repo_User)user;
             this.passwordRepo = (Repo_Password)pass;
@@ -143,19 +143,19 @@ namespace EK7TKN_HFT_2021221.Logic
             runRepo.Create(filename);
         }
 
-        public void Delete()
+        public void Delete(int runID)
         {
-            runRepo.Delete();
+            runRepo.Delete(runID);
         }
 
-        public void Read()
+        public IQueryable<RunInformation> Read(int runID)
         {
-            runRepo.Read();
+            return runRepo.Read(runID);
         }
 
-        public void Update()
+        public void Update(string filenameU, int runID)
         {
-            runRepo.Update();
+            runRepo.Update(filenameU, runID);
         }
         public IQueryable<RunInformation> ReadAll()
         {

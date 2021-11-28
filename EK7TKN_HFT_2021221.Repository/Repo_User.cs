@@ -85,27 +85,19 @@ namespace EK7TKN_HFT_2021221.Repository
 
             Console.WriteLine("User added!");
       
-
-
-
-
         }
 
-        public void Read()
+        public IQueryable<UserInformation> Read(int userID)
         {
-            Console.WriteLine("Enter id: ");
-            int id = int.Parse(Console.ReadLine());
+
             var us = from x in CTX.Users
+                     where x.UserID.Equals(userID)
                      select x;
 
-            foreach (var item in us)
-            {
-                if (item.UserID == id)
-                {
-                    Console.WriteLine(item.ToString());
-                }
-                
-            }
+            IQueryable<UserInformation> ri = us.AsQueryable().Select(x => x);
+
+            return ri; 
+
         }
         public IQueryable<UserInformation> ReadAll()
         {
@@ -116,169 +108,61 @@ namespace EK7TKN_HFT_2021221.Repository
 
             return list;
         }
-        
-        public void Update()
+        public void Update(string filenameU, int userID)
         {
-            bool menu = true;
+            string[] lines = File.ReadAllLines(filenameU);
 
-            Console.WriteLine("Enter Id of user you would like to update: ");
-            int id = int.Parse(Console.ReadLine());
 
-            var use = from x in CTX.Users
-                      where x.UserID.Equals(id)
-                      select x;
-
-            
-
-            while (menu)
+            if (lines[0] == "")
             {
-                Console.WriteLine("What would you like to update?");
-                Console.WriteLine("1: Full name");
-                Console.WriteLine("2: Age");
-                Console.WriteLine("3: Weight");
-                Console.WriteLine("4: Height");
-                Console.WriteLine("5: Email adress");
-                Console.WriteLine("6: Exit");
-
-
-                int input = int.Parse(Console.ReadLine());
-                Console.Clear();
-
-                
-                
-
-                switch (input)
-                {
-                    case 1:
-                    {
-                            foreach (var item in use)
-                            {
-                                Console.WriteLine("Old name: " + item.Full_Name);
-                            }
-                            Console.WriteLine("Enter new name:");
-                            string change = Console.ReadLine();
-
-                            foreach (var item in use)
-                            {
-                                item.Full_Name = change;
-                            }
-                            Console.WriteLine("Done!");
-                            Console.ReadLine();
-                            Console.Clear();
-                        break;
-                    }
-
-                    case 2:
-                        {
-                            foreach (var item in use)
-                            {
-                                Console.WriteLine("Old age: " + item.Age);
-                            }
-                            Console.WriteLine("Enter new age:");
-                            int change = int.Parse(Console.ReadLine());
-
-                            foreach (var item in use)
-                            {
-                                item.Age = change;
-                            }
-                            Console.WriteLine("Done!");
-                            Console.ReadLine();
-                            Console.Clear();
-                            break;
-                            
-                        }
-                    case 3:
-                        {
-                            foreach (var item in use)
-                            {
-                                Console.WriteLine("Old weigh: " + item.Weight);
-                            }
-                            Console.WriteLine("Enter new weight:");
-                            double change = double.Parse(Console.ReadLine());
-
-                            foreach (var item in use)
-                            {
-                                item.Weight = change;
-                            }
-                            Console.WriteLine("Done!");
-                            Console.ReadLine();
-                            Console.Clear();
-                            break;
-                        }
-                    case 4:
-                        {
-                            foreach (var item in use)
-                            {
-                                Console.WriteLine("Old height: " + item.Height);
-                            }
-                            Console.WriteLine("Enter new height:");
-                            int change = int.Parse(Console.ReadLine());
-
-                            foreach (var item in use)
-                            {
-                                item.Height = change;
-                            }
-                            Console.WriteLine("Done!");
-                            Console.ReadLine();
-                            Console.Clear();
-                            break;
-                        }
-                    case 5:
-                        {
-                            foreach (var item in use)
-                            {
-                                Console.WriteLine("Old email: " + item.Email);
-                            }
-                            Console.WriteLine("Enter new email:");
-                            string change = Console.ReadLine();
-
-                            foreach (var item in use)
-                            {
-                                item.Email = change;
-                            }
-                            Console.WriteLine("Done!");
-                            Console.ReadLine();
-                            Console.Clear();
-                            break;
-                        }
-                    case 6:
-                        {
-                            menu = false;
-                            break;
-                        }
-                }
-
-                
-
+                throw new MissingNameException();
+            }
+            else if (lines[1] == "")
+            {
+                throw new MissingEmailException();
+            }
+            else if (lines[2] == "")
+            {
+                throw new MissingAgeException();
+            }
+            else if (lines[5] == "")
+            {
+                throw new PremiumStatusNotSpecifiedException();
             }
 
-            try
-            {
-                CTX.SaveChanges();
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e);
-                throw;
-            }
-        }
-        public void Delete()
-        {
-            Console.WriteLine("Enter Id of user you would like to delete:");
-            int id = int.Parse(Console.ReadLine());
+            UserInformation oldUser = CTX.Users
+                .First(x => x.UserID.Equals(userID));
 
-            var us = from x in CTX.Users
-                     select x;
+            CTX.Users.Remove(oldUser);
 
-            foreach (var item in us)
+            UserInformation newUser = new UserInformation()
             {
-                if (item.UserID.Equals(id))
-                {
-                    CTX.Remove(item);
-                }
-            }
+                runInfo = oldUser.runInfo,
+                UserID = oldUser.UserID,
+                Full_Name = lines[0],
+                Email = lines[1],
+                Age = int.Parse(lines[2]),
+                Height = int.Parse(lines[3]),
+                Weight = int.Parse(lines[4]),
+                Premium = bool.Parse(lines[5])
+            };
+
+            CTX.Users.Add(newUser);
+
+            oldUser = newUser;
             CTX.SaveChanges();
 
+
+        }
+        public void Delete(int userID)
+        {
+
+            var us = from x in CTX.Users
+                     where x.UserID.Equals(userID)
+                     select x;
+
+            CTX.Remove(us);
+            CTX.SaveChanges();
         }
 
         public void ReadRunsOfUsers()

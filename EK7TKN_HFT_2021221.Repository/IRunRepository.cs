@@ -7,9 +7,10 @@ using System.Threading.Tasks;
 
 namespace EK7TKN_HFT_2021221.Repository
 {
-    public interface IRunRepository : IRepo
+    public interface IRunRepository 
     {
 
+        public void Create(string filename);
         public IQueryable<RunInformation> ReadAll();
     }
 }

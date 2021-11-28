@@ -2,12 +2,41 @@
 using EK7TKN_HFT_2021221.Models;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace EK7TKN_HFT_2021221.Repository
 {
+    public class MissingDistanceException : Exception
+    {
+        public MissingDistanceException()
+        {
+            Console.WriteLine("Error: No name specified");
+        }
+    }
+    public class CompetitionNotSpecifiedException : Exception
+    {
+        public CompetitionNotSpecifiedException()
+        {
+            Console.WriteLine("Error: No email provided");
+        }
+    }
+    public class MissingLocationException : Exception
+    {
+        public MissingLocationException()
+        {
+            Console.WriteLine("Error: No age provided");
+        }
+    }
+    public class MissingUserIDException : Exception
+    {
+        public MissingUserIDException()
+        {
+            Console.WriteLine("Error: Premium status is not specified");
+        }
+    }
     public class Repo_Run : AbRepo<RunInformation>, IRunRepository
     {
         xDbContext ctx;
@@ -16,135 +45,104 @@ namespace EK7TKN_HFT_2021221.Repository
             this.ctx = context;
         }
 
-        //CRUD Methos
+        //CRUD Methods
 
         public void Create(string filename)
         {
-            Console.WriteLine("Enter Distance:");
-            double distance = double.Parse(Console.ReadLine());
-            Console.WriteLine("Enter Time: ");
-            string time = Console.ReadLine();
-            Console.WriteLine("Enter UserID: ");
-            int uid = int.Parse(Console.ReadLine());
+            string[] lines = File.ReadAllLines(filename);
+
+
+            if (lines[0] == "")
+            {
+                throw new MissingDistanceException();
+            }
+            else if (lines[1] == "")
+            {
+                throw new CompetitionNotSpecifiedException();
+            }
+            else if (lines[2] == "")
+            {
+                throw new MissingLocationException();
+            }
+            else if (lines[4] == "")
+            {
+                throw new MissingUserIDException();
+            }
 
             RunInformation newRun = new RunInformation()
             {
-                Distance = distance,
-                Time = time,
-                UserID = uid
+                Distance = int.Parse(lines[0]),
+                IsCompetition=bool.Parse(lines[1]),
+                Location=lines[2],
+                Time=lines[3],
+                UserID=int.Parse(lines[4])
             };
+
 
             ctx.Runs.Attach(newRun);
             ctx.SaveChanges();
 
         }
-        public void Read()
+        public IQueryable<RunInformation> Read(int runID)
         {
-            Console.WriteLine("Enter RunId: ");
-            int id = int.Parse(Console.ReadLine());
             var us = from x in ctx.Runs
-                     where x.RunID.Equals(id)
+                     where x.RunID.Equals(runID)
                      select x;
-            foreach (var item in us)
-            {
-                Console.WriteLine(item.ToString());
-            }
+            IQueryable<RunInformation> ri = us.AsQueryable().Select(x => x);
+
+            return ri;
             
         }
-        public void Update()
+        public void Update(string filenameU, int runID)
         {
-            bool menu = true;
+            string[] lines = File.ReadAllLines(filenameU);
 
-            Console.WriteLine("Enter Id of user you would like to update: ");
-            int id = int.Parse(Console.ReadLine());
-
-            var use = from x in ctx.Runs
-                      where x.RunID.Equals(id)
-                      select x;
-
-
-
-            while (menu)
+            if (lines[0] == "")
             {
-                Console.WriteLine("What would you like to update?");
-                Console.WriteLine("1: Distance");
-                Console.WriteLine("2: Time");
-                Console.WriteLine("3: Exit");
-
-
-                int input = int.Parse(Console.ReadLine());
-                Console.Clear();
-
-
-
-
-                switch (input)
-                {
-                    case 1:
-                        {
-                            foreach (var item in use)
-                            {
-                                Console.WriteLine("Old distance: " + item.Distance);
-                            }
-                            Console.WriteLine("Enter new distance:");
-                            double change = double.Parse(Console.ReadLine());
-
-                            foreach (var item in use)
-                            {
-                                item.Distance = change;
-                            }
-                            Console.WriteLine("Done!");
-                            Console.ReadLine();
-                            Console.Clear();
-                            break;
-                        }
-                    case 2:
-                        {
-                            foreach (var item in use)
-                            {
-                                Console.WriteLine("Old time: " + item.Time);
-                            }
-                            Console.WriteLine("Enter new time:");
-                            string change = Console.ReadLine();
-
-                            foreach (var item in use)
-                            {
-                                item.Time = change;
-                            }
-                            Console.WriteLine("Done!");
-                            Console.ReadLine();
-                            Console.Clear();
-                            break;
-                        }
-                    case 3:
-                        {
-                            menu = false;
-                            break;
-                        }
-                }
+                throw new MissingDistanceException();
+            }
+            else if (lines[1] == "")
+            {
+                throw new CompetitionNotSpecifiedException();
+            }
+            else if (lines[2] == "")
+            {
+                throw new MissingLocationException();
+            }
+            else if (lines[4] == "")
+            {
+                throw new MissingUserIDException();
             }
 
-            try
+            RunInformation oldRun = ctx.Runs
+                .First(x => x.RunID.Equals(runID));
+
+            ctx.Runs.Remove(oldRun);
+
+            RunInformation newRun = new RunInformation()
             {
-                ctx.SaveChanges();
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e);
-                throw;
-            }
+                RunID = oldRun.RunID,
+                userInfo = oldRun.userInfo,
+                Distance = double.Parse(lines[0]),
+                IsCompetition = bool.Parse(lines[1]),
+                Location = lines[2].ToString(),
+                Time = lines[3].ToString(),
+                UserID = int.Parse(lines[4])
+            };
+
+            ctx.Add(newRun);
+            ctx.SaveChanges();
+            Console.WriteLine();
         }
-        public void Delete()
+        public void Delete(int runID)
         {
-            Console.WriteLine("Enter Id of run you would like to delete:");
-            int id = int.Parse(Console.ReadLine());
 
             var us = from x in ctx.Runs
                      select x;
 
             foreach (var item in us)
             {
-                if (item.RunID.Equals(id))
+                if (item.RunID.Equals(runID))
                 {
                     ctx.Remove(item);
                 }
@@ -158,8 +156,6 @@ namespace EK7TKN_HFT_2021221.Repository
                      select x;
 
             IQueryable<RunInformation> list = us.AsQueryable().Select(x => x);
-
-
 
             return list;
         }

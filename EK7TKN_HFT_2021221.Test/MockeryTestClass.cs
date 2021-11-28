@@ -16,58 +16,6 @@ namespace EK7TKN_HFT_2021221.Test
     {
         private Mock<xDbContext> mockeryContext { get; set; }
 
-
-        #region to be removed
-        //[Test]
-        //public void Test_ReadAll()
-        //        {
-
-        //            //ARRANGE
-
-        //            Mock<xDbContext> contextMock = new Mock<xDbContext>();
-
-        //            List<RunInformation >testRunData = new List<RunInformation>
-        //            {
-        //                new RunInformation() { RunID=   1   ,UserID=    5   ,Distance=  42.9    ,Time="00:32:41", IsCompetition=    true    ,Location="	Japan	"},
-        //new RunInformation() { RunID=   2   ,UserID=    5   ,Distance=  29.5    ,Time="00:38:06", IsCompetition=    true    ,Location="	Poland	"},
-        //new RunInformation() { RunID=   3   ,UserID=    2   ,Distance=  37.2    ,Time="00:72:95", IsCompetition=    false   ,Location="	Poland	"},
-        //new RunInformation() { RunID=   4   ,UserID=    4   ,Distance=  6.0 ,Time="00:06:62", IsCompetition=    false   ,Location="	Netherlands	"},
-        //new RunInformation() { RunID=   5   ,UserID=    3   ,Distance=  6.4 ,Time="00:09:96", IsCompetition=    false   ,Location="	Poland	"},
-        //new RunInformation() { RunID=   6   ,UserID=    5   ,Distance=  8.5 ,Time="00:61:21", IsCompetition=    true    ,Location="	United States	"},
-        //new RunInformation() { RunID=   7   ,UserID=    3   ,Distance=  38.4    ,Time="00:18:18", IsCompetition=    true    ,Location="	Poland	"},
-        //new RunInformation() { RunID=   8   ,UserID=    4   ,Distance=  23.4    ,Time="00:49:48", IsCompetition=    false   ,Location="	Poland	"},
-        //new RunInformation() { RunID=   9   ,UserID=    2   ,Distance=  13.5    ,Time="00:97:20", IsCompetition=    true    ,Location="	Poland	"},
-        //new RunInformation() { RunID=   10  ,UserID=    3   ,Distance=  42.3    ,Time="00:09:14", IsCompetition=    false   ,Location="	United States	"}
-        //            };
-
-        //            IQueryable<RunInformation> quaRun = testRunData.AsQueryable();
-
-        //            Mock<DbSet<RunInformation>> runDb = new Mock<DbSet<RunInformation>>();
-
-        //            runDb.As<IQueryable<RunInformation>>().Setup(m => m.Provider).Returns(quaRun.Provider);
-        //            runDb.As<IQueryable<RunInformation>>().Setup(m => m.Expression).Returns(quaRun.Expression);
-        //            runDb.As<IQueryable<RunInformation>>().Setup(m => m.ElementType).Returns(quaRun.ElementType);
-        //            runDb.As<IQueryable<RunInformation>>().Setup(m => m.GetEnumerator()).Returns(quaRun.GetEnumerator());
-
-        //            contextMock
-        //                .Setup(mock => mock.Runs)
-        //                .Returns(runDb.Object);
-
-        //            IRunRepository runRepository = new Repo_Run(contextMock.Object);
-
-        //            //ACT 
-
-        //            List<RunInformation> information = runRepository.ReadAll().ToList();
-
-        //            //ASSERT
-
-        //            Assert.NotNull(information);
-        //            Assert.AreEqual(10, information.Count);
-
-        //        }
-        #endregion
-
-
         [SetUp]
         public void RunSetUp()
         {
@@ -194,6 +142,7 @@ new UserInformation() { Full_Name="	Nada Grgic	",Email="	ngrgic4@sitemeter.com	"
 
         }
 
+
         //Non CRUD Tests
         [Test]
         public void GetCompetitorsEmailAddress_Test()
@@ -203,7 +152,7 @@ new UserInformation() { Full_Name="	Nada Grgic	",Email="	ngrgic4@sitemeter.com	"
             IPassRepository passRepository = new Repo_Password(mockeryContext.Object);
             IUserRepository userRepository = new Repo_User(mockeryContext.Object);
 
-            ILogicUser userLogic = new Logic_User(userRepository, passRepository, runRepository);
+            IUserLogic userLogic = new Logic_User(userRepository, passRepository, runRepository);
 
             //ACT
 
@@ -231,7 +180,7 @@ new UserInformation() { Full_Name="	Nada Grgic	",Email="	ngrgic4@sitemeter.com	"
             IPassRepository passRepository = new Repo_Password(mockeryContext.Object);
             IUserRepository userRepository = new Repo_User(mockeryContext.Object);
 
-            ILogicUser userLogic = new Logic_User(userRepository, passRepository, runRepository);
+            IUserLogic userLogic = new Logic_User(userRepository, passRepository, runRepository);
 
             //ACT
 
@@ -338,10 +287,4 @@ new UserInformation() { Full_Name="	Nada Grgic	",Email="	ngrgic4@sitemeter.com	"
 }
 
 
-//List<string> lista = new List<string>();
-
-//foreach (var item in oke)
-//{
-//    lista.Add(item);
-//}
 

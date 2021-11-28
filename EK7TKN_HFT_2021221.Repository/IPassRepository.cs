@@ -7,8 +7,12 @@ using System.Threading.Tasks;
 
 namespace EK7TKN_HFT_2021221.Repository
 {
-    public interface IPassRepository : IRepo
+    public interface IPassRepository 
     {
         public IQueryable<PasswordSecurity> ReadAll();
+        public void Create(string filename);
+        public IQueryable<PasswordSecurity> Read(int userID);
+        public void Delete(int passId);
+        public void Update(string filenameU, int passId);
     }
 }

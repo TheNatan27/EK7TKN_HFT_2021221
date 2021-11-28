@@ -1,5 +1,3 @@
-using EK7TKN_HFT_2021221.Data;
-using EK7TKN_HFT_2021221.Repository;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
@@ -9,23 +7,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
+
 namespace EK7TKN_HFT_2021221.Endpoint
 {
     public class Program
     {
         public static void Main(string[] args)
         {
-
-            
-
             CreateHostBuilder(args).Build().Run();
-            
-
-            Console.WriteLine("Hello honlap");
-
         }
-
-        
 
         public static IHostBuilder CreateHostBuilder(string[] args) =>
             Host.CreateDefaultBuilder(args)
