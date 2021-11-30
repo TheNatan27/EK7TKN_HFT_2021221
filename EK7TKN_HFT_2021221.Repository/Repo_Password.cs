@@ -46,7 +46,7 @@ namespace EK7TKN_HFT_2021221.Repository
             {
                 throw new MissingPhoneNumberException();
             }
-            else if (JsonConvert.DeserializeObject<PasswordSecurity>(json).PassId < 1)
+            else if (JsonConvert.DeserializeObject<PasswordSecurity>(json).UserId < 1)
             {
                 throw new WrongUserIDException();
             }

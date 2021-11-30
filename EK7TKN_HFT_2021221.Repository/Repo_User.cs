@@ -28,10 +28,10 @@ namespace EK7TKN_HFT_2021221.Repository
 
     public class Repo_User : AbRepo<UserInformation>, IUserRepository
     {
-        xDbContext CTX;
+        xDbContext ctx;
         public Repo_User(xDbContext context) : base(context)
         {
-            this.CTX = context;
+            this.ctx = context;
         }
 
         //CRUD Methods
@@ -49,8 +49,8 @@ namespace EK7TKN_HFT_2021221.Repository
                 throw new MissingEmailException();
             }
 
-            CTX.Users.Attach(jUser);
-            CTX.SaveChanges();
+            ctx.Users.Attach(jUser);
+            ctx.SaveChanges();
             Console.WriteLine("User added!");
       
         }
@@ -58,21 +58,24 @@ namespace EK7TKN_HFT_2021221.Repository
         public IQueryable<UserInformation> Read(int userID)
         {
 
-            var us = from x in CTX.Users
+            var us = from x in ctx.Users
                      where x.UserID.Equals(userID)
                      select x;
 
             IQueryable<UserInformation> ri = us.AsQueryable().Select(x => x);
 
-            return ri; 
+            Console.WriteLine("User read!");
 
+            return ri;
         }
         public IQueryable<UserInformation> ReadAll()
         {
-            var us = from x in CTX.Users
+            var us = from x in ctx.Users
                      select x;
 
             IQueryable<UserInformation> list = us.AsQueryable().Select(x => x);
+
+            Console.WriteLine("All users read!");
 
             return list;
         }
@@ -91,10 +94,10 @@ namespace EK7TKN_HFT_2021221.Repository
             }
             
 
-            UserInformation oldUser = CTX.Users
+            UserInformation oldUser = ctx.Users
                 .First(x => x.UserID.Equals(userID));
 
-            CTX.Users.Remove(oldUser);
+            ctx.Users.Remove(oldUser);
 
             UserInformation newUser = new UserInformation()
             {
@@ -108,22 +111,28 @@ namespace EK7TKN_HFT_2021221.Repository
                 Premium = bool.Parse(lines[5])
             };
 
-            CTX.Users.Add(newUser);
+            ctx.Users.Add(newUser);
 
             oldUser = newUser;
-            CTX.SaveChanges();
+            ctx.SaveChanges();
 
 
         }
         public void Delete(int userID)
         {
 
-            var us = from x in CTX.Users
-                     where x.UserID.Equals(userID)
+            var us = from x in ctx.Users
                      select x;
 
-            CTX.Remove(us);
-            CTX.SaveChanges();
+            foreach (var item in us)
+            {
+                if (item.UserID.Equals(userID))
+                {
+                    ctx.Remove(item);
+                }
+            }
+            ctx.SaveChanges();
+            Console.WriteLine("User deleted!");
         }
 
         public void ReadRunsOfUsers()
@@ -131,7 +140,7 @@ namespace EK7TKN_HFT_2021221.Repository
             Console.WriteLine("Enter userId: ");
             int id = int.Parse(Console.ReadLine());
 
-            var us = from x in CTX.Runs
+            var us = from x in ctx.Runs
                      where x.UserID.Equals(id)
                      select x;
 

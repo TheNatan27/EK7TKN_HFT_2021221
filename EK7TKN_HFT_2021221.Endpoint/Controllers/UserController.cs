@@ -18,14 +18,14 @@ public class UserController : ControllerBase
     }
 
     #region crud methods
-    // GET: /user
+    // GET 
     [HttpGet]
     public IEnumerable<UserInformation> GetAll()
     {
         return user.ReadAll();
     }
 
-    //GET read user
+    //GET /id
     [HttpGet("{id}")]
     public IQueryable<UserInformation> Get(int id)
     {
@@ -40,14 +40,14 @@ public class UserController : ControllerBase
     }
 
     // PUT update user
-    [HttpPut("update/{userID}")]
+    [HttpPut("put/{userID}")]
     public void PostUpdate([FromBody] string filenameU, int userID)
     {
         user.Update(filenameU, userID);
     }
 
-    // DELETE user
-    [HttpDelete("{id}")]
+    // DELETE /delete/id
+    [HttpDelete("delete/{id}")]
     public void Delete(int id)
     {
         user.Delete(id);

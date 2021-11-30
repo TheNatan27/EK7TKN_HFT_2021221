@@ -20,22 +20,22 @@ public class PassController : ControllerBase
 
     #region crud methods
 
-    //GET read all passwords
+    //GET 
     [HttpGet]
     public IEnumerable<PasswordSecurity> GetAll()
     {
         return pass.ReadAll();
     }
 
-    //GET read password
+    //GET /id
     [HttpGet("{id}")]
     public IQueryable<PasswordSecurity> Get(int id)
     {
         return pass.Read(id);
     }
 
-    // POST /put
-    [HttpPost("put")]
+    // POST /post
+    [HttpPost("post")]
     public void Post ([FromBody] string json)
     {
         pass.Create(json);
@@ -43,15 +43,15 @@ public class PassController : ControllerBase
         System.Console.WriteLine(json);
     }
     
-    // PUT update a password
-    [HttpPut]
+    // PUT /put
+    [HttpPut("put")]
     public void Update([FromBody] string filename, int runID)
     {
         pass.Update(filename, runID);
     }
 
-    // DELETE delete a password
-    [HttpDelete("{id}")]
+    // DELETE /delete/od
+    [HttpDelete("delete/{id}")]
     public void Delete(int id)
     {
         pass.Delete(id);

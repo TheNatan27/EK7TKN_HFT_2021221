@@ -89,9 +89,7 @@ namespace EK7TKN_HFT_2021221
             List<RunInformation> allruns = rest.GetAll<RunInformation>("run");
             List<PasswordSecurity> allpass = rest.GetAll<PasswordSecurity>("password");
 
-            var se = rest.GetAll<UserInformation>("user/5");
-
-            Console.WriteLine(se.ToString());
+            
 
             //////////////////////
             
@@ -104,10 +102,8 @@ namespace EK7TKN_HFT_2021221
 
             string jsonPass = JsonConvert.SerializeObject(jPass);
 
-            rest.Post<string>(jsonPass, "pass/put");
+            rest.Post<string>(jsonPass, "pass/post");
             Console.WriteLine("posted");
-
-            Console.WriteLine(jsonPass);
 
             ///////////////////////////
 
@@ -122,10 +118,9 @@ namespace EK7TKN_HFT_2021221
 
             string jsonRun = JsonConvert.SerializeObject(jRun);
 
-            rest.Post<string>(jsonRun, "run/put");
+            rest.Post<string>(jsonRun, "run/post");
             Console.WriteLine("posted");
 
-            Console.WriteLine(jsonRun);
 
             //List<string> user1 = rest.GetAll<string>("user/GetEmailOfWeakPasswordUsers");
             //List<string> user2 = rest.GetAll<string>("user/GetCompetitorsEmailAddress");

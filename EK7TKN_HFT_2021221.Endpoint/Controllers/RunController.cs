@@ -19,41 +19,42 @@ public class RunController : ControllerBase
 
     #region crud methods
 
-    //GET read all runs
+    //GET 
     [HttpGet]
     public IEnumerable<RunInformation> GetAll()
     {
         return run.ReadAll();
     }
 
-    //GET read run
+    //GET /id
     [HttpGet("{id}")]
     public IQueryable<RunInformation> Get(int id)
     {
         return run.Read(id);
     }
 
-    // POST /put
-    [HttpPost("put")]
+    // POST /post
+    [HttpPost("post")]
     public void Post([FromBody] string json)
     {
         run.Create(json);
 
         System.Console.WriteLine(json);
     }
-    // POST /brand
-    [HttpPut]
+    // POST /put
+    [HttpPut("put")]
     public void Update([FromBody] string filename, int runID)
     {
         run.Update(filename, runID);
     }
 
 
-    // DELETE /brand/5
-    [HttpDelete("{id}")]
+    // DELETE /delete/id
+    [HttpDelete("delete/{id}")]
     public void Delete(int id)
     {
         run.Delete(id);
+        System.Console.WriteLine("Run deleted!");
     }
     #endregion
 

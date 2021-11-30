@@ -46,7 +46,6 @@ namespace EK7TKN_HFT_2021221.Repository
 
             RunInformation jRun = JsonConvert.DeserializeObject<RunInformation>(json);
             
-
             if (JsonConvert.DeserializeObject<RunInformation>(json).Distance < 0)
             {
                 throw new NegativeDistanceException();
@@ -55,7 +54,7 @@ namespace EK7TKN_HFT_2021221.Repository
             {
                 throw new MissingLocationException();
             }
-            else if (JsonConvert.DeserializeObject<RunInformation>(json).UserID < 1)
+            else if (JsonConvert.DeserializeObject<RunInformation>(json).UserID < 0)
             {
                 throw new WrongUserIDException();
             }
@@ -72,8 +71,9 @@ namespace EK7TKN_HFT_2021221.Repository
                      select x;
             IQueryable<RunInformation> ri = us.AsQueryable().Select(x => x);
 
+            Console.WriteLine("Run read!");
+
             return ri;
-            
         }
         public void Update(string filenameU, int runID)
         {
@@ -126,6 +126,7 @@ namespace EK7TKN_HFT_2021221.Repository
                 }
             }
             ctx.SaveChanges();
+            Console.WriteLine("Run deleted!");
 
         }
         public IQueryable<RunInformation> ReadAll()
