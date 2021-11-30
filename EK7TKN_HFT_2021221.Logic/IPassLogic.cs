@@ -14,7 +14,7 @@ namespace EK7TKN_HFT_2021221.Logic
 
         public IQueryable<PasswordSecurity> ReadAll();
         public void Delete(int passId);
-        public void Update(string filenameU, int userId);
+        public void Update(string json, int userId);
         public IQueryable<PasswordSecurity> Read(int userId);
 
         public IEnumerable<int> GetOldPeoplesPassID();

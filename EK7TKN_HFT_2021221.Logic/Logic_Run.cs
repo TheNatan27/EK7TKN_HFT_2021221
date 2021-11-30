@@ -153,9 +153,9 @@ namespace EK7TKN_HFT_2021221.Logic
             return runRepo.Read(runID);
         }
 
-        public void Update(string filenameU, int runID)
+        public void Update(string json, int runID)
         {
-            runRepo.Update(filenameU, runID);
+            runRepo.Update(json, runID);
         }
         public IQueryable<RunInformation> ReadAll()
         {

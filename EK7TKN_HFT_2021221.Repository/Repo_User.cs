@@ -54,7 +54,6 @@ namespace EK7TKN_HFT_2021221.Repository
             Console.WriteLine("User added!");
       
         }
-
         public IQueryable<UserInformation> Read(int userID)
         {
 
@@ -79,44 +78,31 @@ namespace EK7TKN_HFT_2021221.Repository
 
             return list;
         }
-        public void Update(string filenameU, int userID)
+        public void Update(string json, int userID)
         {
-            string[] lines = File.ReadAllLines(filenameU);
+            UserInformation jUser = JsonConvert.DeserializeObject<UserInformation>(json);
 
-
-            if (lines[0] == "")
+            if (JsonConvert.DeserializeObject<UserInformation>(json).Full_Name == null)
             {
                 throw new MissingNameException();
             }
-            else if (lines[1] == "")
+            else if (JsonConvert.DeserializeObject<UserInformation>(json).Email == null)
             {
                 throw new MissingEmailException();
             }
             
-
             UserInformation oldUser = ctx.Users
                 .First(x => x.UserID.Equals(userID));
 
             ctx.Users.Remove(oldUser);
 
-            UserInformation newUser = new UserInformation()
-            {
-                runInfo = oldUser.runInfo,
-                UserID = oldUser.UserID,
-                Full_Name = lines[0],
-                Email = lines[1],
-                Age = int.Parse(lines[2]),
-                Height = int.Parse(lines[3]),
-                Weight = int.Parse(lines[4]),
-                Premium = bool.Parse(lines[5])
-            };
+            jUser.runInfo = oldUser.runInfo;
+            jUser.UserID = oldUser.UserID;
 
-            ctx.Users.Add(newUser);
-
-            oldUser = newUser;
+            ctx.Users.Add(jUser);
             ctx.SaveChanges();
 
-
+            Console.WriteLine("User updated!");
         }
         public void Delete(int userID)
         {

@@ -137,9 +137,9 @@ namespace EK7TKN_HFT_2021221.Logic
             return userRepo.Read(userID);
         }
 
-        public void Update(string filenameU, int userID)
+        public void Update(string json, int userID)
         {
-            userRepo.Update(filenameU, userID);
+            userRepo.Update(json, userID);
         }
         public IQueryable<UserInformation> ReadAll()
         {

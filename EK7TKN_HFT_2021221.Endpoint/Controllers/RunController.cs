@@ -38,14 +38,12 @@ public class RunController : ControllerBase
     public void Post([FromBody] string json)
     {
         run.Create(json);
-
-        System.Console.WriteLine(json);
     }
     // POST /put
-    [HttpPut("put")]
-    public void Update([FromBody] string filename, int runID)
+    [HttpPut("put/{id}")]
+    public void Update([FromBody] string json, int id)
     {
-        run.Update(filename, runID);
+        run.Update(json, id);
     }
 
 

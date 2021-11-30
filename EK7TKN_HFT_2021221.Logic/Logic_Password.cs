@@ -181,9 +181,9 @@ namespace EK7TKN_HFT_2021221.Logic
             return(passwordRepo.Read(userId));
         }
 
-        public void Update(string filenameU, int userId)
+        public void Update(string json, int userId)
         {
-            passwordRepo.Update(filenameU, userId);
+            passwordRepo.Update(json, userId);
         }
         public IQueryable<PasswordSecurity> ReadAll()
         {

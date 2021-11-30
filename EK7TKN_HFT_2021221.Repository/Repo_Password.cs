@@ -111,20 +111,30 @@ namespace EK7TKN_HFT_2021221.Repository
             return ri;
 
         }
-        public void Update(string filenameU, int passID)
+        public IQueryable<PasswordSecurity> ReadAll()
         {
+            var us = from x in ctx.Passwords
+                     select x;
 
-            string[] lines = File.ReadAllLines(filenameU);
+            IQueryable<PasswordSecurity> list = us.AsQueryable().Select(x => x);
 
-            if (lines[0] == "")
+            Console.WriteLine("All passwords read!");
+
+            return list;
+        }
+        public void Update(string json, int passID)
+        {
+            PasswordSecurity jPass = JsonConvert.DeserializeObject<PasswordSecurity>(json);
+
+            if (JsonConvert.DeserializeObject<PasswordSecurity>(json).TotallySecuredVeryHashedPassword == null)
             {
                 throw new MissingPasswordException();
             }
-            else if (lines[1] == "")
+            else if (JsonConvert.DeserializeObject<PasswordSecurity>(json).RecoverPhoneNumber == null)
             {
                 throw new MissingPhoneNumberException();
             }
-            else if (lines[2] == "")
+            else if (JsonConvert.DeserializeObject<PasswordSecurity>(json).UserId < 1)
             {
                 throw new WrongUserIDException();
             }
@@ -134,18 +144,13 @@ namespace EK7TKN_HFT_2021221.Repository
 
             ctx.Passwords.Remove(oldPass);
 
-            PasswordSecurity newPass = new PasswordSecurity()
-            {
-                PassId = oldPass.PassId,
-                userInformation = oldPass.userInformation,
-                TotallySecuredVeryHashedPassword = lines[0],
-                RecoverPhoneNumber = lines[1],
-                UserId = int.Parse(lines[2])
-            };
+            jPass.PassId = oldPass.PassId;
+            jPass.userInformation = oldPass.userInformation;
 
-            ctx.Passwords.Add(newPass);
+            ctx.Passwords.Add(jPass);
             ctx.SaveChanges();
 
+            Console.WriteLine("Password updated!");
         }
         public void Delete(int passId)
         {
@@ -163,16 +168,7 @@ namespace EK7TKN_HFT_2021221.Repository
             ctx.SaveChanges();
 
         }
-        public IQueryable<PasswordSecurity> ReadAll()
-        {
-            var us = from x in ctx.Passwords
-                     select x;
-
-            IQueryable<PasswordSecurity> list = us.AsQueryable().Select(x => x);
-
-
-            return list;
-        }
+        
 
     }
 }

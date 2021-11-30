@@ -40,10 +40,10 @@ public class UserController : ControllerBase
     }
 
     // PUT update user
-    [HttpPut("put/{userID}")]
-    public void PostUpdate([FromBody] string filenameU, int userID)
+    [HttpPut("put/{id}")]
+    public void PostUpdate([FromBody] string json, int id)
     {
-        user.Update(filenameU, userID);
+        user.Update(json, id);
     }
 
     // DELETE /delete/id

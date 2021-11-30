@@ -12,7 +12,7 @@ namespace EK7TKN_HFT_2021221.Logic
         public void Create(string json);
         public void Delete(int userID);
         public IQueryable<UserInformation> Read(int userID);
-        public void Update(string filenameU, int userID);
+        public void Update(string json, int userID);
         public IQueryable<UserInformation> ReadAll();
 
         public IEnumerable<string> GetEmailOfWeakPasswordUsers();

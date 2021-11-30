@@ -44,10 +44,10 @@ public class PassController : ControllerBase
     }
     
     // PUT /put
-    [HttpPut("put")]
-    public void Update([FromBody] string filename, int runID)
+    [HttpPut("put/{id}")]
+    public void Update([FromBody] string json, int id)
     {
-        pass.Update(filename, runID);
+        pass.Update(json, id);
     }
 
     // DELETE /delete/od
