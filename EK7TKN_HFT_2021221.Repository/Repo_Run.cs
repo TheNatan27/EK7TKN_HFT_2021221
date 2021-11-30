@@ -127,11 +127,10 @@ namespace EK7TKN_HFT_2021221.Repository
                 if (item.RunID.Equals(runID))
                 {
                     ctx.Remove(item);
+                    Console.WriteLine($"Run {runID} deleted!");
                 }
             }
             ctx.SaveChanges();
-            Console.WriteLine("Run deleted!");
-
         }
 
 

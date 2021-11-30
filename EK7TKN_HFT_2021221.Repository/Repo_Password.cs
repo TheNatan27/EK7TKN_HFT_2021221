@@ -154,19 +154,18 @@ namespace EK7TKN_HFT_2021221.Repository
         }
         public void Delete(int passId)
         {
-
             var us = from x in ctx.Passwords
                      select x;
-
+ 
             foreach (var item in us)
             {
                 if (item.UserId.Equals(passId))
                 {
                     ctx.Remove(item);
+                    Console.WriteLine($"Password {passId} deleted!");
                 }
             }
             ctx.SaveChanges();
-
         }
         
 

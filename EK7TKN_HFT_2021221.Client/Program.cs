@@ -121,6 +121,25 @@ namespace EK7TKN_HFT_2021221
             rest.Post<string>(jsonRun, "run/post");
             Console.WriteLine("posted");
 
+            //////////////////////////
+            ////////////////////////////
+            ////////////////////////////
+
+
+            PasswordSecurity uPass = new PasswordSecurity()
+            {
+                TotallySecuredVeryHashedPassword = "updated",
+                RecoverPhoneNumber = "updated",
+                UserId = 1
+            };
+
+            string ujsonPass = JsonConvert.SerializeObject(uPass);
+
+            rest.Put<string>(ujsonPass, "pass/put/1");
+            Console.WriteLine("updated");
+
+
+
 
             //List<string> user1 = rest.GetAll<string>("user/GetEmailOfWeakPasswordUsers");
             //List<string> user2 = rest.GetAll<string>("user/GetCompetitorsEmailAddress");

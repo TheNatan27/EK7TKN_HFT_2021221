@@ -115,10 +115,10 @@ namespace EK7TKN_HFT_2021221.Repository
                 if (item.UserID.Equals(userID))
                 {
                     ctx.Remove(item);
+                    Console.WriteLine($"User {userID} deleted!");
                 }
             }
             ctx.SaveChanges();
-            Console.WriteLine("User deleted!");
         }
 
         public void ReadRunsOfUsers()
