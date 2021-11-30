@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.Json;
 using System.Threading.Tasks;
 
 namespace EK7TKN_HFT_2021221.Logic
@@ -138,20 +139,15 @@ namespace EK7TKN_HFT_2021221.Logic
 
             return lista;
         }
-        public IEnumerable<string> GetPasswordOfUserByName()
+        public IEnumerable<string> GetPasswordOfUserByName(string username)
         {
 
             List<string> lista = new List<string>();
 
-            Console.WriteLine("Enter name of user:");
-            string name = Console.ReadLine();
-
-
-
             var sue = from p in passwordRepo.ReadAll()
                       join u in userRepo.ReadAll()
                       on p.UserId equals u.UserID
-                      where u.Full_Name.Contains(name)
+                      where u.Full_Name.Contains(username)
                       select p.TotallySecuredVeryHashedPassword;
 
             lista = sue.ToList();
@@ -170,9 +166,9 @@ namespace EK7TKN_HFT_2021221.Logic
 
 
         //CRUD Methods
-        public void Create(string filename)
+        public void Create(string json)
         {
-            passwordRepo.Create(filename);
+            passwordRepo.Create(json);
         }
 
         public void Delete(int passId)

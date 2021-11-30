@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.InteropServices;
+using System.Text.Json;
 using System.Threading.Tasks;
 
 [Route("[controller]")]
@@ -34,10 +35,12 @@ public class PassController : ControllerBase
     }
 
     // POST create a password
-    [HttpPost]
-    public void Post ([FromBody] string filename)
+    [HttpPost("put")]
+    public void Post ([FromBody] string json)
     {
-        pass.Create(filename);
+        pass.Create(json);
+
+        System.Console.WriteLine(json);
     }
     
     // PUT update a password
@@ -94,10 +97,10 @@ public class PassController : ControllerBase
     }
 
     // GetPasswordOfUserByName
-    [HttpGet("GetPasswordOfUserByName")]
-    public IEnumerable<string> GetPasswordOfUserByName()
+    [HttpGet("GetPasswordOfUserByName/{name}")]
+    public IEnumerable<string> GetPasswordOfUserByName(string name)
     {
-        return pass.GetPasswordOfUserByName();
+        return pass.GetPasswordOfUserByName(name);
     }
 
     #endregion

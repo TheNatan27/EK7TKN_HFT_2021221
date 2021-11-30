@@ -18,7 +18,7 @@ public class UserController : ControllerBase
     }
 
     #region crud methods
-    // GET: /userall
+    // GET: /user
     [HttpGet]
     public IEnumerable<UserInformation> GetAll()
     {
@@ -33,15 +33,15 @@ public class UserController : ControllerBase
     }
 
     // POST create user
-    [HttpPost("create")]
-    public void PostCreate([FromForm] string filename)
+    [HttpPost("create/{filename}")]
+    public void PostCreate(string filename)
     {
         user.Create(filename);
     }
 
     // PUT update user
     [HttpPut("update/{userID}")]
-    public void PostUpdate([FromForm] string filenameU, int userID)
+    public void PostUpdate([FromBody] string filenameU, int userID)
     {
         user.Update(filenameU, userID);
     }

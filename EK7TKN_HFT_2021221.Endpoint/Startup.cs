@@ -11,6 +11,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Mvc.NewtonsoftJson;
 
 namespace EK7TKN_HFT_2021221.Endpoint
 {
@@ -30,6 +31,9 @@ namespace EK7TKN_HFT_2021221.Endpoint
             services.AddScoped<IUserRepository, Repo_User>();
 
             services.AddScoped<xDbContext, xDbContext >();
+
+            services.AddControllers().AddNewtonsoftJson();
+
 
 
         }

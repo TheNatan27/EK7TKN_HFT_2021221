@@ -72,7 +72,7 @@ public class RunController : ControllerBase
     }
 
     // GetRunIDOfLongDistanceJuniorRunners
-    [HttpGet("GetLocationOfChonkers")]
+    [HttpGet("GetRunIDOfLongDistanceJuniorRunners")]
     public IEnumerable<int> GetRunIDOfLongDistanceJuniorRunners()
     {
         return run.GetRunIDOfLongDistanceJuniorRunners();
