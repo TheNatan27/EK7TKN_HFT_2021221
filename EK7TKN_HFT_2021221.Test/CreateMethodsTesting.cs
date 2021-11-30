@@ -3,6 +3,7 @@ using EK7TKN_HFT_2021221.Models;
 using EK7TKN_HFT_2021221.Repository;
 using Microsoft.EntityFrameworkCore;
 using Moq;
+using Newtonsoft.Json;
 using NUnit.Framework;
 using System;
 using System.Collections.Generic;
@@ -12,13 +13,18 @@ using System.Threading.Tasks;
 
 namespace EK7TKN_HFT_2021221.Test
 {
+    class TestJson
+    {
+ 
 
 
+    }
 
     [TestFixture]
     public class CreateMethodsTesting
     {
         private xDbContext testContext { get; set; }
+
 
         [SetUp]
         public void SetUp()
@@ -31,49 +37,55 @@ namespace EK7TKN_HFT_2021221.Test
 
             testContext = new xDbContext(contextBuilder.Options);
 
+
         }
 
         #region create tests
-
-        [TestCase("testUser_noname.txt")]
-        [TestCase("testUser_noemail.txt")]
-        [TestCase("testUser_noage.txt")]
-        [TestCase("testUser_nopremium.txt")]
-        public void CreateUser_Test(string filename)
+        
+        [Test]
+        public void CreateUser_Test()
         {
             //ARRANGE
+            UserInformation uStandard = new UserInformation() { Full_Name = "	Desiri Wardington	", Email = "	dwardington1@rediff.com	", Age = 27, Height = 179, Weight = 71, UserID = 2, Premium = true };
+            UserInformation uNoname = new UserInformation() { Email = "	kmaynard2@wisc.edu	", Age = 50, Height = 174, Weight = 65, UserID = 3, Premium = true };
+            UserInformation uEmail = new UserInformation() { Full_Name = "	Dale Brannan	", Age = 62, Height = 196, Weight = 66, UserID = 4, Premium = false };
+
+            PasswordSecurity pStandard = new PasswordSecurity() { PassId = 1, UserId = 1, TotallySecuredVeryHashedPassword = "	7ZK4pmNX	", RecoverPhoneNumber = "	06 404 3684" };
+            PasswordSecurity pNopass = new PasswordSecurity() { PassId = 2, UserId = 2, TotallySecuredVeryHashedPassword = "	m2kSx1Nw	", RecoverPhoneNumber = "	06 815 6835" };
+            PasswordSecurity pNouser = new PasswordSecurity() { PassId = 3, TotallySecuredVeryHashedPassword = "	JcPogOYSCZr3	", RecoverPhoneNumber = "	06 684 7755" };
+            PasswordSecurity pNophone = new PasswordSecurity() { PassId = 3, UserId = 3, TotallySecuredVeryHashedPassword = "	JcPogOYSCZr3	" };
+
+            RunInformation rStandard = new RunInformation() { RunID = 1, UserID = 3, Distance = 36.1, Time = "00:80:89", IsCompetition = false, Location = "	Japan	" };
+            RunInformation rNodistance = new RunInformation() { RunID = 2, UserID = 99, Time = "00:26:78", IsCompetition = false, Location = "	Luxembourg	" };
+            RunInformation rNolocation = new RunInformation() { RunID = 3, UserID = 75, Distance = 39, Time = "00:87:19", IsCompetition = false };
+            RunInformation rNouserid = new RunInformation() { RunID = 4, Distance = 45.5, Time = "00:26:72", IsCompetition = false, Location = "	Poland	" };
+
+            string ustandard = JsonConvert.SerializeObject(uStandard);
+            string unoname = JsonConvert.SerializeObject(uNoname);
+            string uemail = JsonConvert.SerializeObject(uEmail);
+            string pstandard = JsonConvert.SerializeObject(pStandard);
+            string pnopass = JsonConvert.SerializeObject(pNopass);
+            string pnosuer = JsonConvert.SerializeObject(pNouser);
+            string pnophone = JsonConvert.SerializeObject(pNophone);
+            string rstandar = JsonConvert.SerializeObject(rStandard);
+            string rnodistance = JsonConvert.SerializeObject(rNodistance);
+            string rnolocation = JsonConvert.SerializeObject(rNolocation);
+            string rnouserid = JsonConvert.SerializeObject(rNouserid);
+
             IUserRepository repository = new Repo_User(testContext);
 
             //ACT-ASSERT
-            Assert.That(() => repository.Create(filename), Throws.InnerException);
-        }
-
-        [TestCase("testRun_nodistance.txt")]
-        [TestCase("testRun_nolocation.txt")]
-        [TestCase("testRun_notime.txt")]
-        [TestCase("testRun_nouserid.txt")]
-        [TestCase("testRun_nocompetition.txt")]
-        //[TestCase("testRun_Standard.txt")]
-
-        public void CreateRun_Test(string filename)
-        {
-            //ARRANGE
-            IRunRepository repository = new Repo_Run(testContext);
-
-            //ACT-ASSERT
-            Assert.That(() => repository.Create(filename), Throws.InnerException);
-
-        }
-        [TestCase("testPass_nouser.txt")]
-        [TestCase("testPass_nopass.txt")]
-        [TestCase("testPass_nophone.txt")]
-        public void CreatePassword_Test(string filename)
-        {
-            //ARRANGE
-            IPassRepository repository = new Repo_Password(testContext);
-
-            //ACT-ASSERT
-            Assert.That(() => repository.Create(filename), Throws.InnerException);
+            Assert.That(() => repository.Create(ustandard), Throws.Nothing);
+            Assert.That(() => repository.Create(unoname), Throws.InnerException);
+            Assert.That(() => repository.Create(uemail), Throws.InnerException);
+            Assert.That(() => repository.Create(pstandard), Throws.InnerException);
+            Assert.That(() => repository.Create(pnopass), Throws.InnerException);
+            Assert.That(() => repository.Create(pnophone), Throws.InnerException);
+            Assert.That(() => repository.Create(pnosuer), Throws.InnerException);
+            Assert.That(() => repository.Create(rstandar), Throws.InnerException);
+            Assert.That(() => repository.Create(rnodistance), Throws.InnerException);
+            Assert.That(() => repository.Create(rnolocation), Throws.InnerException);
+            Assert.That(() => repository.Create(rnouserid), Throws.InnerException);
 
         }
 

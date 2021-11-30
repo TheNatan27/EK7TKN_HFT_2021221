@@ -27,7 +27,16 @@ namespace EK7TKN_HFT_2021221
             Logic_User ulogic = new Logic_User(user, password, run);
             Logic_Password plogic = new Logic_Password(user, password, run);
 
-           
+            Console.WriteLine("/////");
+
+            
+
+            var sl = ulogic.ReadAll();
+
+            foreach (var item in sl)
+            {
+                Console.WriteLine(item.ToString());
+            }
 
             //var ri =
             //logic.Read(1);
@@ -81,6 +90,10 @@ namespace EK7TKN_HFT_2021221
 
             #region service
 
+
+
+            //Rest service setup
+
             System.Threading.Thread.Sleep(2500);
 
             RestService rest = new RestService("http://localhost:5000");
@@ -89,10 +102,10 @@ namespace EK7TKN_HFT_2021221
             List<RunInformation> allruns = rest.GetAll<RunInformation>("run");
             List<PasswordSecurity> allpass = rest.GetAll<PasswordSecurity>("password");
 
-            
+            #region post, update, delete  
 
             //////////////////////
-            
+
             PasswordSecurity jPass = new PasswordSecurity()
             {
                 TotallySecuredVeryHashedPassword = "jsonpassword",
@@ -138,9 +151,9 @@ namespace EK7TKN_HFT_2021221
             rest.Put<string>(ujsonPass, "pass/put/1");
             Console.WriteLine("updated");
 
+            #endregion
 
-
-
+            #region non crud 
             //List<string> user1 = rest.GetAll<string>("user/GetEmailOfWeakPasswordUsers");
             //List<string> user2 = rest.GetAll<string>("user/GetCompetitorsEmailAddress");
             //List<string> user3 = rest.GetAll<string>("user/GetAmericanUsersNames");
@@ -159,6 +172,9 @@ namespace EK7TKN_HFT_2021221
             //List<string> pass4 = rest.GetAll<string>("pass/GetPhoneNumberOfPremiumUsers");
             //List<string> pass5 = rest.GetAll<string>("pass/GetPhoneNumberOfCompetitors");
             //List<string> pass6 = rest.GetAll<string>("pass/GetPasswordOfUserByName");
+            #endregion
+
+
 
             #region writes to console
 
@@ -194,6 +210,8 @@ namespace EK7TKN_HFT_2021221
             //}
 
             #endregion
+
+
             #endregion
 
         }
