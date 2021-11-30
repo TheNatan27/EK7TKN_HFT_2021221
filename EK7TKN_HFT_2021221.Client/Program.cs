@@ -93,6 +93,8 @@ namespace EK7TKN_HFT_2021221
 
             Console.WriteLine(se.ToString());
 
+            //////////////////////
+            
             PasswordSecurity jPass = new PasswordSecurity()
             {
                 TotallySecuredVeryHashedPassword = "jsonpassword",
@@ -100,12 +102,30 @@ namespace EK7TKN_HFT_2021221
                 UserId = 222
             };
 
-            string json = JsonConvert.SerializeObject(jPass);
+            string jsonPass = JsonConvert.SerializeObject(jPass);
 
-            rest.Post<string>(json, "pass/put");
+            rest.Post<string>(jsonPass, "pass/put");
             Console.WriteLine("posted");
 
-            Console.WriteLine(json);
+            Console.WriteLine(jsonPass);
+
+            ///////////////////////////
+
+            RunInformation jRun = new RunInformation()
+            {
+                Distance =222.2,
+                IsCompetition =true,
+                Location ="Utopia",
+                Time ="55:66:77",
+                UserID =1
+            };
+
+            string jsonRun = JsonConvert.SerializeObject(jRun);
+
+            rest.Post<string>(jsonRun, "run/put");
+            Console.WriteLine("posted");
+
+            Console.WriteLine(jsonRun);
 
             //List<string> user1 = rest.GetAll<string>("user/GetEmailOfWeakPasswordUsers");
             //List<string> user2 = rest.GetAll<string>("user/GetCompetitorsEmailAddress");

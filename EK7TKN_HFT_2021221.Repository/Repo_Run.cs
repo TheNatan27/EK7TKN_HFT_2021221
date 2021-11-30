@@ -1,5 +1,6 @@
 ﻿using EK7TKN_HFT_2021221.Data;
 using EK7TKN_HFT_2021221.Models;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -9,18 +10,11 @@ using System.Threading.Tasks;
 
 namespace EK7TKN_HFT_2021221.Repository
 {
-    public class MissingDistanceException : Exception
+    public class NegativeDistanceException : Exception
     {
-        public MissingDistanceException()
+        public NegativeDistanceException()
         {
             Console.WriteLine("Error: No name specified");
-        }
-    }
-    public class CompetitionNotSpecifiedException : Exception
-    {
-        public CompetitionNotSpecifiedException()
-        {
-            Console.WriteLine("Error: No email provided");
         }
     }
     public class MissingLocationException : Exception
@@ -30,9 +24,9 @@ namespace EK7TKN_HFT_2021221.Repository
             Console.WriteLine("Error: No age provided");
         }
     }
-    public class MissingUserIDException : Exception
+    public class WrongUserIDException : Exception
     {
-        public MissingUserIDException()
+        public WrongUserIDException()
         {
             Console.WriteLine("Error: Premium status is not specified");
         }
@@ -47,40 +41,28 @@ namespace EK7TKN_HFT_2021221.Repository
 
         //CRUD Methods
 
-        public void Create(string filename)
+        public void Create(string json)
         {
-            string[] lines = File.ReadAllLines(filename);
 
+            RunInformation jRun = JsonConvert.DeserializeObject<RunInformation>(json);
+            
 
-            if (lines[0] == "")
+            if (JsonConvert.DeserializeObject<RunInformation>(json).Distance < 0)
             {
-                throw new MissingDistanceException();
+                throw new NegativeDistanceException();
             }
-            else if (lines[1] == "")
-            {
-                throw new CompetitionNotSpecifiedException();
-            }
-            else if (lines[2] == "")
+            else if (JsonConvert.DeserializeObject<RunInformation>(json).Location == null)
             {
                 throw new MissingLocationException();
             }
-            else if (lines[4] == "")
+            else if (JsonConvert.DeserializeObject<RunInformation>(json).UserID < 1)
             {
-                throw new MissingUserIDException();
+                throw new WrongUserIDException();
             }
 
-            RunInformation newRun = new RunInformation()
-            {
-                Distance = int.Parse(lines[0]),
-                IsCompetition=bool.Parse(lines[1]),
-                Location=lines[2],
-                Time=lines[3],
-                UserID=int.Parse(lines[4])
-            };
-
-
-            ctx.Runs.Attach(newRun);
+            ctx.Runs.Attach(jRun);
             ctx.SaveChanges();
+            Console.WriteLine("Run created!");
 
         }
         public IQueryable<RunInformation> Read(int runID)
@@ -99,11 +81,7 @@ namespace EK7TKN_HFT_2021221.Repository
 
             if (lines[0] == "")
             {
-                throw new MissingDistanceException();
-            }
-            else if (lines[1] == "")
-            {
-                throw new CompetitionNotSpecifiedException();
+                throw new NegativeDistanceException();
             }
             else if (lines[2] == "")
             {
@@ -111,7 +89,7 @@ namespace EK7TKN_HFT_2021221.Repository
             }
             else if (lines[4] == "")
             {
-                throw new MissingUserIDException();
+                throw new WrongUserIDException();
             }
 
             RunInformation oldRun = ctx.Runs

@@ -9,7 +9,7 @@ namespace EK7TKN_HFT_2021221.Logic
 {
     public interface IUserLogic 
     {
-        public void Create(string filename);
+        public void Create(string json);
         public void Delete(int userID);
         public IQueryable<UserInformation> Read(int userID);
         public void Update(string filenameU, int userID);

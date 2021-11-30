@@ -34,7 +34,7 @@ public class PassController : ControllerBase
         return pass.Read(id);
     }
 
-    // POST create a password
+    // POST /put
     [HttpPost("put")]
     public void Post ([FromBody] string json)
     {

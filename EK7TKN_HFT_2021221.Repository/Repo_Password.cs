@@ -38,21 +38,22 @@ namespace EK7TKN_HFT_2021221.Repository
         {
             PasswordSecurity jPass = JsonConvert.DeserializeObject<PasswordSecurity>(json);
 
-            if (jPass.TotallySecuredVeryHashedPassword == "")
+            if (JsonConvert.DeserializeObject<PasswordSecurity>(json).TotallySecuredVeryHashedPassword == null)
             {
                 throw new MissingPasswordException();
             }
-            else if (jPass.RecoverPhoneNumber.Equals(null))
+            else if (JsonConvert.DeserializeObject<PasswordSecurity>(json).RecoverPhoneNumber == null)
             {
                 throw new MissingPhoneNumberException();
             }
-            else if (jPass.UserId.Equals(null))
+            else if (JsonConvert.DeserializeObject<PasswordSecurity>(json).PassId < 1)
             {
-                throw new MissingUserIDException();
+                throw new WrongUserIDException();
             }
 
             ctx.Passwords.Attach(jPass);
             ctx.SaveChanges();
+            Console.WriteLine("Password created!");
 
 
             #region old method
@@ -125,7 +126,7 @@ namespace EK7TKN_HFT_2021221.Repository
             }
             else if (lines[2] == "")
             {
-                throw new MissingUserIDException();
+                throw new WrongUserIDException();
             }
 
             PasswordSecurity oldPass = ctx.Passwords

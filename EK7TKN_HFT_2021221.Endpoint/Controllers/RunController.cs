@@ -33,11 +33,13 @@ public class RunController : ControllerBase
         return run.Read(id);
     }
 
-    // POST /brand
-    [HttpPost]
-    public void Post([FromBody] string filename)
+    // POST /put
+    [HttpPost("put")]
+    public void Post([FromBody] string json)
     {
-        run.Create(filename);
+        run.Create(json);
+
+        System.Console.WriteLine(json);
     }
     // POST /brand
     [HttpPut]

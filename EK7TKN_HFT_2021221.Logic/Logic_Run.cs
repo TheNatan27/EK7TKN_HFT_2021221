@@ -138,9 +138,9 @@ namespace EK7TKN_HFT_2021221.Logic
 
 
         //Non CRUD Methods
-        public void Create(string filename)
+        public void Create(string json)
         {
-            runRepo.Create(filename);
+            runRepo.Create(json);
         }
 
         public void Delete(int runID)

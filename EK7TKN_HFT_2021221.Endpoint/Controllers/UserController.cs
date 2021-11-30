@@ -32,11 +32,11 @@ public class UserController : ControllerBase
         return user.Read(id);
     }
 
-    // POST create user
-    [HttpPost("create/{filename}")]
-    public void PostCreate(string filename)
+    // POST /post
+    [HttpPost("post")]
+    public void PostCreate(string json)
     {
-        user.Create(filename);
+        user.Create(json);
     }
 
     // PUT update user

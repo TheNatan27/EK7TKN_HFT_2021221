@@ -1,6 +1,7 @@
 ﻿using EK7TKN_HFT_2021221.Data;
 using EK7TKN_HFT_2021221.Models;
 using Microsoft.EntityFrameworkCore;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -24,20 +25,7 @@ namespace EK7TKN_HFT_2021221.Repository
             Console.WriteLine("Error: No email provided");
         }
     }
-    public class MissingAgeException : Exception
-    {
-        public MissingAgeException()
-        {
-            Console.WriteLine("Error: No age provided");
-        }
-    }
-    public class PremiumStatusNotSpecifiedException : Exception
-    {
-        public PremiumStatusNotSpecifiedException()
-        {
-            Console.WriteLine("Error: Premium status is not specified");
-        }
-    }
+
     public class Repo_User : AbRepo<UserInformation>, IUserRepository
     {
         xDbContext CTX;
@@ -48,41 +36,21 @@ namespace EK7TKN_HFT_2021221.Repository
 
         //CRUD Methods
 
-        public void Create(string filename)
+        public void Create(string json)
         {
-            string[] lines = File.ReadAllLines(filename);
+            UserInformation jUser = JsonConvert.DeserializeObject<UserInformation>(json);
 
-
-            if (lines[0] == "")
+            if (JsonConvert.DeserializeObject<UserInformation>(json).Full_Name== null)
             {
                 throw new MissingNameException();
             }
-            else if (lines[1] == "")
+            else if (JsonConvert.DeserializeObject<UserInformation>(json).Email == null)
             {
                 throw new MissingEmailException();
             }
-            else if (lines[2] == "")
-            {
-                throw new MissingAgeException();
-            }
-            else if (lines[5] == "")
-            {
-                throw new PremiumStatusNotSpecifiedException();
-            }
 
-            UserInformation newUser = new UserInformation(){
-                Full_Name = lines[0],
-                Email = lines[1],
-                Age = int.Parse(lines[2]), 
-                Height = int.Parse(lines[3]),
-                Weight = int.Parse(lines[4]),
-                Premium = bool.Parse(lines[5]) };
-
-            Console.WriteLine(newUser.ToString());
-
-            CTX.Users.Attach(newUser);
+            CTX.Users.Attach(jUser);
             CTX.SaveChanges();
-
             Console.WriteLine("User added!");
       
         }
@@ -121,14 +89,7 @@ namespace EK7TKN_HFT_2021221.Repository
             {
                 throw new MissingEmailException();
             }
-            else if (lines[2] == "")
-            {
-                throw new MissingAgeException();
-            }
-            else if (lines[5] == "")
-            {
-                throw new PremiumStatusNotSpecifiedException();
-            }
+            
 
             UserInformation oldUser = CTX.Users
                 .First(x => x.UserID.Equals(userID));

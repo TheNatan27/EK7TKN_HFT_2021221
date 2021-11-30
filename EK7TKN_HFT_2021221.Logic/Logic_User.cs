@@ -122,9 +122,9 @@ namespace EK7TKN_HFT_2021221.Logic
         }
 
         //CRUD Methods
-        public void Create(string filename)
+        public void Create(string json)
         {
-            userRepo.Create(filename);
+            userRepo.Create(json);
         }
 
         public void Delete(int userID)
