@@ -25,7 +25,7 @@ namespace EK7TKN_HFT_2021221.Models
         public string Location { get; set; }
         public override string ToString()
         {
-            return $"Id: {UserID}, RunId: {RunID}, Time: {Time}, Distance: {Distance}";
+            return $"Id: {UserID}, RunId: {RunID}, Time: {Time.Trim()}, Distance: {Distance}, Location: {Location.Trim()}";
         }
 
 

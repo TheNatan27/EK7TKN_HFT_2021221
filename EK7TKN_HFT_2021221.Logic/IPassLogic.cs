@@ -15,13 +15,12 @@ namespace EK7TKN_HFT_2021221.Logic
         public IQueryable<PasswordSecurity> ReadAll();
         public void Delete(int passId);
         public void Update(string json, int userId);
-        public IQueryable<PasswordSecurity> Read(int userId);
+        public PasswordSecurity Read(int userId);
 
         public IEnumerable<int> GetOldPeoplesPassID();
         public IEnumerable<int> GetOldPeoplesPassIDWithWeakPassword();
         public IEnumerable<int> GetPassIDOfPremiumUsers();
         public IEnumerable<string> GetPhoneNumberOfPremiumUsers();
         public IEnumerable<string> GetPhoneNumberOfCompetitors();
-        public IEnumerable<string> GetPasswordOfUserByID(int id);
     }
 }

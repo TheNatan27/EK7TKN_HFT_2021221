@@ -64,12 +64,13 @@ namespace EK7TKN_HFT_2021221.Repository
             Console.WriteLine("Run created!");
 
         }
-        public IQueryable<RunInformation> Read(int runID)
+        public RunInformation Read(int runID)
         {
             var us = from x in ctx.Runs
                      where x.RunID.Equals(runID)
                      select x;
-            IQueryable<RunInformation> ri = us.AsQueryable().Select(x => x);
+
+            RunInformation ri = us.First();
 
             Console.WriteLine("Run read!");
 

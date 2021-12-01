@@ -27,8 +27,8 @@ public class RunController : ControllerBase
     }
 
     //GET /id
-    [HttpGet("{id}")]
-    public IQueryable<RunInformation> Get(int id)
+    [HttpGet("read/{id}")]
+    public RunInformation Get(int id)
     {
         return run.Read(id);
     }

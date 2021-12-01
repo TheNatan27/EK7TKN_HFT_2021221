@@ -148,7 +148,7 @@ namespace EK7TKN_HFT_2021221.Logic
             runRepo.Delete(runID);
         }
 
-        public IQueryable<RunInformation> Read(int runID)
+        public RunInformation Read(int runID)
         {
             return runRepo.Read(runID);
         }

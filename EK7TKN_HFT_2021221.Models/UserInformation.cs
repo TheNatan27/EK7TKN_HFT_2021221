@@ -24,10 +24,11 @@ namespace EK7TKN_HFT_2021221.Models
         public virtual ICollection<RunInformation> runInfo{ get; set; }
 
 
-       
+
         public override string ToString()
         {
-            return $"Id : {UserID} \n Name: {Full_Name} \n Age: {Age} \n Weight: {Weight} \n Height: {Height} \n Email: {Email}";
+            return $"Id : {UserID} \n Name: {Full_Name.Trim()} \n Age: {Age} \n Weight: {Weight} \n Height: {Height} \n Email: {Email.Trim()}";
+
         }
 
     }

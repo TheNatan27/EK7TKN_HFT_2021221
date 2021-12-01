@@ -157,88 +157,14 @@ namespace EK7TKN_HFT_2021221
 
             #endregion
 
-            #region non crud 
-            //List<string> user1 = rest.GetAll<string>("user/GetEmailOfWeakPasswordUsers");
-            //List<string> user2 = rest.GetAll<string>("user/GetCompetitorsEmailAddress");
-            //List<string> user3 = rest.GetAll<string>("user/GetAmericanUsersNames");
-            //List<string> user4 = rest.GetAll<string>("user/GetLongDistanceCompetitorsNames");
-            //List<string> user5 = rest.GetAll<string>("user/GetNameOfLongDistanceOldRunners");
-            //List<KeyValuePair<double, string>> user6 = rest.GetAll<KeyValuePair<double, string>>("user/ReadRunsOfUser/5");
-
-            //List<int> run1 = rest.GetAll<int>("run/GetRunIDOfPremiumUsers");
-            //List<string> run2 = rest.GetAll<string>("run/GetTimeOfPremiumCompetitors");
-            //List<int> run3 = rest.GetAll<int>("run/GetRunIDOfLongDistanceJuniorRunners");
-            //List<string> run4 = rest.GetAll<string>("run/GetLocationOfChonkers");
-            //List<string> run5 = rest.GetAll<string>("run/GetLocationOfJuniorPremiumUsers");
-
-            //List<int> pass1 = rest.GetAll<int>("pass/GetOldPeoplesPassID");
-            //List<int> pass2 = rest.GetAll<int>("pass/GetOldPeoplesPassIDWithWeakPassword");
-            //List<int> pass3 = rest.GetAll<int>("pass/GetPassIDOfPremiumUsers");
-            //List<string> pass4 = rest.GetAll<string>("pass/GetPhoneNumberOfPremiumUsers");
-            //List<string> pass5 = rest.GetAll<string>("pass/GetPhoneNumberOfCompetitors");
-            //List<string> pass6 = rest.GetAll<string>("pass/GetPasswordOfUserByName");
-            #endregion
-
-
-
-            #region writes to console
-
-            //Console.WriteLine("GetOldPeoplesPassID");
-            //foreach (var item in pass1)
-            //{
-            //    Console.WriteLine(item);
-            //}
-            //Console.WriteLine("GetOldPeoplesPassIDWithWeakPassword");
-            //foreach (var item in pass2)
-            //{
-            //    Console.WriteLine(item);
-            //}
-            //Console.WriteLine("GetPassIDOfPremiumUsers");
-            //foreach (var item in pass3)
-            //{
-            //    Console.WriteLine(item);
-            //}
-            //Console.WriteLine("GetPhoneNumberOfPremiumUsers");
-            //foreach (var item in pass4)
-            //{
-            //    Console.WriteLine(item);
-            //}
-            //Console.WriteLine("GetPhoneNumberOfCompetitors");
-            //foreach (var item in pass5)
-            //{
-            //    Console.WriteLine(item);
-            //}
-            //Console.WriteLine("GetPasswordOfUserByName");
-            //foreach (var item in pass6)
-            //{
-            //    Console.WriteLine(item);
-            //}
-
-
-            //User
-
-            //Console.WriteLine("ReadRunsOfUser/1");
-            //foreach (var item in user6)
-            //{
-            //    Console.WriteLine(item.Key.ToString(), item.Value.ToString(), item.ToString());
-            //}
-
-            #endregion
-
 
             #endregion
 
             #region menu
-            //List<string> user1 = rest.GetAll<string>("user/GetEmailOfWeakPasswordUsers");
-            //List<string> user2 = rest.GetAll<string>("user/GetCompetitorsEmailAddress");
-            //List<string> user3 = rest.GetAll<string>("user/GetAmericanUsersNames");
-            //List<string> user4 = rest.GetAll<string>("user/GetLongDistanceCompetitorsNames");
-            //List<string> user5 = rest.GetAll<string>("user/GetNameOfLongDistanceOldRunners");
-            //List<KeyValuePair<double, string>> user6 = rest.GetAll<KeyValuePair<double, string>>("user/ReadRunsOfUser/5");
 
 
             Console.BackgroundColor = ConsoleColor.White;
-            Console.ForegroundColor = ConsoleColor.Yellow;
+            Console.ForegroundColor = ConsoleColor.DarkGreen;
 
             UI uiRest = new UI(rest);
 
@@ -262,15 +188,66 @@ namespace EK7TKN_HFT_2021221
                                    config.Title = "User menu";
                                    config.EnableBreadcrumb = true;
                                    config.ItemBackgroundColor = ConsoleColor.White;
-                                   config.SelectedItemBackgroundColor = ConsoleColor.Green;
+                                   config.SelectedItemBackgroundColor = ConsoleColor.DarkGreen;
                                    config.ItemForegroundColor = ConsoleColor.DarkGreen;
                                    config.SelectedItemForegroundColor = ConsoleColor.Gray;
 
                                });
 
+            var RunMenu = new ConsoleMenu(args, level: 1)
+    .Add("Read all runs", () => uiRest.AllRuns())
+    .Add("Read a run", () => uiRest.ReadARun())
+    .Add("Add a run", () => uiRest.CreateARun())
+    .Add("Update a run", () => uiRest.UpdateARun())
+    .Add("Delete a run", () => uiRest.DeleteARun())
+    .Add("Get run id of premium users", () => uiRest.GetRunIDOfPremiumUsers())
+    .Add("Get time of premium competitors", () => uiRest.GetTimeOfPremiumCompetitors())
+    .Add("Get run id of long distance junior runners", () => uiRest.GetRunIDOfLongDistanceJuniorRunners())
+    .Add("Get location of chonkers", () => uiRest.GetLocationOfChonkers())
+    .Add("Get location of junior premium users", () => uiRest.GetLocationOfJuniorPremiumUsers())
+    .Add("Close", ConsoleMenu.Close)
+                   .Configure(config =>
+                   {
+                       config.Selector = "--> ";
+                       config.EnableFilter = true;
+                       config.Title = "Run menu";
+                       config.EnableBreadcrumb = true;
+                       config.ItemBackgroundColor = ConsoleColor.White;
+                       config.SelectedItemBackgroundColor = ConsoleColor.DarkGreen;
+                       config.ItemForegroundColor = ConsoleColor.DarkGreen;
+                       config.SelectedItemForegroundColor = ConsoleColor.Gray;
+
+                   });
+
+            var PasswordMenu = new ConsoleMenu(args, level: 1)
+.Add("Read all runs", () => uiRest.AllPasswords())
+.Add("Read a run", () => uiRest.ReadAPassword())
+.Add("Add a run", () => uiRest.CreateAPassword())
+.Add("Update a run", () => uiRest.UpdateAPassword())
+.Add("Delete a run", () => uiRest.DeleteAPassword())
+.Add("Get old people's pass id", () => uiRest.GetOldPeoplesPassID())
+.Add("Get opd people's pass id with weak passwords", () => uiRest.GetOldPeoplesPassIDWithWeakPassword())
+.Add("Get pass id of premium users", () => uiRest.GetPassIDOfPremiumUsers())
+.Add("Get phone number of premium users", () => uiRest.GetPhoneNumberOfPremiumUsers())
+.Add("Get phone number of competitors", () => uiRest.GetPhoneNumberOfCompetitors())
+.Add("Close", ConsoleMenu.Close)
+       .Configure(config =>
+       {
+           config.Selector = "--> ";
+           config.EnableFilter = true;
+           config.Title = "Password menu";
+           config.EnableBreadcrumb = true;
+           config.ItemBackgroundColor = ConsoleColor.White;
+           config.SelectedItemBackgroundColor = ConsoleColor.DarkGreen;
+           config.ItemForegroundColor = ConsoleColor.DarkGreen;
+           config.SelectedItemForegroundColor = ConsoleColor.Gray;
+
+       });
 
             var MainMenu = new ConsoleMenu(args, level: 0)
                 .Add("User Menu", () => UserMenu.Show())
+                .Add("Run Menu", () => RunMenu.Show())
+                .Add("Password Menu", () => PasswordMenu.Show())
                 .Add("Exit", () => Environment.Exit(0))
                 .Configure(config =>
                 {
@@ -279,7 +256,7 @@ namespace EK7TKN_HFT_2021221
                     config.Title = "Main menu";
                     config.EnableBreadcrumb = true;
                     config.ItemBackgroundColor = ConsoleColor.White;
-                    config.SelectedItemBackgroundColor = ConsoleColor.Green;
+                    config.SelectedItemBackgroundColor = ConsoleColor.DarkGreen;
                     config.ItemForegroundColor = ConsoleColor.DarkGreen;
                     config.SelectedItemForegroundColor = ConsoleColor.Gray;
 

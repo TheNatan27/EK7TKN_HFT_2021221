@@ -139,31 +139,7 @@ namespace EK7TKN_HFT_2021221.Logic
 
             return lista;
         }
-        public IEnumerable<string> GetPasswordOfUserByName(string username)
-        {
-
-            List<string> lista = new List<string>();
-
-            var sue = from p in passwordRepo.ReadAll()
-                      join u in userRepo.ReadAll()
-                      on p.UserId equals u.UserID
-                      where u.Full_Name.Contains(username)
-                      select p.TotallySecuredVeryHashedPassword;
-
-            lista = sue.ToList();
-
-            if (lista.Count()<1)
-            {
-                Console.WriteLine("Error: no user found");
-            }
-
-            lista.ForEach(x => Console.WriteLine(x));
-
-            return lista;
-        }
-    
-        
-
+            
 
         //CRUD Methods
         public void Create(string json)
@@ -176,9 +152,9 @@ namespace EK7TKN_HFT_2021221.Logic
             passwordRepo.Delete(passId);
         }
 
-        public IQueryable<PasswordSecurity> Read(int userId)
+        public PasswordSecurity Read(int userId)
         {
-            return(passwordRepo.Read(userId));
+            return passwordRepo.Read(userId);
         }
 
         public void Update(string json, int userId)

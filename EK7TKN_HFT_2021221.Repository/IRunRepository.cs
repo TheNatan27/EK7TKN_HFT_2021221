@@ -12,7 +12,7 @@ namespace EK7TKN_HFT_2021221.Repository
 
         public void Create(string json);
         public IQueryable<RunInformation> ReadAll();
-        public IQueryable<RunInformation> Read(int runID);
+        public RunInformation Read(int runID);
         public void Delete(int runId);
         public void Update(string json, int runId);
 

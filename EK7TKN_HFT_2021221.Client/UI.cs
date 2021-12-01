@@ -209,12 +209,15 @@ namespace EK7TKN_HFT_2021221.Client
             double distance = double.Parse(Console.ReadLine());
             Console.WriteLine("Enter Time: ");
             string time = Console.ReadLine();
+            Console.WriteLine("Enter Location: ");
+            string location = Console.ReadLine();
             Console.WriteLine("Enter UserID: ");
             int uid = int.Parse(Console.ReadLine());
 
             RunInformation newRun = new RunInformation()
             {
                 Distance = distance,
+                Location = location,
                 Time = time,
                 UserID = uid
             };
@@ -232,12 +235,15 @@ namespace EK7TKN_HFT_2021221.Client
             double distance = double.Parse(Console.ReadLine());
             Console.WriteLine("Enter Time: ");
             string time = Console.ReadLine();
+            Console.WriteLine("Enter Location: ");
+            string location = Console.ReadLine();
             Console.WriteLine("Enter UserID: ");
             int uid = int.Parse(Console.ReadLine());
 
             RunInformation newRun = new RunInformation()
             {
                 Distance = distance,
+                Location = location,
                 Time = time,
                 UserID = uid
             };
@@ -321,7 +327,7 @@ namespace EK7TKN_HFT_2021221.Client
         //Passwords
         public void AllPasswords()
         {
-            List<PasswordSecurity> passes = rest.GetAll<PasswordSecurity>("password");
+            List<PasswordSecurity> passes = rest.GetAll<PasswordSecurity>("pass");
 
             foreach (var item in passes)
             {
@@ -335,7 +341,7 @@ namespace EK7TKN_HFT_2021221.Client
             Console.WriteLine("Enter password id: ");
             int id = int.Parse(Console.ReadLine());
 
-            var se = rest.Get<PasswordSecurity>(id, "password/read");
+            var se = rest.Get<PasswordSecurity>(id, "pass/read");
 
             Console.WriteLine(se.ToString());
             Console.WriteLine(" <==  Press enter to go back");
@@ -361,7 +367,7 @@ namespace EK7TKN_HFT_2021221.Client
 
             string jsonUser = JsonConvert.SerializeObject(newPass);
 
-            rest.Post<string>(jsonUser, "password/post");
+            rest.Post<string>(jsonUser, "pass/post");
             Console.WriteLine(" <==  Press enter to go back");
             Console.ReadLine();
 
@@ -388,7 +394,7 @@ namespace EK7TKN_HFT_2021221.Client
 
             string jsonUser = JsonConvert.SerializeObject(newPass);
 
-            rest.Put<string>(jsonUser, $"password/put/{id}");
+            rest.Put<string>(jsonUser, $"pass/put/{id}");
             Console.WriteLine(" <==  Press enter to go back");
             Console.ReadLine();
 
@@ -398,14 +404,14 @@ namespace EK7TKN_HFT_2021221.Client
             Console.WriteLine("Enter id of password to delete: ");
             int id = int.Parse(Console.ReadLine());
 
-            rest.Delete(id, "password/delete");
+            rest.Delete(id, "pass/delete");
             Console.WriteLine("Press enter to go back");
             Console.ReadLine();
         }
 
         public void GetOldPeoplesPassID()
         {
-            List<int> pass = rest.GetAll<int>("password/GetOldPeoplesPassID");
+            List<int> pass = rest.GetAll<int>("pass/GetOldPeoplesPassID");
 
             foreach (var item in pass)
             {
@@ -416,7 +422,7 @@ namespace EK7TKN_HFT_2021221.Client
         }
         public void GetOldPeoplesPassIDWithWeakPassword()
         {
-            List<int> pass = rest.GetAll<int>("password/GetOldPeoplesPassIDWithWeakPassword");
+            List<int> pass = rest.GetAll<int>("pass/GetOldPeoplesPassIDWithWeakPassword");
 
             foreach (var item in pass)
             {
@@ -427,7 +433,7 @@ namespace EK7TKN_HFT_2021221.Client
         }
         public void GetPassIDOfPremiumUsers()
         {
-            List<int> pass = rest.GetAll<int>("password/GetPassIDOfPremiumUsers");
+            List<int> pass = rest.GetAll<int>("pass/GetPassIDOfPremiumUsers");
 
             foreach (var item in pass)
             {
@@ -438,7 +444,7 @@ namespace EK7TKN_HFT_2021221.Client
         }
         public void GetPhoneNumberOfPremiumUsers()
         {
-            List<string> pass = rest.GetAll<string>("password/GetPhoneNumberOfPremiumUsers");
+            List<string> pass = rest.GetAll<string>("pass/GetPhoneNumberOfPremiumUsers");
 
             foreach (var item in pass)
             {
@@ -450,7 +456,7 @@ namespace EK7TKN_HFT_2021221.Client
         }
         public void GetPhoneNumberOfCompetitors()
         {
-            List<string> pass = rest.GetAll<string>("password/GetPhoneNumberOfCompetitors");
+            List<string> pass = rest.GetAll<string>("pass/GetPhoneNumberOfCompetitors");
 
             foreach (var item in pass)
             {
@@ -458,20 +464,6 @@ namespace EK7TKN_HFT_2021221.Client
             }
             Console.WriteLine(" <==  Press enter to go back");
             Console.ReadLine();        }
-        public void GetPasswordOfUserByID()
-        {
-            Console.WriteLine("Enter name of user: ");
-            int id = int.Parse(Console.ReadLine());
-
-            var se = rest.Get<PasswordSecurity>(id, "password/GetPasswordOfUserByID");
-
-            Console.WriteLine(se.ToString());
-            Console.WriteLine(" <==  Press enter to go back");
-            Console.ReadLine();        }
-
-
-
-
 
     }
 }

@@ -97,14 +97,14 @@ namespace EK7TKN_HFT_2021221.Repository
 
             #endregion
         }
-        public IQueryable<PasswordSecurity> Read(int userID)
+        public PasswordSecurity Read(int userID)
         {
 
             var us = from x in ctx.Passwords
                      where x.UserId.Equals(userID)
                      select x;
 
-            IQueryable<PasswordSecurity> ri = us.AsQueryable().Select(x => x);
+            PasswordSecurity ri = us.First();
 
             
 

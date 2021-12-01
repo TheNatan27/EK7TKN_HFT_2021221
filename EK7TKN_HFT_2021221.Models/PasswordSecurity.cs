@@ -20,7 +20,11 @@ namespace EK7TKN_HFT_2021221.Models
         public string RecoverPhoneNumber { get; set; }
         public virtual UserInformation userInformation { get; set; }
         public string TotallySecuredVeryHashedPassword { get; set; }
-      
+
+        public override string ToString()
+        {
+            return $"PassID: {PassId}, UserID: {UserId}, Phone number: {RecoverPhoneNumber.Trim()}, Password: {TotallySecuredVeryHashedPassword.Trim()}";
+        }
 
     }
 

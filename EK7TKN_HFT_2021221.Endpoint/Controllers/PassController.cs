@@ -27,9 +27,9 @@ public class PassController : ControllerBase
         return pass.ReadAll();
     }
 
-    //GET /id
-    [HttpGet("{id}")]
-    public IQueryable<PasswordSecurity> Get(int id)
+    //GET /read/id
+    [HttpGet("read/{id}")]
+    public PasswordSecurity Get(int id)
     {
         return pass.Read(id);
     }
@@ -40,7 +40,6 @@ public class PassController : ControllerBase
     {
         pass.Create(json);
 
-        System.Console.WriteLine(json);
     }
     
     // PUT /put
@@ -96,12 +95,7 @@ public class PassController : ControllerBase
         return pass.GetPhoneNumberOfCompetitors();
     }
 
-    // GetPasswordOfUserByID
-    [HttpGet("GetPasswordOfUserByID/{id}")]
-    public IEnumerable<string> GetPasswordOfUserByName(int id)
-    {
-        return pass.GetPasswordOfUserByID(id);
-    }
+
 
     #endregion
 }
