@@ -34,6 +34,20 @@ namespace EK7TKN_HFT_2021221.Logic
 
             return lista;
         }
+        public IEnumerable<KeyValuePair<double, string>> ReadRunsOfUser(int userID)
+        {
+
+            var oke = from u in userRepo.ReadAll()
+                      join r in runRepo.ReadAll()
+                      on u.UserID equals r.UserID
+                      where r.UserID.Equals(userID)
+                      select new KeyValuePair<double, string>(
+                          r.Distance, r.Time);
+
+
+            return oke;
+
+        }
 
         //Multi Table
         public IEnumerable<string> GetEmailOfWeakPasswordUsers()

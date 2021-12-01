@@ -6,6 +6,7 @@
 
   <ItemGroup>
     <PackageReference Include="Json.Net" Version="1.0.33" />
+    <PackageReference Include="System.Collections" Version="4.3.0" />
   </ItemGroup>
 
   <ItemGroup>

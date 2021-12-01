@@ -121,31 +121,6 @@ namespace EK7TKN_HFT_2021221.Repository
             ctx.SaveChanges();
         }
 
-        public void ReadRunsOfUsers()
-        {
-            Console.WriteLine("Enter userId: ");
-            int id = int.Parse(Console.ReadLine());
 
-            var us = from x in ctx.Runs
-                     where x.UserID.Equals(id)
-                     select x;
-
-            foreach (var item in us)
-            {
-                Console.WriteLine(item.ToString());
-            }
-
-            //var se = from x in CTX.Users
-            //         where x.UserID.Equals(id)
-            //         select x;
-
-            //List<UserInformation> selist = se.ToList();
-
-            //foreach (var item in se)
-            //{
-            //    Console.WriteLine(item);
-            //}
-
-        }
     }
 }

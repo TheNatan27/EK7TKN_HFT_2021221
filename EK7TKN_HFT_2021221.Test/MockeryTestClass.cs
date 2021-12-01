@@ -282,7 +282,38 @@ new UserInformation() { Full_Name="	Nada Grgic	",Email="	ngrgic4@sitemeter.com	"
             //ASSERT
             Assert.That(testResult, Is.EqualTo(actual));
         }
+        [TestCase(5)]
+        public void ReadRunsOfUser_Test(int userID)
+        {
+            IRunRepository runRepository = new Repo_Run(mockeryContext.Object);
+            IPassRepository passRepository = new Repo_Password(mockeryContext.Object);
+            IUserRepository userRepository = new Repo_User(mockeryContext.Object);
 
+            IUserLogic userLogic = new Logic_User(userRepository, passRepository, runRepository);
+
+            //ACT
+
+            IEnumerable<KeyValuePair<double, string>> to = userLogic.ReadRunsOfUser(userID);
+
+            List<double> re1 = new List<double>();
+            List<string> re2 = new List<string>();
+
+            foreach (var item in to)
+            {
+                re1.Add(item.Key);
+                re2.Add(item.Value);
+            }
+
+            List<double> ac1 = new List<double>() { 29.5, 8.5};
+            List<string> ac2 = new List<string>() { "00:38:06" , "00:61:21" };
+
+            //ASSERT
+
+            Assert.That(re1, Is.EquivalentTo(ac1));
+            Assert.That(re2, Is.EquivalentTo(ac2));
+
+
+        }
     }
 }
 

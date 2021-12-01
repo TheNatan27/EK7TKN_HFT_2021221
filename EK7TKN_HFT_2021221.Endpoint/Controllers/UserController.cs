@@ -56,6 +56,13 @@ public class UserController : ControllerBase
     #endregion
 
     #region non crud methods
+    //GET /ReadRunsOfUser/id
+    [HttpGet("ReadRunsOfUser/{id}")]
+    public IEnumerable<KeyValuePair<double, string>> ReadRunsOfUser(int id)
+    {
+        return user.ReadRunsOfUser(id);
+    }
+
 
     // GetEmailOfWeakPasswordUsers
     [HttpGet("GetEmailOfWeakPasswordUsers")]
