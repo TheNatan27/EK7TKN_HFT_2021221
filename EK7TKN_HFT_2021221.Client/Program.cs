@@ -99,8 +99,8 @@ namespace EK7TKN_HFT_2021221
 
             RestService rest = new RestService("http://localhost:5000");
 
-            var hj = rest.Get<UserInformation>(2, "user/read");
-            Console.WriteLine(hj.ToString());
+            //var hj = rest.Get<UserInformation>(2, "user/read");
+            //Console.WriteLine(hj.ToString());
 
             //List<UserInformation> allusers = rest.GetAll<UserInformation>("user");
             //List<RunInformation> allruns = rest.GetAll<RunInformation>("run");
@@ -236,6 +236,10 @@ namespace EK7TKN_HFT_2021221
             //List<string> user5 = rest.GetAll<string>("user/GetNameOfLongDistanceOldRunners");
             //List<KeyValuePair<double, string>> user6 = rest.GetAll<KeyValuePair<double, string>>("user/ReadRunsOfUser/5");
 
+
+            Console.BackgroundColor = ConsoleColor.White;
+            Console.ForegroundColor = ConsoleColor.Yellow;
+
             UI uiRest = new UI(rest);
 
             var UserMenu = new ConsoleMenu(args, level: 1)
@@ -243,10 +247,47 @@ namespace EK7TKN_HFT_2021221
                 .Add("Read a user", () => uiRest.ReadAUser())
                 .Add("Add a user", () => uiRest.CreateAUser())
                 .Add("Update a user", () => uiRest.UpdateAUser())
-                .Add("Delete a user", () => uiRest.DeleteAUser());
+                .Add("Delete a user", () => uiRest.DeleteAUser())
+                .Add("Read runs of users", () => uiRest.ReadRunsOfUser())
+                .Add("Get email of weak password users", () => uiRest.GetEmailOfWeakPasswordUsers())
+                .Add("Get competitors email addresses", () => uiRest.GetCompetitorsEmailAddress())
+                .Add("Get american users names", () => uiRest.GetAmericanUsersNames())
+                .Add("Get long distance competitors names", () => uiRest.GetLongDistanceCompetitorsNames())
+                .Add("Get name of long distance old runners", () => uiRest.GetNameOfLongDistanceOldRunners())
+                .Add("Close", ConsoleMenu.Close)
+                               .Configure(config =>
+                               {
+                                   config.Selector = "--> ";
+                                   config.EnableFilter = true;
+                                   config.Title = "User menu";
+                                   config.EnableBreadcrumb = true;
+                                   config.ItemBackgroundColor = ConsoleColor.White;
+                                   config.SelectedItemBackgroundColor = ConsoleColor.Green;
+                                   config.ItemForegroundColor = ConsoleColor.DarkGreen;
+                                   config.SelectedItemForegroundColor = ConsoleColor.Gray;
+
+                               });
 
 
-            //UserMenu.Show();
+            var MainMenu = new ConsoleMenu(args, level: 0)
+                .Add("User Menu", () => UserMenu.Show())
+                .Add("Exit", () => Environment.Exit(0))
+                .Configure(config =>
+                {
+                    config.Selector = "--> ";
+                    config.EnableFilter = true;
+                    config.Title = "Main menu";
+                    config.EnableBreadcrumb = true;
+                    config.ItemBackgroundColor = ConsoleColor.White;
+                    config.SelectedItemBackgroundColor = ConsoleColor.Green;
+                    config.ItemForegroundColor = ConsoleColor.DarkGreen;
+                    config.SelectedItemForegroundColor = ConsoleColor.Gray;
+
+                });
+
+
+
+            MainMenu.Show();
 
 
             #endregion
@@ -276,118 +317,8 @@ namespace EK7TKN_HFT_2021221
 
         //    Console.Write("\r\nSelect an option: ");
 
-        //    switch (Console.ReadLine())
-        //    {
-        //        case "1":
-        //            StringPrinter()
-        //            return true;
-        //        case "2":
-        //            //RemoveWhitespace();
-        //            return true;
-        //        case "3":
-        //            //ReverseString();
-        //            return true;
-        //        case "4":
-        //            //RemoveWhitespace();
-        //            return true;
-        //        case "5":
-        //            //ReverseString();
-        //            return true;
-        //        case "6":
-        //            //RemoveWhitespace();
-        //            return true;
-        //        case "7":
-        //            //ReverseString();
-        //            return true;
-        //        case "8":
-        //            //RemoveWhitespace();
-        //            return true;
-        //        case "9":
-        //            //ReverseString();
-        //            return true;
-        //        case "10":
-        //            //RemoveWhitespace();
-        //            return true;
-        //        case "11":
-        //            //RemoveWhitespace();
-        //            return true;
-        //        case "12":
-        //            return false;
-        //        default:
-        //            return true;
-        //    }
-        //}
+        
 
-        //static bool RunsMenu()
-        //{
-        //    Console.Clear();
-        //    Console.WriteLine("Choose a query:");
-        //    Console.WriteLine("1) Users");
-        //    Console.WriteLine("2) Runs");
-        //    Console.WriteLine("3) Passwords");
-        //    Console.Write("\r\nSelect an option: ");
-
-        //    switch (Console.ReadLine())
-        //    {
-        //        case "1":
-        //            //ReverseString();
-        //            return true;
-        //        case "2":
-        //            //RemoveWhitespace();
-        //            return true;
-        //        case "3":
-        //            return false;
-        //        default:
-        //            return true;
-        //    }
-        //}
-
-        //static bool PasswordsMenu()
-        //{
-        //    Console.Clear();
-        //    Console.WriteLine("Choose a query:");
-        //    Console.WriteLine("1) Users");
-        //    Console.WriteLine("2) Runs");
-        //    Console.WriteLine("3) Passwords");
-        //    Console.Write("\r\nSelect an option: ");
-
-        //    switch (Console.ReadLine())
-        //    {
-        //        case "1":
-        //            //ReverseString();
-        //            return true;
-        //        case "2":
-        //            //RemoveWhitespace();
-        //            return true;
-        //        case "3":
-        //            return false;
-        //        default:
-        //            return true;
-        //    }
-        //}
-
-        //static bool MainMenu()
-        //{
-        //    Console.Clear();
-        //    Console.WriteLine("Choose a table:");
-        //    Console.WriteLine("1) Users");
-        //    Console.WriteLine("2) Runs");
-        //    Console.WriteLine("3) Passwords");
-        //    Console.Write("\r\nSelect an option: ");
-
-        //    switch (Console.ReadLine())
-        //    {
-        //        case "1":
-        //            //ReverseString();
-        //            return true;
-        //        case "2":
-        //            //RemoveWhitespace();
-        //            return true;
-        //        case "3":
-        //            return false;
-        //        default:
-        //            return true;
-        //    }
-        //}
+   
     }
 }

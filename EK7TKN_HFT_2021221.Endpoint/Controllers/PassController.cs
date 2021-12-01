@@ -96,11 +96,11 @@ public class PassController : ControllerBase
         return pass.GetPhoneNumberOfCompetitors();
     }
 
-    // GetPasswordOfUserByName
-    [HttpGet("GetPasswordOfUserByName/{name}")]
-    public IEnumerable<string> GetPasswordOfUserByName(string name)
+    // GetPasswordOfUserByID
+    [HttpGet("GetPasswordOfUserByID/{id}")]
+    public IEnumerable<string> GetPasswordOfUserByName(int id)
     {
-        return pass.GetPasswordOfUserByName(name);
+        return pass.GetPasswordOfUserByID(id);
     }
 
     #endregion

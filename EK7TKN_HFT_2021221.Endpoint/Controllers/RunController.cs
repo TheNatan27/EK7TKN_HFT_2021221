@@ -65,7 +65,7 @@ public class RunController : ControllerBase
         return run.GetRunIDOfPremiumUsers();
     }
 
-    // GetRunIDOfPremiumUsers
+    // GetTimeOfPremiumCompetitors
     [HttpGet("GetTimeOfPremiumCompetitors")]
     public IEnumerable<string> GetTimeOfPremiumCompetitors()
     {

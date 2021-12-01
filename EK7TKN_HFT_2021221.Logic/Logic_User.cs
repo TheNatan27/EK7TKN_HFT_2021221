@@ -146,7 +146,7 @@ namespace EK7TKN_HFT_2021221.Logic
             userRepo.Delete(userID);
         }
 
-        public IQueryable<UserInformation> Read(int userID)
+        public UserInformation Read(int userID)
         {
             return userRepo.Read(userID);
         }

@@ -22,6 +22,6 @@ namespace EK7TKN_HFT_2021221.Logic
         public IEnumerable<int> GetPassIDOfPremiumUsers();
         public IEnumerable<string> GetPhoneNumberOfPremiumUsers();
         public IEnumerable<string> GetPhoneNumberOfCompetitors();
-        public IEnumerable<string> GetPasswordOfUserByName(string username);
+        public IEnumerable<string> GetPasswordOfUserByID(int id);
     }
 }

@@ -27,14 +27,14 @@ public class UserController : ControllerBase
 
     //GET /id
     [HttpGet("read/{id}")]
-    public IQueryable<UserInformation> Get(int id)
+    public UserInformation Get(int id)
     {
         return user.Read(id);
     }
 
     // POST /post
     [HttpPost("post")]
-    public void PostCreate(string json)
+    public void PostCreate([FromBody] string json)
     {
         user.Create(json);
     }

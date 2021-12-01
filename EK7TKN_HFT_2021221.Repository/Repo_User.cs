@@ -54,15 +54,14 @@ namespace EK7TKN_HFT_2021221.Repository
             Console.WriteLine("User added!");
       
         }
-        public IQueryable<UserInformation> Read(int userID)
+        public UserInformation Read(int userID)
         {
 
             var us = from x in ctx.Users
                      where x.UserID.Equals(userID)
                      select x;
 
-            IQueryable<UserInformation> ri = us.AsQueryable().Select(x => x);
-
+            UserInformation ri = us.First();
             Console.WriteLine("User read!");
 
             return ri;

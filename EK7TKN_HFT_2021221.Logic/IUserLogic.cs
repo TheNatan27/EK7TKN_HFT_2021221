@@ -11,7 +11,7 @@ namespace EK7TKN_HFT_2021221.Logic
     {
         public void Create(string json);
         public void Delete(int userID);
-        public IQueryable<UserInformation> Read(int userID);
+        public UserInformation Read(int userID);
         public void Update(string json, int userID);
         public IQueryable<UserInformation> ReadAll();
 
