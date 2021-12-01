@@ -26,7 +26,7 @@ public class UserController : ControllerBase
     }
 
     //GET /id
-    [HttpGet("{id}")]
+    [HttpGet("read/{id}")]
     public IQueryable<UserInformation> Get(int id)
     {
         return user.Read(id);
