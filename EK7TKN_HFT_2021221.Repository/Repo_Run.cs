@@ -21,14 +21,14 @@ namespace EK7TKN_HFT_2021221.Repository
     {
         public MissingLocationException()
         {
-            Console.WriteLine("Error: No age provided");
+            Console.WriteLine("Error: No location provided");
         }
     }
     public class WrongUserIDException : Exception
     {
         public WrongUserIDException()
         {
-            Console.WriteLine("Error: Premium status is not specified");
+            Console.WriteLine("Error: Wrong user id provided");
         }
     }
     public class Repo_Run : AbRepo<RunInformation>, IRunRepository
