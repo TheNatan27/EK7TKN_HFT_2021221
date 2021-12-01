@@ -16,27 +16,27 @@ namespace EK7TKN_HFT_2021221
     {
         static void Main(string[] args)
         {
-            #region testing, to be deleted 
+            #region testing, to be ignored or deleted 
 
-            xDbContext context = new xDbContext();
-            Repo_Run run = new Repo_Run(context);
-            Repo_User user = new Repo_User(context);
-            Repo_Password password = new Repo_Password(context);
+            //xDbContext context = new xDbContext();
+            //Repo_Run run = new Repo_Run(context);
+            //Repo_User user = new Repo_User(context);
+            //Repo_Password password = new Repo_Password(context);
 
-            Logic_Run rlogic = new Logic_Run(user, password, run);
-            Logic_User ulogic = new Logic_User(user, password, run);
-            Logic_Password plogic = new Logic_Password(user, password, run);
+            //Logic_Run rlogic = new Logic_Run(user, password, run);
+            //Logic_User ulogic = new Logic_User(user, password, run);
+            //Logic_Password plogic = new Logic_Password(user, password, run);
 
-            Console.WriteLine("/////");
+            //Console.WriteLine("/////");
 
             
 
-            var sl = ulogic.ReadAll();
+            //var sl = ulogic.ReadAll();
 
-            foreach (var item in sl)
-            {
-                Console.WriteLine(item.ToString());
-            }
+            //foreach (var item in sl)
+            //{
+            //    Console.WriteLine(item.ToString());
+            //}
 
             //var ri =
             //logic.Read(1);
@@ -159,6 +159,7 @@ namespace EK7TKN_HFT_2021221
             //List<string> user3 = rest.GetAll<string>("user/GetAmericanUsersNames");
             //List<string> user4 = rest.GetAll<string>("user/GetLongDistanceCompetitorsNames");
             //List<string> user5 = rest.GetAll<string>("user/GetNameOfLongDistanceOldRunners");
+            List<KeyValuePair<double, string>> user6 = rest.GetAll<KeyValuePair<double, string>>("user/ReadRunsOfUser/5");
 
             //List<int> run1 = rest.GetAll<int>("run/GetRunIDOfPremiumUsers");
             //List<string> run2 = rest.GetAll<string>("run/GetTimeOfPremiumCompetitors");
@@ -208,6 +209,15 @@ namespace EK7TKN_HFT_2021221
             //{
             //    Console.WriteLine(item);
             //}
+
+
+            //User
+
+            Console.WriteLine("ReadRunsOfUser/1");
+            foreach (var item in user6)
+            {
+                Console.WriteLine(item.Key.ToString(), item.Value.ToString(), item.ToString());
+            }
 
             #endregion
 
