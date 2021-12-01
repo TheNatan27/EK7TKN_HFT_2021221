@@ -1,15 +1,8 @@
 ﻿using ConsoleTools;
 using EK7TKN_HFT_2021221.Client;
-using EK7TKN_HFT_2021221.Data;
-using EK7TKN_HFT_2021221.Logic;
 using EK7TKN_HFT_2021221.Models;
-using EK7TKN_HFT_2021221.Repository;
 using Newtonsoft.Json;
 using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Text.Json;
 
 namespace EK7TKN_HFT_2021221
 {
@@ -17,156 +10,20 @@ namespace EK7TKN_HFT_2021221
     {
         static void Main(string[] args)
         {
-            #region testing, to be ignored or deleted 
-
-            //xDbContext context = new xDbContext();
-            //Repo_Run run = new Repo_Run(context);
-            //Repo_User user = new Repo_User(context);
-            //Repo_Password password = new Repo_Password(context);
-
-            //Logic_Run rlogic = new Logic_Run(user, password, run);
-            //Logic_User ulogic = new Logic_User(user, password, run);
-            //Logic_Password plogic = new Logic_Password(user, password, run);
-
-            //Console.WriteLine("/////");
-
-            
-
-            //var sl = ulogic.ReadAll();
-
-            //foreach (var item in sl)
-            //{
-            //    Console.WriteLine(item.ToString());
-            //}
-
-            //var ri =
-            //logic.Read(1);
-            //foreach (var item in ri)
-            //{
-            //    Console.WriteLine(item);
-            //}
-            //Console.WriteLine("///////////");
-            //logic.Update("testRun_Standard.txt", 1);
-
-            //var ri2 =
-
-            //foreach (var item in ri2)
-            //{
-            //    Console.WriteLine(item);
-            //}
-
-            //Console.WriteLine("/////");
-
-            //var se = logic.ReadAll();
-            //foreach (var item in se)
-            //{
-            //    Console.WriteLine(item);
-            //    Console.WriteLine("--");
-            //    Console.WriteLine(item.Location);
-            //}
-
-            //IQueryable<RunInformation> s1 =
-            //rlogic.Read(1);
-            //IQueryable<UserInformation> s2 =
-            //ulogic.Read(1);
-            //IQueryable<PasswordSecurity> s3 =
-            //plogic.Read(1);
-
-            //foreach (var item in s1)
-            //{
-            //    Console.WriteLine(item);
-            //}
-            //foreach (var item in s2)
-            //{
-            //    Console.WriteLine(item);
-            //}
-            //foreach (var item in s3)
-            //{
-            //    Console.WriteLine(item.PassId);
-            //    Console.WriteLine(item.RecoverPhoneNumber);
-            //    Console.WriteLine(item.TotallySecuredVeryHashedPassword);
-            //}
-
-            #endregion
-
-            #region service
-
-
-
+           
             //Rest service setup
 
             System.Threading.Thread.Sleep(2500);
 
             RestService rest = new RestService("http://localhost:5000");
 
-            //var hj = rest.Get<UserInformation>(2, "user/read");
-            //Console.WriteLine(hj.ToString());
-
-            //List<UserInformation> allusers = rest.GetAll<UserInformation>("user");
-            //List<RunInformation> allruns = rest.GetAll<RunInformation>("run");
-            //List<PasswordSecurity> allpass = rest.GetAll<PasswordSecurity>("password");
-
-            #region post, update, delete  
-
-            //////////////////////
-
-            PasswordSecurity jPass = new PasswordSecurity()
-            {
-                TotallySecuredVeryHashedPassword = "jsonpassword",
-                RecoverPhoneNumber = "012345678",
-                UserId = 222
-            };
-
-            string jsonPass = JsonConvert.SerializeObject(jPass);
-
-            //rest.Post<string>(jsonPass, "pass/post");
-            //Console.WriteLine("posted");
-
-            ///////////////////////////
-
-            RunInformation jRun = new RunInformation()
-            {
-                Distance =222.2,
-                IsCompetition =true,
-                Location ="Utopia",
-                Time ="55:66:77",
-                UserID =1
-            };
-
-            string jsonRun = JsonConvert.SerializeObject(jRun);
-
-            //rest.Post<string>(jsonRun, "run/post");
-            //Console.WriteLine("posted");
-
-            //////////////////////////
-            ////////////////////////////
-            ////////////////////////////
-
-
-            PasswordSecurity uPass = new PasswordSecurity()
-            {
-                TotallySecuredVeryHashedPassword = "updated",
-                RecoverPhoneNumber = "updated",
-                UserId = 1
-            };
-
-            string ujsonPass = JsonConvert.SerializeObject(uPass);
-
-            //rest.Put<string>(ujsonPass, "pass/put/1");
-            //Console.WriteLine("updated");
-
-            #endregion
-
-
-            #endregion
-
-            #region menu
-
 
             Console.BackgroundColor = ConsoleColor.White;
             Console.ForegroundColor = ConsoleColor.DarkGreen;
 
             UI uiRest = new UI(rest);
+
+            #region menu
 
             var UserMenu = new ConsoleMenu(args, level: 1)
                 .Add("Read all users", () => uiRest.AllUsers())
@@ -262,40 +119,10 @@ namespace EK7TKN_HFT_2021221
 
                 });
 
-
-
-            MainMenu.Show();
-
-
             #endregion
 
+            MainMenu.Show();
         }
-
-
-
- 
-
-        //static bool UsersMenu()
-        //{
-        //    Console.Clear();
-        //    Console.WriteLine("Choose a query:");
-        //    Console.WriteLine("1) Get all users");
-        //    Console.WriteLine("2) Get one user");
-        //    Console.WriteLine("3) Create a user");
-        //    Console.WriteLine("4) Update a user");
-        //    Console.WriteLine("5) Delete a user");
-        //    Console.WriteLine("6) ReadRunsOfUser");
-        //    Console.WriteLine("7) GetEmailOfWeakPasswordUsers");
-        //    Console.WriteLine("8) GetCompetitorsEmailAddress");
-        //    Console.WriteLine("9) GetAmericanUsersNames");
-        //    Console.WriteLine("10) GetLongDistanceCompetitorsNames");
-        //    Console.WriteLine("11) GetNameOfLongDistanceOldRunners");
-        //    Console.WriteLine("12) Back");
-
-        //    Console.Write("\r\nSelect an option: ");
-
-        
-
    
     }
 }

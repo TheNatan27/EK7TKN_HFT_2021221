@@ -54,7 +54,6 @@ namespace EK7TKN_HFT_2021221.Logic
             foreach (var item in sue)
             {
                 lista.Add(item);
-                //Console.WriteLine(item);
             }
 
             return lista;
@@ -74,7 +73,6 @@ namespace EK7TKN_HFT_2021221.Logic
 
             foreach (var item in sue)
             {
-                //Console.WriteLine(item);
                 lista.Add(item);
             }
 
@@ -92,7 +90,6 @@ namespace EK7TKN_HFT_2021221.Logic
 
             foreach (var item in sue)
             {
-                //Console.WriteLine(item);
                 lista.Add(item);
             }
 
@@ -111,7 +108,6 @@ namespace EK7TKN_HFT_2021221.Logic
 
             foreach (var item in sue)
             {
-                //Console.WriteLine(item.RecoverPhoneNumber);
                 lista.Add(item.RecoverPhoneNumber);
             }
 
@@ -133,7 +129,6 @@ namespace EK7TKN_HFT_2021221.Logic
 
             foreach (var item in sue)
             {
-                Console.WriteLine(item);
                 lista.Add(item);
             }
 

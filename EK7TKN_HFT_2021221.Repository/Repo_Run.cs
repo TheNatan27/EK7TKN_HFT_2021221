@@ -1,5 +1,6 @@
 ﻿using EK7TKN_HFT_2021221.Data;
 using EK7TKN_HFT_2021221.Models;
+using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;

@@ -28,7 +28,6 @@ namespace EK7TKN_HFT_2021221.Logic
 
             foreach (var item in sue)
             {
-                //Console.WriteLine(item);
                 lista.Add(item);
             }
 
