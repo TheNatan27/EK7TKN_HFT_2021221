@@ -62,7 +62,7 @@ namespace EK7TKN_HFT_2021221.Repository
 
             ctx.Runs.Attach(jRun);
             ctx.SaveChanges();
-            Console.WriteLine("Run created!");
+            Console.WriteLine($"Run {jRun.RunID} created!");
 
         }
         public RunInformation Read(int runID)
@@ -73,7 +73,7 @@ namespace EK7TKN_HFT_2021221.Repository
 
             RunInformation ri = us.First();
 
-            Console.WriteLine("Run read!");
+            Console.WriteLine($"Run {ri.RunID} read!");
 
             return ri;
         }
@@ -116,7 +116,7 @@ namespace EK7TKN_HFT_2021221.Repository
             ctx.Add(jRun);
             ctx.SaveChanges();
 
-            Console.WriteLine("Run added!");
+            Console.WriteLine($"Run {jRun.RunID} added!");
         }
         public void Delete(int runID)
         {

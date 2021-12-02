@@ -51,7 +51,7 @@ namespace EK7TKN_HFT_2021221.Repository
 
             ctx.Users.Attach(jUser);
             ctx.SaveChanges();
-            Console.WriteLine("User added!");
+            Console.WriteLine($"User {jUser.UserID} added!");
       
         }
         public UserInformation Read(int userID)
@@ -62,7 +62,7 @@ namespace EK7TKN_HFT_2021221.Repository
                      select x;
 
             UserInformation ri = us.First();
-            Console.WriteLine("User read!");
+            Console.WriteLine($"User {userID} read!");
 
             return ri;
         }
@@ -101,7 +101,7 @@ namespace EK7TKN_HFT_2021221.Repository
             ctx.Users.Add(jUser);
             ctx.SaveChanges();
 
-            Console.WriteLine("User updated!");
+            Console.WriteLine($"User {jUser.UserID} updated!");
         }
         public void Delete(int userID)
         {

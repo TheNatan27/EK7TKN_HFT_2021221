@@ -54,7 +54,7 @@ namespace EK7TKN_HFT_2021221.Repository
 
             ctx.Passwords.Attach(jPass);
             ctx.SaveChanges();
-            Console.WriteLine("Password created!");
+            Console.WriteLine($"Password {jPass.PassId} created!");
 
         }
         public PasswordSecurity Read(int userID)
@@ -66,7 +66,7 @@ namespace EK7TKN_HFT_2021221.Repository
 
             PasswordSecurity ri = us.First();
 
-            
+            Console.WriteLine($"Password {ri.PassId} read!");
 
             return ri;
 
@@ -110,7 +110,7 @@ namespace EK7TKN_HFT_2021221.Repository
             ctx.Passwords.Add(jPass);
             ctx.SaveChanges();
 
-            Console.WriteLine("Password updated!");
+            Console.WriteLine($"Password {jPass.PassId} updated!");
         }
         public void Delete(int passId)
         {
