@@ -142,7 +142,7 @@ new UserInformation() { Full_Name="	Janey Sherington	",Email="	jsherington2r@ihg
         };
 
             List<PasswordSecurity> lista2 = new List<PasswordSecurity>() {
-new PasswordSecurity() { PassId=    1   ,UserId=    1   ,TotallySecuredVeryHashedPassword="	7ZK4pmNX	",RecoverPhoneNumber="	06 404 3684"},
+new PasswordSecurity() { PassId=    1   ,UserId=    1   ,TotallySecuredVeryHashedPassword="123",RecoverPhoneNumber="	06 404 3684"},
 new PasswordSecurity() { PassId=    2   ,UserId=    2   ,TotallySecuredVeryHashedPassword="	m2kSx1Nw	",RecoverPhoneNumber="	06 815 6835"},
 new PasswordSecurity() { PassId=    3   ,UserId=    3   ,TotallySecuredVeryHashedPassword="	JcPogOYSCZr3	",RecoverPhoneNumber="	06 684 7755"},
 new PasswordSecurity() { PassId=    4   ,UserId=    4   ,TotallySecuredVeryHashedPassword="	r0zm6JvAtVK	",RecoverPhoneNumber="	06 939 7200"},

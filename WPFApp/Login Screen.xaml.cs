@@ -1,4 +1,6 @@
-﻿using System;
+﻿using EK7TKN_HFT_2021221.Client;
+using EK7TKN_HFT_2021221.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,7 +21,8 @@ namespace WPFApp
     /// </summary>
     public partial class Login_Screen : Window
     {
-
+        RestService rest = new RestService("http://localhost:5000");
+        public SessionUser user { get; set; }
         public Login_Screen()
         {
             InitializeComponent();
@@ -30,6 +33,9 @@ namespace WPFApp
             int id = int.Parse(userid_txb.Text);
             string password = password_txb.Text;
 
+            var sessionPassword = rest.Get<PasswordSecurity>(id, "pass/read");
+            var sessionUser = rest.Get<UserInformation>(id, "user/read");
+
             login_confirmation(id, password);
 
         }
@@ -37,11 +43,29 @@ namespace WPFApp
         private void login_confirmation(int id, string password)
         {
 
-            var se = rest.Get<UserInformation>(id, "user/read");
+            var sessionPassword = rest.Get<PasswordSecurity>(id, "pass/read");
+            var sessionUser = rest.Get<UserInformation>(id, "user/read");
 
-            if (id == )
+            string cleanpass = sessionPassword.TotallySecuredVeryHashedPassword.Trim();
+
+            if (id == sessionPassword.UserId && cleanpass == sessionPassword.TotallySecuredVeryHashedPassword)
             {
+                user = new SessionUser
+                {
+                    name = sessionUser.Full_Name,
+                    email = sessionUser.Email,
+                    weight = sessionUser.Weight,
+                    height = sessionUser.Height,
+                    userid = sessionUser.UserID,
+                    ispremium = sessionUser.Premium
+                };
 
+                DialogResult = true;
+                //login succesfull
+            }
+            else
+            {
+                //login failed 
             }
 
         }
@@ -52,7 +76,7 @@ namespace WPFApp
         public string name { get; set; }
         public string email { get; set; }
         public int age { get; set; }
-        public int weight { get; set; }
+        public double weight { get; set; }
         public double height { get; set; }
         public int userid { get; set; }
         public bool ispremium { get; set; }

@@ -7,7 +7,7 @@ using System.Net.Http;
 
 namespace EK7TKN_HFT_2021221.Client
 {
-    class RestService
+    public class RestService
     {
         HttpClient client;
 

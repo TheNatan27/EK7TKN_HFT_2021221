@@ -1,4 +1,5 @@
-﻿using System;
+﻿using EK7TKN_HFT_2021221.Client;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,13 +21,25 @@ namespace WPFApp
     /// </summary>
     public partial class MainWindow : Window
     {
+        
 
-        RestService rest = new RestService("http://localhost:5000");
         public MainWindow()
         {
+            
             InitializeComponent();
+
+
+        }
+
+        private void btn_show_loginwindow(object sender, RoutedEventArgs e)
+        {
+            Login_Screen loginscreen = new Login_Screen();
+
+            loginscreen.Show();
+
         }
     }
+
 
    
 }

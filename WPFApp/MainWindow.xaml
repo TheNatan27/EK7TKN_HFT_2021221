@@ -17,7 +17,7 @@
             <RowDefinition Height="60"></RowDefinition>
             <RowDefinition Height="370"></RowDefinition>
         </Grid.RowDefinitions>
-        <Button Content="Button" Grid.ColumnSpan="1" HorizontalAlignment="Center"  VerticalAlignment="Center"/>
+        <Button Content="Button" Grid.ColumnSpan="1" HorizontalAlignment="Center"  VerticalAlignment="Center" Click="btn_show_loginwindow"/>
         <StackPanel Grid.Column="1" Grid.Row="1">
             <Label Content="Name"></Label>
             <Label Content="{Binding name_bt}"></Label>
