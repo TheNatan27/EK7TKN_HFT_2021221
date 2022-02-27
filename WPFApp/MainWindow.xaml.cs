@@ -20,9 +20,13 @@ namespace WPFApp
     /// </summary>
     public partial class MainWindow : Window
     {
+
+        RestService rest = new RestService("http://localhost:5000");
         public MainWindow()
         {
             InitializeComponent();
         }
     }
+
+   
 }

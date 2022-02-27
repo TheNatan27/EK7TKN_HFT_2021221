@@ -10,13 +10,30 @@
 
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="60"></ColumnDefinition>
-            <ColumnDefinition Width="390"></ColumnDefinition>
+            <ColumnDefinition Width="240"></ColumnDefinition>
         </Grid.ColumnDefinitions>
 
         <Grid.RowDefinitions>
             <RowDefinition Height="60"></RowDefinition>
-            <RowDefinition Height="730"></RowDefinition>
+            <RowDefinition Height="370"></RowDefinition>
         </Grid.RowDefinitions>
+        <Button Content="Button" Grid.ColumnSpan="1" HorizontalAlignment="Center"  VerticalAlignment="Center"/>
+        <StackPanel Grid.Column="1" Grid.Row="1">
+            <Label Content="Name"></Label>
+            <Label Content="{Binding name_bt}"></Label>
+            <Label Content="Email"></Label>
+            <Label Content="{Binding name_bt}"></Label>
+            <Label Content="Age"></Label>
+            <Label Content="{Binding name_bt}"></Label>
+            <Label Content="Weight"></Label>
+            <Label Content="{Binding name_bt}"></Label>
+            <Label Content="Height"></Label>
+            <Label Content="{Binding name_bt}"></Label>
+            <Label Content="User ID"></Label>
+            <Label Content="{Binding name_bt}"></Label>
+            <Label Content="Premium"></Label>
+            <CheckBox x:Name="check_premium"></CheckBox>
+        </StackPanel>
 
     </Grid>
 </Window>
