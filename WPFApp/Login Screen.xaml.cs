@@ -33,9 +33,6 @@ namespace WPFApp
             int id = int.Parse(userid_txb.Text);
             string password = password_txb.Text;
 
-            var sessionPassword = rest.Get<PasswordSecurity>(id, "pass/read");
-            var sessionUser = rest.Get<UserInformation>(id, "user/read");
-
             login_confirmation(id, password);
 
         }
@@ -48,7 +45,7 @@ namespace WPFApp
 
             string cleanpass = sessionPassword.TotallySecuredVeryHashedPassword.Trim();
 
-            if (id == sessionPassword.UserId && cleanpass == sessionPassword.TotallySecuredVeryHashedPassword)
+            if (id == sessionPassword.UserId && cleanpass == password)
             {
                 user = new SessionUser
                 {
@@ -68,6 +65,13 @@ namespace WPFApp
                 //login failed 
             }
 
+        }
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            if (user != null)
+            {
+                
+            }
         }
     }
 

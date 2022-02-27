@@ -35,7 +35,10 @@ namespace WPFApp
         {
             Login_Screen loginscreen = new Login_Screen();
 
-            loginscreen.Show();
+            if (loginscreen.ShowDialog() == true)
+            {
+                
+            }
 
         }
     }
