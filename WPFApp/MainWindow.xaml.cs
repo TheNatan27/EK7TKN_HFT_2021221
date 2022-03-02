@@ -37,35 +37,6 @@ namespace WPFApp
 
         }
 
-        private void btn_show_loginwindow(object sender, RoutedEventArgs e)
-        {
-            Login_Screen loginscreen = new Login_Screen();
-
-
-            if (loginscreen.ShowDialog() == true)
-            {
-                
-                currentUser.Full_Name = loginscreen.user.name;
-                name_lbl.Content = currentUser.Full_Name;
-
-                currentUser.Weight = loginscreen.user.weight;
-                weight_txb.Text = currentUser.Weight.ToString();
-
-                currentUser.Height = (int)loginscreen.user.height;
-                height_tb.Text = currentUser.Height.ToString();
-
-                currentUser.Age = loginscreen.user.age;
-                age_lbl.Text= currentUser.Age.ToString();
-
-                currentUser.Email = loginscreen.user.email;
-                email_lbl.Text = currentUser.Email.ToString();
-
-                currentUser.UserID = loginscreen.user.userid;
-                id_tb.Text = currentUser.UserID.ToString();
-
-            }
-
-        }
 
 
 
@@ -82,6 +53,35 @@ namespace WPFApp
 
             rest.Put<string>(jsonUser, $"user/put/{currentUser.UserID}");
 
+        }
+
+        private void btn_login(object sender, RoutedEventArgs e)
+        {
+            Login_Screen loginscreen = new Login_Screen();
+
+
+            if (loginscreen.ShowDialog() == true)
+            {
+
+                currentUser.Full_Name = loginscreen.user.name;
+                name_lbl.Content = currentUser.Full_Name;
+
+                currentUser.Weight = loginscreen.user.weight;
+                weight_txb.Text = currentUser.Weight.ToString();
+
+                currentUser.Height = (int)loginscreen.user.height;
+                height_tb.Text = currentUser.Height.ToString();
+
+                currentUser.Age = loginscreen.user.age;
+                age_lbl.Text = currentUser.Age.ToString();
+
+                currentUser.Email = loginscreen.user.email;
+                email_lbl.Text = currentUser.Email.ToString();
+
+                currentUser.UserID = loginscreen.user.userid;
+                id_tb.Text = currentUser.UserID.ToString();
+
+            }
         }
     }
 

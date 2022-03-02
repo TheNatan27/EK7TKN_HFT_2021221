@@ -34,7 +34,8 @@
             <Label Content="Premium" Background="#FF45CAD1"></Label>
             <CheckBox x:Name="check_premium" Background="White"></CheckBox>
         </StackPanel>
-        <Button Content="Save Changes" Grid.Column="1" Margin="553,265,-455,45" Grid.Row="1" Click="btn_save_changes"/>
+        <Button Content="Save Changes" Grid.Column="1" Margin="273,265,-175,45" Grid.Row="1" Click="btn_save_changes"/>
+        <Button x:Name="Login" Content="Login" Grid.Column="1" Margin="638,265,-458,45" Grid.Row="1" Click="btn_login"/>
 
     </Grid>
 </Window>
