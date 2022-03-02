@@ -35,5 +35,7 @@
             <CheckBox x:Name="check_premium" Background="White"></CheckBox>
         </StackPanel>
 
+        <Button Content="Save Changes" Grid.Column="1" HorizontalAlignment="Left" Margin="350,300,0,0" Grid.Row="1" VerticalAlignment="Top" Width="100" Background="White" Click="Button_Click"/>
+
     </Grid>
 </Window>
