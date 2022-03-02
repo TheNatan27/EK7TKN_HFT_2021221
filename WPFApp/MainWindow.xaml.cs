@@ -3,6 +3,7 @@ using EK7TKN_HFT_2021221.Models;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -28,7 +29,8 @@ namespace WPFApp
 
         private string sessionPassword;
         private int sessionUserID;
-
+        List<KeyValuePair<double, string>> currentRuns;
+        ObservableCollection<KeyValuePair<double, string>> runs;
 
         RestService rest = new RestService("http://localhost:5000");
 
@@ -38,6 +40,11 @@ namespace WPFApp
             InitializeComponent();
 
             currentUser = new UserInformation();
+
+            runs = new ObservableCollection<KeyValuePair<double, string>>();
+
+            runs_list.ItemsSource = runs;
+
 
         }
 
@@ -84,6 +91,16 @@ namespace WPFApp
 
                 currentUser.UserID = loginscreen.user.userid;
                 id_tb.Text = currentUser.UserID.ToString();
+
+                currentRuns = loginscreen.user.runs;
+
+                runs.Clear();
+
+                foreach (var item in currentRuns)
+                {
+                    runs.Add(item);
+                }
+                
 
                 sessionUserID = loginscreen.user.userid;
                 sessionPassword = loginscreen.user.pass;

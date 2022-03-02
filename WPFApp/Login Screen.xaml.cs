@@ -44,6 +44,8 @@ namespace WPFApp
 
             var sessionPassword = rest.Get<PasswordSecurity>(id, "pass/read");
             var sessionUser = rest.Get<UserInformation>(id, "user/read");
+            
+            List<KeyValuePair<double, string>> pairs = rest.GetAll<KeyValuePair<double, string>>($"user/ReadRunsOfUser/{id}");
 
             string cleanpass = sessionPassword.TotallySecuredVeryHashedPassword.Trim();
 
@@ -57,7 +59,8 @@ namespace WPFApp
                     height = sessionUser.Height,
                     userid = sessionUser.UserID,
                     ispremium = sessionUser.Premium,
-                    pass = cleanpass
+                    pass = cleanpass,
+                    runs = pairs
                 };
 
                 DialogResult = true;
@@ -81,5 +84,6 @@ namespace WPFApp
         public int userid { get; set; }
         public bool ispremium { get; set; }
         public string pass { get; set; }
+        public List<KeyValuePair<double,string>> runs { get; set; }
     }
 }
