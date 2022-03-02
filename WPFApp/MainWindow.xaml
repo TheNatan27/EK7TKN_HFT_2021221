@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:WPFApp"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
-    <Grid>
+    <Grid Background="#FFCFE4DB">
 
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="60"></ColumnDefinition>
@@ -17,22 +17,22 @@
             <RowDefinition Height="60"></RowDefinition>
             <RowDefinition Height="370"></RowDefinition>
         </Grid.RowDefinitions>
-        <Button Content="Button" Grid.ColumnSpan="1" HorizontalAlignment="Center"  VerticalAlignment="Center" Click="btn_show_loginwindow"/>
-        <StackPanel Grid.Column="1" Grid.Row="1">
-            <Label Content="Name"></Label>
-            <Label Content="{Binding name_bt}"></Label>
-            <Label Content="Email"></Label>
-            <Label Content="{Binding name_bt}"></Label>
-            <Label Content="Age"></Label>
-            <Label Content="{Binding name_bt}"></Label>
-            <Label Content="Weight"></Label>
-            <Label Content="{Binding name_bt}"></Label>
-            <Label Content="Height"></Label>
-            <Label Content="{Binding name_bt}"></Label>
-            <Label Content="User ID"></Label>
-            <Label Content="{Binding name_bt}"></Label>
-            <Label Content="Premium"></Label>
-            <CheckBox x:Name="check_premium"></CheckBox>
+        <Button Content="Login" Grid.ColumnSpan="1" HorizontalAlignment="Center"  VerticalAlignment="Center" Click="btn_show_loginwindow"/>
+        <StackPanel Grid.Column="1" Grid.Row="1" Margin="0,0,0,29" >
+            <Label Content="Name" Background="#FF45CAD1"></Label>
+            <Label x:Name="name_lbl"  Height="24" Background="White"/>
+            <Label Content="Email" Background="#FF45CAD1"></Label>
+            <TextBox x:Name="email_lbl" Height="19"></TextBox>
+            <Label Content="Age" Background="#FF45CAD1"></Label>
+            <Label x:Name="age_lbl" Height="25" Background="White"></Label>
+            <Label Content="Weight" Background="#FF45CAD1"></Label>
+            <TextBox x:Name="weight_txb" Height="26"/>
+            <Label Content="Height" Background="#FF45CAD1"></Label>
+            <TextBox x:Name="height_tb" Height="25"/>
+            <Label Content="User ID" Background="#FF45CAD1"></Label>
+            <Label x:Name="id_tb" Height="24" Background="#FFF7F0F0" />
+            <Label Content="Premium" Background="#FF45CAD1"></Label>
+            <CheckBox x:Name="check_premium" Background="White"></CheckBox>
         </StackPanel>
 
     </Grid>

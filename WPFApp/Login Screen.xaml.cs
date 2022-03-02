@@ -25,7 +25,9 @@ namespace WPFApp
         public SessionUser user { get; set; }
         public Login_Screen()
         {
+
             InitializeComponent();
+
         }
 
         private void btn_login(object sender, RoutedEventArgs e)
@@ -65,13 +67,6 @@ namespace WPFApp
                 //login failed 
             }
 
-        }
-        private void Window_Loaded(object sender, RoutedEventArgs e)
-        {
-            if (user != null)
-            {
-                
-            }
         }
     }
 

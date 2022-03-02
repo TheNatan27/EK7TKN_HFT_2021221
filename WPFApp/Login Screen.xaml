@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:WPFApp"
         mc:Ignorable="d"
         Title="Login_Screen" Height="300" Width="400">
-    <Grid>
+    <Grid Background="#FF33992E">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="60"></ColumnDefinition>
             <ColumnDefinition Width="340"></ColumnDefinition>
@@ -19,8 +19,8 @@
         <TextBox x:Name="userid_txb" HorizontalAlignment="Left" Height="27" TextWrapping="Wrap" VerticalAlignment="Top" Width="200"  Grid.Row="1" Grid.Column="1"/>
         <TextBox x:Name="password_txb" HorizontalAlignment="Left" Height="27" TextWrapping="Wrap" VerticalAlignment="Top" Width="200" Margin="0,80,0,0" Grid.Row="1" Grid.Column="1"/>
         
-        <Label Content="User ID" Width="100" Height="27" HorizontalAlignment="Left" Margin="212,0,0,213" Grid.Column="1" Grid.Row="1" />
-        <Label Content="Password" Width="100" Height="27" HorizontalAlignment="Left" Margin="212,80,0,0" VerticalAlignment="Top" Grid.Column="1" Grid.Row="1"/>
+        <Label Content="User ID" Width="100" Height="27" HorizontalAlignment="Left" Margin="212,0,0,213" Grid.Column="1" Grid.Row="1" Background="White" />
+        <Label Content="Password" Width="100" Height="27" HorizontalAlignment="Left" Margin="212,80,0,0" VerticalAlignment="Top" Grid.Column="1" Grid.Row="1" Background="White"/>
         <Button Content="Login" Grid.ColumnSpan="1" HorizontalAlignment="Center"  VerticalAlignment="Center" Click="btn_login"/>
     </Grid>
 </Window>
