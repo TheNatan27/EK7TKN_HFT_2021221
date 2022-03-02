@@ -17,7 +17,6 @@
             <RowDefinition Height="60"></RowDefinition>
             <RowDefinition Height="370"></RowDefinition>
         </Grid.RowDefinitions>
-        <Button Content="Login" Grid.ColumnSpan="1" HorizontalAlignment="Center"  VerticalAlignment="Center" Click="btn_show_loginwindow"/>
         <StackPanel Grid.Column="1" Grid.Row="1" Margin="0,0,0,29" >
             <Label Content="Name" Background="#FF45CAD1"></Label>
             <Label x:Name="name_lbl"  Height="24" Background="White"/>
@@ -36,6 +35,7 @@
         </StackPanel>
         <Button Content="Save Changes" Grid.Column="1" Margin="273,265,-175,45" Grid.Row="1" Click="btn_save_changes"/>
         <Button x:Name="Login" Content="Login" Grid.Column="1" Margin="638,265,-458,45" Grid.Row="1" Click="btn_login"/>
+        <Button Content="Refresh" Grid.Column="1" Margin="435,265,-255,45" Grid.Row="1" Click="btn_refresh"/>
 
     </Grid>
 </Window>

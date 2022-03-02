@@ -26,6 +26,10 @@ namespace WPFApp
 
         UserInformation currentUser { get; set; }
 
+        private string sessionPassword;
+        private int sessionUserID;
+
+
         RestService rest = new RestService("http://localhost:5000");
 
         public MainWindow()
@@ -81,7 +85,35 @@ namespace WPFApp
                 currentUser.UserID = loginscreen.user.userid;
                 id_tb.Text = currentUser.UserID.ToString();
 
+                sessionUserID = loginscreen.user.userid;
+                sessionPassword = loginscreen.user.pass;
+
+
             }
+        }
+
+        private void btn_refresh(object sender, RoutedEventArgs e)
+        {
+            var sessionPassword = rest.Get<PasswordSecurity>(sessionUserID, "pass/read");
+            var sessionUser = rest.Get<UserInformation>(sessionUserID, "user/read");
+
+            currentUser.Full_Name = sessionUser.Full_Name;
+            name_lbl.Content = currentUser.Full_Name;
+
+            currentUser.Weight = sessionUser.Weight;
+            weight_txb.Text = currentUser.Weight.ToString();
+
+            currentUser.Height = sessionUser.Height;
+            height_tb.Text = currentUser.Height.ToString();
+
+            currentUser.Age = sessionUser.Age;
+            age_lbl.Text = currentUser.Age.ToString();
+
+            currentUser.Email = sessionUser.Email;
+            email_lbl.Text = currentUser.Email.ToString();
+
+            currentUser.UserID = sessionUser.UserID;
+            id_tb.Text = currentUser.UserID.ToString();
         }
     }
 

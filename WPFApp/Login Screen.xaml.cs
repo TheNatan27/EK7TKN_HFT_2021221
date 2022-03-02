@@ -56,7 +56,8 @@ namespace WPFApp
                     weight = sessionUser.Weight,
                     height = sessionUser.Height,
                     userid = sessionUser.UserID,
-                    ispremium = sessionUser.Premium
+                    ispremium = sessionUser.Premium,
+                    pass = cleanpass
                 };
 
                 DialogResult = true;
@@ -79,5 +80,6 @@ namespace WPFApp
         public double height { get; set; }
         public int userid { get; set; }
         public bool ispremium { get; set; }
+        public string pass { get; set; }
     }
 }
