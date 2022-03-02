@@ -29,10 +29,11 @@ namespace WPFApp
 
         private string sessionPassword;
         private int sessionUserID;
-        List<KeyValuePair<double, string>> currentRuns;
-        ObservableCollection<KeyValuePair<double, string>> runs;
-
+        List<KeyValuePair<double, string>> currentRunsByID;
+        ObservableCollection<KeyValuePair<double, string>> runsCollection;
         RestService rest = new RestService("http://localhost:5000");
+        List<RunInformation> runsToDisplay;
+
 
         public MainWindow()
         {
@@ -41,9 +42,9 @@ namespace WPFApp
 
             currentUser = new UserInformation();
 
-            runs = new ObservableCollection<KeyValuePair<double, string>>();
+            runsCollection = new ObservableCollection<KeyValuePair<double, string>>();
 
-            runs_list.ItemsSource = runs;
+            runs_list.ItemsSource = runsCollection;
 
 
         }
@@ -92,13 +93,13 @@ namespace WPFApp
                 currentUser.UserID = loginscreen.user.userid;
                 id_tb.Text = currentUser.UserID.ToString();
 
-                currentRuns = loginscreen.user.runs;
+                currentRunsByID = loginscreen.user.runs;
 
-                runs.Clear();
+                runsCollection.Clear();
 
-                foreach (var item in currentRuns)
+                foreach (var item in currentRunsByID)
                 {
-                    runs.Add(item);
+                    runsCollection.Add(item);
                 }
                 
 
@@ -131,6 +132,14 @@ namespace WPFApp
 
             currentUser.UserID = sessionUser.UserID;
             id_tb.Text = currentUser.UserID.ToString();
+        }
+
+        private void collect_runs(List<KeyValuePair<double, string>> currentRuns)
+        {
+            foreach (var item in currentRuns)
+            {
+                //var se = rest.Get<RunInformation>(item.Key,, "run/read");
+            }
         }
     }
 

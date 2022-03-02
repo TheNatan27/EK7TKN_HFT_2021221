@@ -15,7 +15,7 @@ namespace EK7TKN_HFT_2021221.Logic
         public void Update(string json, int userID);
         public IQueryable<UserInformation> ReadAll();
 
-        public IEnumerable<KeyValuePair<double, string>> ReadRunsOfUser(int userID);
+        public IEnumerable<KeyValuePair<int, string>> ReadRunsOfUser(int userID);
 
         public IEnumerable<string> GetEmailOfWeakPasswordUsers();
         public IEnumerable<string> GetCompetitorsEmailAddress();

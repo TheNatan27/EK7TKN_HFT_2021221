@@ -293,9 +293,9 @@ new UserInformation() { Full_Name="	Nada Grgic	",Email="	ngrgic4@sitemeter.com	"
 
             //ACT
 
-            IEnumerable<KeyValuePair<double, string>> to = userLogic.ReadRunsOfUser(userID);
+            IEnumerable<KeyValuePair<int, string>> to = userLogic.ReadRunsOfUser(userID);
 
-            List<double> re1 = new List<double>();
+            List<int> re1 = new List<int>();
             List<string> re2 = new List<string>();
 
             foreach (var item in to)
@@ -304,7 +304,7 @@ new UserInformation() { Full_Name="	Nada Grgic	",Email="	ngrgic4@sitemeter.com	"
                 re2.Add(item.Value);
             }
 
-            List<double> ac1 = new List<double>() { 29.5, 8.5};
+            List<int> ac1 = new List<int>() { 29, 3};
             List<string> ac2 = new List<string>() { "00:38:06" , "00:61:21" };
 
             //ASSERT

@@ -58,7 +58,7 @@ public class UserController : ControllerBase
     #region non crud methods
     //GET /ReadRunsOfUser/id
     [HttpGet("ReadRunsOfUser/{id}")]
-    public IEnumerable<KeyValuePair<double, string>> ReadRunsOfUser(int id)
+    public IEnumerable<KeyValuePair<int, string>> ReadRunsOfUser(int id)
     {
         return user.ReadRunsOfUser(id);
     }
