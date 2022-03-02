@@ -55,61 +55,36 @@ namespace WPFApp
                 height_tb.Text = currentUser.Height.ToString();
 
                 currentUser.Age = loginscreen.user.age;
-                age_lbl.Content = currentUser.Age.ToString();
+                age_lbl.Text= currentUser.Age.ToString();
 
                 currentUser.Email = loginscreen.user.email;
                 email_lbl.Text = currentUser.Email.ToString();
 
                 currentUser.UserID = loginscreen.user.userid;
-                id_tb.Content = currentUser.UserID.ToString();
+                id_tb.Text = currentUser.UserID.ToString();
 
             }
 
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
 
+
+        private void btn_save_changes(object sender, RoutedEventArgs e)
+        {
             currentUser.Full_Name = name_lbl.Content.ToString();
             currentUser.Weight = double.Parse(weight_txb.Text);
             currentUser.Height = int.Parse(height_tb.Text);
-            currentUser.Age = (int)age_lbl.Content;
+            currentUser.Age = int.Parse(age_lbl.Text);
             currentUser.Email = email_lbl.Text.ToString();
-            currentUser.UserID = (int)id_tb.Content;
+            currentUser.UserID = int.Parse(id_tb.Text);
 
             string jsonUser = JsonConvert.SerializeObject(currentUser);
 
             rest.Put<string>(jsonUser, $"user/put/{currentUser.UserID}");
+
         }
     }
 
-    //Console.WriteLine("Enter full name:");
-    //        string first = Console.ReadLine();
-    //Console.WriteLine("Enter age: ");
-    //        int age = int.Parse(Console.ReadLine());
-    //Console.WriteLine("Enter weight: ");
-    //        double weight = double.Parse(Console.ReadLine());
-    //Console.WriteLine("Enter height: ");
-    //        int height = int.Parse(Console.ReadLine());
-    //Console.WriteLine("Enter email: ");
-    //        string email = Console.ReadLine();
-
-    //Console.WriteLine("Enter the id of user you would like to update: ");
-    //        int id = int.Parse(Console.ReadLine());
-
-    //UserInformation newUser = new UserInformation()
-    //{
-    //    Full_Name = first,
-    //    Age = age,
-    //    Weight = weight,
-    //    Height = height,
-    //    Email = email
-    //};
-
-    //string jsonUser = JsonConvert.SerializeObject(newUser);
-
-    //rest.Put<string>(jsonUser, $"user/put/{id}");
-    //        Console.WriteLine(" <==  Press enter to go back");
-    //        Console.ReadLine();
+   
    
 }

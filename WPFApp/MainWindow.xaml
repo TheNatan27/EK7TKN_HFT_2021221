@@ -24,18 +24,17 @@
             <Label Content="Email" Background="#FF45CAD1"></Label>
             <TextBox x:Name="email_lbl" Height="19"></TextBox>
             <Label Content="Age" Background="#FF45CAD1"></Label>
-            <Label x:Name="age_lbl" Height="25" Background="White"></Label>
+            <TextBlock x:Name="age_lbl" Height="25" Background="White"></TextBlock>
             <Label Content="Weight" Background="#FF45CAD1"></Label>
             <TextBox x:Name="weight_txb" Height="26"/>
             <Label Content="Height" Background="#FF45CAD1"></Label>
             <TextBox x:Name="height_tb" Height="25"/>
             <Label Content="User ID" Background="#FF45CAD1"></Label>
-            <Label x:Name="id_tb" Height="24" Background="#FFF7F0F0" />
+            <TextBlock x:Name="id_tb" Height="24" Background="#FFF7F0F0" />
             <Label Content="Premium" Background="#FF45CAD1"></Label>
             <CheckBox x:Name="check_premium" Background="White"></CheckBox>
         </StackPanel>
-
-        <Button Content="Save Changes" Grid.Column="1" HorizontalAlignment="Left" Margin="350,300,0,0" Grid.Row="1" VerticalAlignment="Top" Width="100" Background="White" Click="Button_Click"/>
+        <Button Content="Save Changes" Grid.Column="1" Margin="553,265,-455,45" Grid.Row="1" Click="btn_save_changes"/>
 
     </Grid>
 </Window>
