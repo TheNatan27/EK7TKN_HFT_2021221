@@ -29,10 +29,10 @@ namespace WPFApp
 
         private string sessionPassword;
         private int sessionUserID;
-        List<KeyValuePair<double, string>> currentRunsByID;
-        ObservableCollection<KeyValuePair<double, string>> runsCollection;
+        List<KeyValuePair<int, string>> currentRunsByID;
+        ObservableCollection<KeyValuePair<int, string>> runsCollection;
         RestService rest = new RestService("http://localhost:5000");
-        List<RunInformation> runsToDisplay;
+        ObservableCollection<RunInformation> runsToDisplay;
 
 
         public MainWindow()
@@ -42,9 +42,13 @@ namespace WPFApp
 
             currentUser = new UserInformation();
 
-            runsCollection = new ObservableCollection<KeyValuePair<double, string>>();
+            runsCollection = new ObservableCollection<KeyValuePair<int, string>>();
 
-            runs_list.ItemsSource = runsCollection;
+            
+
+            runsToDisplay = new ObservableCollection<RunInformation>();
+
+            runs_list.ItemsSource = runsToDisplay;
 
 
         }
@@ -101,6 +105,8 @@ namespace WPFApp
                 {
                     runsCollection.Add(item);
                 }
+
+                collect_runs(currentRunsByID);
                 
 
                 sessionUserID = loginscreen.user.userid;
@@ -134,11 +140,21 @@ namespace WPFApp
             id_tb.Text = currentUser.UserID.ToString();
         }
 
-        private void collect_runs(List<KeyValuePair<double, string>> currentRuns)
+        private void collect_runs(List<KeyValuePair<int, string>> currentRuns)
         {
+
+
             foreach (var item in currentRuns)
             {
-                //var se = rest.Get<RunInformation>(item.Key,, "run/read");
+                int ckey = item.Key;
+
+                var se = rest.Get<RunInformation>(ckey, "run/read");
+                RunInformation runInformation = (RunInformation)se;
+
+                runInformation.Location = runInformation.Location.Trim();
+
+                runsToDisplay.Add(runInformation);
+
             }
         }
     }

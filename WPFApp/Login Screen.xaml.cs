@@ -32,8 +32,11 @@ namespace WPFApp
 
         private void btn_login(object sender, RoutedEventArgs e)
         {
-            int id = int.Parse(userid_txb.Text);
-            string password = password_txb.Text;
+            //int id = int.Parse(userid_txb.Text);
+            //string password = password_txb.Text;
+
+            int id = 1;
+            string password = "123";
 
             login_confirmation(id, password);
 
@@ -45,7 +48,7 @@ namespace WPFApp
             var sessionPassword = rest.Get<PasswordSecurity>(id, "pass/read");
             var sessionUser = rest.Get<UserInformation>(id, "user/read");
             
-            List<KeyValuePair<double, string>> pairs = rest.GetAll<KeyValuePair<double, string>>($"user/ReadRunsOfUser/{id}");
+            List<KeyValuePair<int, string>> pairs = rest.GetAll<KeyValuePair<int, string>>($"user/ReadRunsOfUser/{id}");
 
             string cleanpass = sessionPassword.TotallySecuredVeryHashedPassword.Trim();
 
@@ -84,6 +87,6 @@ namespace WPFApp
         public int userid { get; set; }
         public bool ispremium { get; set; }
         public string pass { get; set; }
-        public List<KeyValuePair<double,string>> runs { get; set; }
+        public List<KeyValuePair<int,string>> runs { get; set; }
     }
 }

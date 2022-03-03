@@ -33,10 +33,22 @@
             <Label Content="Premium" Background="#FF45CAD1"></Label>
             <CheckBox x:Name="check_premium" Background="White"></CheckBox>
         </StackPanel>
-        <Button Content="Save Changes" Grid.Column="1" Margin="273,265,-175,45" Grid.Row="1" Click="btn_save_changes"/>
+        <Button Content="Save Changes" Grid.Column="1" Margin="273,265,-193,45" Grid.Row="1" Click="btn_save_changes"/>
         <Button x:Name="Login" Content="Login" Grid.Column="1" Margin="638,265,-458,45" Grid.Row="1" Click="btn_login"/>
-        <Button Content="Refresh" Grid.Column="1" Margin="435,265,-255,45" Grid.Row="1" Click="btn_refresh"/>
-        <ListBox x:Name="runs_list" Grid.Column="1" Grid.Row="1" Margin="273,0,-255,150"/>
+        <Button Content="Refresh" Grid.Column="1" Margin="458,265,-278,45" Grid.Row="1" Click="btn_refresh"/>
+        <ListBox x:Name="runs_list" Grid.Column="1" Grid.Row="1" Margin="273,0,-193,162"/>
+        <StackPanel DataContext="{Binding ElementName=runs_list, Path=SelectedItem}" Margin="458,0,-458,125" Grid.Column="1" Height="281" VerticalAlignment="Bottom" Grid.RowSpan="2" >
+            <Label Content="Time" Height="28"/>
+            <Label Content="{Binding ElementName=display_connector, Path=DataContext.Time}" x:Name="time_run" Height="28" />
+            <Label Content="Distance" Height="28"/>
+            <Label Content="{Binding ElementName=display_connector, Path=DataContext.Distance}" x:Name="distance_run" Height="28"/>
+            <Label Content="Location" Height="28"/>
+            <Label Content="{Binding ElementName=display_connector, Path=DataContext.Location}" x:Name="location_run" Height="28"/>
+            <Label Content="Competition?"/>
+            <Label x:Name="competition_run" Height="28"/>
+            <Label x:Name="display_connector" Content="{Binding ElementName=runs_list, Path=SelectedItem.RunID}" Height="28"/>
+            <Label x:Name="competition_run2" Height="28"/>
+        </StackPanel>
 
     </Grid>
 </Window>
