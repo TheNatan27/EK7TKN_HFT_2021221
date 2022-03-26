@@ -1672,21 +1672,7 @@ say "Note that the script does not resolve dependencies during installation."
 say "To check the list of dependencies, go to https://docs.microsoft.com/dotnet/core/install, select your operating system and check the \\"Dependencies\\" section."
 say "Installation finished successfully."
 '''
-        sh '''# Download the Microsoft repository GPG keys
-wget https://packages.microsoft.com/config/debian/10/packages-microsoft-prod.deb
-
-# Register the Microsoft repository GPG keys
-sudo dpkg -i packages-microsoft-prod.deb
-
-# Update the list of products
-sudo apt-get update
-
-# Install PowerShell
-sudo apt-get install -y powershell
-
-# Start PowerShell
-pwsh'''
-        pwsh 'dotnet run'
+        sh 'dotnet run'
       }
     }
 
