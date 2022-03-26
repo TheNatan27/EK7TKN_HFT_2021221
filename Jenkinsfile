@@ -19,7 +19,8 @@ pipeline {
 '''
         sh 'ls'
         sh 'pwd'
-        sh 'apt install dotnet'
+        sh '''./dotnet-install.sh -c 5.0
+'''
       }
     }
 
