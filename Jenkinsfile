@@ -19,6 +19,7 @@ pipeline {
 '''
         sh 'ls'
         sh 'dotnet test'
+        sh 'apt-get install dotnet-sdk-2.0.0'
       }
     }
 
