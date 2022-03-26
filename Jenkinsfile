@@ -20,7 +20,7 @@ pipeline {
         sh 'ls'
         sh 'pwd'
         sh '''
-export PATH=/usr/local/share/dotnet:$PATH'''
+ln -s /usr/local/share/dotnet/dotnet /usr/local/bin'''
         sh '''cd /var/jenkins_home/workspace/KN_HFT_2021221_ShellScriptBranch/EK7TKN_HFT_2021221.Test
 
 ls
