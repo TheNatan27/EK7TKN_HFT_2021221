@@ -17,6 +17,7 @@ pipeline {
       steps {
         sh '''cd 
 '''
+        sh 'ls'
       }
     }
 
