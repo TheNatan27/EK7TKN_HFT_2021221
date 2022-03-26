@@ -19,7 +19,7 @@ pipeline {
 '''
         sh 'ls'
         sh 'pwd'
-        pwsh 'snap install dotnet'
+        sh 'snap install dotnet'
       }
     }
 
