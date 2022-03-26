@@ -18,7 +18,7 @@ pipeline {
         sh '''cd 
 '''
         sh 'ls'
-        bat 'dotnet test'
+        sh 'dotnet test'
       }
     }
 
