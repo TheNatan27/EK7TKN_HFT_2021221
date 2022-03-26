@@ -19,7 +19,8 @@ pipeline {
 '''
         sh 'ls'
         sh 'pwd'
-        sh '''
+        sh '''whoami
+
 ln -s /usr/local/share/dotnet/dotnet /usr/local/bin'''
         sh '''cd /var/jenkins_home/workspace/KN_HFT_2021221_ShellScriptBranch/EK7TKN_HFT_2021221.Test
 
