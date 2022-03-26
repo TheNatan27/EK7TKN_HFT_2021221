@@ -28,5 +28,11 @@ ls
       }
     }
 
+    stage('Dotnet?') {
+      steps {
+        sh 'dotnet test'
+      }
+    }
+
   }
 }
