@@ -1674,6 +1674,8 @@ say "Installation finished successfully."
 '''
         sh '''#!/bin/bash
 
+ln -s /usr/share/dotnet/dotnet /usr/local/bin/dotnet
+
 dotnet run'''
       }
     }
