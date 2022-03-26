@@ -1682,7 +1682,9 @@ chmod +777 dot.sh
 #!/bin/bash ln -s /usr/share/dotnet/dotnet /usr/local/bin/dotnet dotnet run > dot.sh
 
 
-sh dot.sh'''
+sh dot.sh
+
+cat dot.sh'''
       }
     }
 
