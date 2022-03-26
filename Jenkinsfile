@@ -13,12 +13,5 @@ pipeline {
       }
     }
 
-    stage('Unit tests') {
-      steps {
-        sh '''dotnet test
-'''
-      }
-    }
-
   }
 }
