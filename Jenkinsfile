@@ -18,9 +18,8 @@ pipeline {
         sh '''cd 
 '''
         sh 'ls'
-        sh '''cd
-ls
-dotnet test'''
+        sh '''ls
+'''
       }
     }
 
