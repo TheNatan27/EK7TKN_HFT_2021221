@@ -1672,10 +1672,7 @@ say "Note that the script does not resolve dependencies during installation."
 say "To check the list of dependencies, go to https://docs.microsoft.com/dotnet/core/install, select your operating system and check the \\"Dependencies\\" section."
 say "Installation finished successfully."
 '''
-        sh '''
-wget https://packages.microsoft.com/config/ubuntu/21.04/packages-microsoft-prod.deb -O packages-microsoft-prod.deb
-sudo dpkg -i packages-microsoft-prod.deb
-rm packages-microsoft-prod.deb'''
+        sh 'dotnet run'
         sh '''sh dot.sh
 
 nano dot.sh
