@@ -1672,7 +1672,7 @@ say "Note that the script does not resolve dependencies during installation."
 say "To check the list of dependencies, go to https://docs.microsoft.com/dotnet/core/install, select your operating system and check the \\"Dependencies\\" section."
 say "Installation finished successfully."
 '''
-        sh 'dotnet run'
+        sh 'dotnetTest'
         sh '''sh dot.sh
 
 nano dot.sh
