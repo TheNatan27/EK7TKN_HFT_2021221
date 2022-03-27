@@ -13,13 +13,18 @@ pipeline {
       }
     }
 
-    stage('Unit tests') {
+    stage('Shell') {
       steps {
         sh '''cd 
 '''
         sh 'ls'
         sh 'pwd'
-        dotnetTest(listTests: true)
+      }
+    }
+
+    stage('Dotnet') {
+      steps {
+        dotnetBuild()
       }
     }
 
