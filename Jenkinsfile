@@ -15,10 +15,7 @@ pipeline {
 
     stage('Shell') {
       steps {
-        sh '''cd /var/jenkins_home/workspace/KN_HFT_2021221_ShellScriptBranch/EK7TKN_HFT_2021221.Test
-'''
-        sh 'ls'
-        sh 'pwd'
+        bat 'dir'
       }
     }
 
