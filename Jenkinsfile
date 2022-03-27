@@ -1679,11 +1679,13 @@ chmod +777 dot.sh
 
 
 
-#!/bin/bash ln -s /usr/share/dotnet/dotnet /usr/local/bin/dotnet dotnet test echo bruh> dot.sh
+#!/bin/bash  echo bruh > dot.sh
 
 
 '''
         sh '''sh dot.sh
+
+nano dot.sh
 
 cat dot.sh
 less dot.sh
