@@ -1685,7 +1685,9 @@ chmod +777 dot.sh
 sh dot.sh
 
 cat dot.sh
-less dot.sh'''
+less dot.sh
+echo bruh
+dotnet test'''
       }
     }
 
