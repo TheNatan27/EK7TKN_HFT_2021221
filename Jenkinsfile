@@ -1673,16 +1673,9 @@ say "To check the list of dependencies, go to https://docs.microsoft.com/dotnet/
 say "Installation finished successfully."
 '''
         sh '''
-touch dot.sh
-
-chmod +777 dot.sh
-
-
-
-#!/bin/bash  echo bruh > dot.sh
-
-
-'''
+wget https://packages.microsoft.com/config/ubuntu/21.04/packages-microsoft-prod.deb -O packages-microsoft-prod.deb
+sudo dpkg -i packages-microsoft-prod.deb
+rm packages-microsoft-prod.deb'''
         sh '''sh dot.sh
 
 nano dot.sh
