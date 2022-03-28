@@ -13,8 +13,8 @@ pipeline {
         bat 'dir /A'
         bat 'cd C:\\Users\\Admino\\AppData\\Local\\Jenkins\\.jenkins\\workspace\\'
         bat 'dir /S'
+        git(url: 'https://github.com/TheNatan27/EK7TKN_HFT_2021221/', branch: 'WPF', credentialsId: 'JenkiNatan')
         bat 'git clone https://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@github.com/TheNatan27/EK7TKN_HFT_20212.git'
-        git(url: 'https://github.com/TheNatan27/EK7TKN_HFT_2021221/', branch: 'WPF', credentialsId: 'TheNatan27')
       }
     }
 
