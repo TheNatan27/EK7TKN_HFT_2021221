@@ -11,7 +11,8 @@ pipeline {
       steps {
         fileExists 'EK7TKN_HFT_2021221.sln'
         bat 'dir /A'
-        bat 'cd C:\\Users\\Admino\\AppData\\Local\\Jenkins\\.jenkins\\workspace\\'
+        bat 'git credential-manager uninstall'
+        bat '$ git credential-manager install'
         bat 'dir /S'
         bat 'git --version'
         bat 'git config --global user.name \'TheNatan28\''
