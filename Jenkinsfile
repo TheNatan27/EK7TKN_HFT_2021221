@@ -13,6 +13,7 @@ pipeline {
         bat 'dir /A'
         bat 'cd C:\\Users\\Admino\\AppData\\Local\\Jenkins\\.jenkins\\workspace\\'
         bat 'dir /S'
+        bat 'git clone https://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@github.com/TheNatan27/EK7TKN_HFT_20212'
       }
     }
 
