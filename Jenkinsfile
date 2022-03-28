@@ -27,5 +27,11 @@ pipeline {
       }
     }
 
+    stage('Report') {
+      steps {
+        nunit()
+      }
+    }
+
   }
 }
