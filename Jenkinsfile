@@ -12,7 +12,7 @@ pipeline {
         fileExists 'EK7TKN_HFT_2021221.sln'
         bat 'dir /A'
         bat 'cd C:\\Users\\Admino\\AppData\\Local\\Jenkins\\.jenkins\\workspace\\'
-        bat 'dir /A'
+        bat 'dir /S'
       }
     }
 
