@@ -18,6 +18,12 @@ pipeline {
       steps {
         bat 'dir'
         bat 'cd C:\\Users\\Admino\\AppData\\Local\\Jenkins\\.jenkins\\workspace\\HomeRun_ShellScriptBranch\\EK7TKN_HFT_2021221'
+        dir(path: 'C:\\Users\\Admino\\AppData\\Local\\Jenkins\\.jenkins\\workspace\\HomeRun_ShellScriptBranch\\EK7TKN_HFT_2021221') {
+          bat 'dotnet test'
+          dotnetBuild()
+          dotnetTest()
+        }
+
         bat 'dotnet test'
       }
     }
