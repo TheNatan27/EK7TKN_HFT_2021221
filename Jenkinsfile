@@ -17,7 +17,7 @@ pipeline {
 
     stage('Bulid') {
       steps {
-        bat 'dotnet build'
+        bat 'dotnet test'
       }
     }
 
