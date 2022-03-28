@@ -13,14 +13,21 @@ pipeline {
         bat 'dir /A'
         bat 'cd C:\\Users\\Admino\\AppData\\Local\\Jenkins\\.jenkins\\workspace\\'
         bat 'dir /S'
+        bat 'git --version'
         git(url: 'https://github.com/SpecFlowOSS/SpecFlow-Examples.git', credentialsId: 'JenkiNatan')
         bat 'git clone https://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@github.com/TheNatan27/EK7TKN_HFT_20212.git'
       }
     }
 
-    stage('Bulid') {
+    stage('Git') {
       steps {
-        bat 'dotnet test'
+        bat 'git --version'
+      }
+    }
+
+    stage('Build') {
+      steps {
+        bat 'dotnet build'
       }
     }
 
