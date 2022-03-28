@@ -14,7 +14,9 @@ pipeline {
         bat 'cd C:\\Users\\Admino\\AppData\\Local\\Jenkins\\.jenkins\\workspace\\'
         bat 'dir /S'
         bat 'git --version'
+        bat 'git config --global user.name \'TheNatan28\''
         bat 'git clone https://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@github.com/TheNatan27/EK7TKN_HFT_20212.git'
+        bat 'git config --global user.email \'angolmernokinfo@gmail.com\''
       }
     }
 
