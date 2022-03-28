@@ -7,15 +7,17 @@ pipeline {
       }
     }
 
-    stage('Build') {
+    stage('Dir') {
       steps {
         powershell 'dir'
+        fileExists 'EK7TKN_HFT_2021221.sln'
+        bat 'dir'
       }
     }
 
-    stage('Test') {
+    stage('Bulid') {
       steps {
-        dotnetTest()
+        bat 'dotnet build'
       }
     }
 
