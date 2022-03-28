@@ -9,7 +9,7 @@ pipeline {
 
     stage('Shell') {
       steps {
-        bat 'dir'
+        bat '@echo off  forfiles /s /m *.* /c "cmd /c echo @relpath"'
       }
     }
 
