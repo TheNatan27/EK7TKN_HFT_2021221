@@ -21,15 +21,9 @@ pipeline {
           dotnetBuild()
           bat 'dotnet test'
           dotnetTest()
+          nunit()
         }
 
-        bat 'dotnet test'
-      }
-    }
-
-    stage('Report') {
-      steps {
-        nunit()
       }
     }
 
