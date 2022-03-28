@@ -11,7 +11,7 @@ pipeline {
       steps {
         fileExists 'EK7TKN_HFT_2021221.sln'
         bat 'dir /A'
-        bat 'git credential-manager-core uninstall'
+        bat 'git credential-manager-core erase'
         bat 'git credential-manager-core install'
         bat 'dir /S'
         bat 'git --version'
