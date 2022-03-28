@@ -7,15 +7,9 @@ pipeline {
       }
     }
 
-    stage('Shell') {
-      steps {
-        bat '@echo off  forfiles /s /m *.* /c "cmd /c echo @relpath"'
-      }
-    }
-
     stage('Build') {
       steps {
-        dotnetBuild()
+        powershell 'dir'
       }
     }
 
