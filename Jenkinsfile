@@ -15,15 +15,32 @@ pipeline {
     }
 
     stage('Build') {
-      steps {
-        bat 'dir'
-        dir(path: 'C:\\Users\\Admino\\AppData\\Local\\Jenkins\\.jenkins\\workspace\\HomeRun_ShellScriptBranch\\EK7TKN_HFT_2021221') {
-          dotnetBuild()
-          bat 'dotnet test'
-          dotnetTest()
-          nunit()
+      parallel {
+        stage('Build') {
+          steps {
+            bat 'dir'
+            dir(path: 'C:\\Users\\Admino\\AppData\\Local\\Jenkins\\.jenkins\\workspace\\HomeRun_ShellScriptBranch\\EK7TKN_HFT_2021221') {
+              dotnetBuild()
+              bat 'dotnet test'
+              dotnetTest()
+              nunit()
+            }
+
+          }
         }
 
+        stage('') {
+          steps {
+            sleep(time: 1, unit: 'MINUTES')
+          }
+        }
+
+      }
+    }
+
+    stage('') {
+      steps {
+        nunit()
       }
     }
 
