@@ -15,28 +15,18 @@ pipeline {
     }
 
     stage('Build') {
-      parallel {
-        stage('Build') {
-          steps {
-            bat 'dir'
-            dir(path: 'C:\\Users\\Admino\\AppData\\Local\\Jenkins\\.jenkins\\workspace\\HomeRun_ShellScriptBranch\\EK7TKN_HFT_2021221') {
-              dotnetBuild()
-            }
-
-            warnError(message: 'unit tests fail') {
-              dotnetTest()
-            }
-
-            nunit()
-          }
+      steps {
+        bat 'dir'
+        dir(path: 'C:\\Users\\Admino\\AppData\\Local\\Jenkins\\.jenkins\\workspace\\HomeRun_ShellScriptBranch\\EK7TKN_HFT_2021221') {
+          dotnetBuild()
         }
 
-        stage('error') {
-          steps {
-            sleep(time: 1, unit: 'MINUTES')
-          }
+        warnError(message: 'unit tests fail') {
+          nunit()
+          powershell 'dotnet test'
         }
 
+        nunit()
       }
     }
 
