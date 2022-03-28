@@ -9,10 +9,9 @@ pipeline {
 
     stage('Dir') {
       steps {
-        powershell 'dir'
         fileExists 'EK7TKN_HFT_2021221.sln'
         bat 'dir'
-        bat 'cd '
+        bat 'cd "%WORKSPACE%"'
         bat 'dir'
       }
     }
