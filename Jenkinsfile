@@ -7,25 +7,16 @@ pipeline {
       }
     }
 
-    stage('Dir') {
-      steps {
-        fileExists 'EK7TKN_HFT_2021221.sln'
-        bat 'dir /A'
-        bat 'dir /S'
-        bat 'git --version'
-        bat 'git clone https://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@github.com/TheNatan27/EK7TKN_HFT_20212.git'
-      }
-    }
-
     stage('Git') {
       steps {
         bat 'git --version'
+        bat 'git clone https://github.com/TheNatan27/EK7TKN_HFT_2021221.git'
       }
     }
 
     stage('Build') {
       steps {
-        bat 'dotnet build'
+        bat 'dotnet test'
       }
     }
 
