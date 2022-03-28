@@ -11,7 +11,7 @@ pipeline {
       steps {
         fileExists 'EK7TKN_HFT_2021221.sln'
         bat 'dir'
-        bat 'cd C:\\Users\\Admino\\AppData\\Local\\Jenkins\\.jenkins\\workspace\\HomeRun_ShellScriptBranch\\EK7TKN_HFT_2021221'
+        bat 'cd C:\\Users\\Admino\\AppData\\Local\\Jenkins\\.jenkins\\workspace\\'
         bat 'dir'
       }
     }
