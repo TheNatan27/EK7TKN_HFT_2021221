@@ -8,17 +8,23 @@ pipeline {
       }
     }
 
-    stage('Build') {
+    stage('Build and Test') {
       steps {
         bat 'dir'
         dir(path: 'C:\\Users\\Admino\\AppData\\Local\\Jenkins\\.jenkins\\workspace\\HomeRun_ShellScriptBranch\\EK7TKN_HFT_2021221') {
           dotnetBuild()
           warnError(message: 'unit tests faile') {
-            bat 'dotnet test'
+            bat(script: 'dotnet test', returnStdout: true, returnStatus: true)
           }
 
         }
 
+      }
+    }
+
+    stage('n') {
+      steps {
+        nunit(keepJUnitReports: true)
       }
     }
 
