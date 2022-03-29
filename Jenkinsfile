@@ -26,13 +26,6 @@ pipeline {
           powershell 'dotnet test'
         }
 
-        nunit()
-      }
-    }
-
-    stage('error') {
-      steps {
-        nunit()
       }
     }
 
