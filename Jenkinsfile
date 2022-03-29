@@ -21,9 +21,9 @@ pipeline {
           dotnetBuild()
           warnError(message: 'unit tests faile') {
             bat 'dotnet test'
-            nunit()
           }
 
+          nunit()
         }
 
         warnError(message: 'unit tests fail') {
