@@ -19,9 +19,13 @@ pipeline {
       steps {
         dir(path: 'C:\\Users\\Admino\\AppData\\Local\\Jenkins\\.jenkins\\workspace\\HomeRun_ShellScriptBranch\\EK7TKN_HFT_2021221') {
           dotnetBuild()
+          bat 'dir'
           warnError(message: 'unit tests fail') {
-            bat 'dotnet test'
-            nunit()
+            dir(path: 'C:\\Users\\Admino\\AppData\\Local\\Jenkins\\.jenkins\\workspace\\HomeRun_ShellScriptBranch\\EK7TKN_HFT_2021221') {
+              bat 'dotnet test'
+              nunit()
+            }
+
           }
 
         }
