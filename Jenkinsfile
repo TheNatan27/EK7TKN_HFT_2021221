@@ -1,12 +1,6 @@
 pipeline {
   agent any
   stages {
-    stage('Main') {
-      steps {
-        echo 'Main ini'
-      }
-    }
-
     stage('Git') {
       steps {
         bat 'git --version'
@@ -23,11 +17,6 @@ pipeline {
             bat 'dotnet test'
           }
 
-          nunit()
-        }
-
-        warnError(message: 'unit tests fail') {
-          powershell 'dotnet test'
           nunit()
         }
 
