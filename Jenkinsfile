@@ -17,7 +17,6 @@ pipeline {
             bat 'dotnet test'
           }
 
-          nunit()
         }
 
       }
