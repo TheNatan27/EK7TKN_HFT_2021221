@@ -22,8 +22,8 @@ pipeline {
         }
 
         warnError(message: 'unit tests fail') {
-          nunit()
           powershell 'dotnet test'
+          nunit()
         }
 
       }
