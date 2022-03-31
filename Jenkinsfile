@@ -22,11 +22,5 @@ pipeline {
       }
     }
 
-    stage('n') {
-      steps {
-        nunit(keepJUnitReports: true)
-      }
-    }
-
   }
 }
