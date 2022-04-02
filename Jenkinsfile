@@ -15,6 +15,7 @@ pipeline {
           dotnetBuild()
           warnError(message: 'unit tests faile') {
             bat(script: 'dotnet test ', returnStdout: true, returnStatus: true)
+            nunit()
           }
 
         }
