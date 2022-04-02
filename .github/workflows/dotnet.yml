@@ -29,9 +29,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - run: sleep 100s
-    - uses: dorny/test-reporter@v1
+    - uses: MirageNet/nunit-reporter@v1.1.0
+      if: always()
       with:
-        artifact: test-results            # artifact name
-        name: JEST Tests                  # Name of the check run which will be created
-        path: '*.xml'                     # Path to test results (inside artifact .zip)
-        reporter: jest-junit      
+        path: Tests/*.xml  
