@@ -29,8 +29,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - run: sleep 30s
-    - name: NUnit Reporter
-    - uses: MirageNet/nunit-reporter@v1.1.0
+    - name: Publish Unit Test Results
+      uses: EnricoMi/publish-unit-test-result-action/composite@v1
       if: always()
       with:
-        path: Tests/*.xml  
+        files: "test-results/**/*.xml"
