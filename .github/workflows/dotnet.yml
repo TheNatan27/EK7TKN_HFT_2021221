@@ -28,11 +28,11 @@ jobs:
   report:
     runs-on: ubuntu-latest
     steps:
-    - run: sleep 30s
+    - run: sleep 60s
     - name: Publish Unit Test Results
       uses: dorny/test-reporter@v1
       if: success() || failure()    # run this step even if previous step failed
       with:
         name: JEST Tests            # Name of the check run which will be created
-        path: reports/jest-*.xml    # Path to test results
+        path: estResults/testResult.trx    # Path to test results
         reporter: jest-junit  
