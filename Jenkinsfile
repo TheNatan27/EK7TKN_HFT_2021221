@@ -16,6 +16,7 @@ pipeline {
           warnError(message: 'unit tests faile') {
             nunit()
             bat(script: 'dotnet test ', returnStdout: true, returnStatus: true)
+            bat 'dir'
           }
 
         }
