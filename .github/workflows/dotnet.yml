@@ -29,7 +29,7 @@ jobs:
       with:
         name: JEST Tests            # Name of the check run which will be created
         path: /home/runner/work/EK7TKN_HFT_2021221/EK7TKN_HFT_2021221/EK7TKN_HFT_2021221.Test/TestResults/testResult.trx    # Path to test results
-        reporter: trx 
+        reporter: dotnet-trx 
 
 
 
