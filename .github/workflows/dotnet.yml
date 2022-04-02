@@ -28,7 +28,8 @@ jobs:
   report:
     runs-on: ubuntu-latest
     steps:
-    - run: sleep 100s
+    - run: sleep 30s
+    - name: NUnit Reporter
     - uses: MirageNet/nunit-reporter@v1.1.0
       if: always()
       with:
