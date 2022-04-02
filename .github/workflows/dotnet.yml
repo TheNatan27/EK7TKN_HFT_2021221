@@ -23,12 +23,6 @@ jobs:
       run: dotnet build --no-restore
     - name: Test
       run: dotnet test --no-build --verbosity normal --logger "trx;logfilename=testResult.trx"
-
-
-  report:
-    runs-on: ubuntu-latest
-    steps:
-    - run: sleep 60s
     - name: Publish Unit Test Results
       uses: dorny/test-reporter@v1
       if: success() || failure()    # run this step even if previous step failed
@@ -36,3 +30,6 @@ jobs:
         name: JEST Tests            # Name of the check run which will be created
         path: TestResults/testResult.trx    # Path to test results
         reporter: jest-junit  
+
+
+
