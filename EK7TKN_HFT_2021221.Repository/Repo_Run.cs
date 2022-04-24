@@ -1,6 +1,7 @@
-﻿using EK7TKN_HFT_2021221.Data;
-using EK7TKN_HFT_2021221.Models;
+﻿using EK7TKN_HFT_2021221.Models;
 using Microsoft.EntityFrameworkCore;
+using MongoDB.Bson;
+using MongoDB.Driver;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -34,106 +35,59 @@ namespace EK7TKN_HFT_2021221.Repository
     }
     public class Repo_Run : AbRepo<RunInformation>, IRunRepository
     {
-        xDbContext ctx;
-        public Repo_Run(xDbContext context) : base(context)
+        MongoClient client;
+        IMongoDatabase mDbContext;
+        IMongoCollection<BsonDocument> ctx;
+        public Repo_Run()
         {
-            this.ctx = context;
+            this.client = new MongoClient("mongodb+srv://TheNatan28:vgMeikS7-ME7uuJ@clusterl02.jg4jv.mongodb.net/myFirstDatabase?retryWrites=true&w=majority"
+);
+            this.mDbContext = client.GetDatabase("mDbContext");
+            this.ctx = mDbContext.GetCollection<BsonDocument>("runTable");
+
         }
 
         //CRUD Methods
 
-        public void Create(string json)
-        {
-
-            RunInformation jRun = JsonConvert.DeserializeObject<RunInformation>(json);
-            
-            if (JsonConvert.DeserializeObject<RunInformation>(json).Distance < 0)
-            {
-                throw new NegativeDistanceException();
-            }
-            else if (JsonConvert.DeserializeObject<RunInformation>(json).Location == null)
-            {
-                throw new MissingLocationException();
-            }
-            else if (JsonConvert.DeserializeObject<RunInformation>(json).UserID < 0)
-            {
-                throw new WrongUserIDException();
-            }
-
-            ctx.Runs.Attach(jRun);
-            ctx.SaveChanges();
-            Console.WriteLine($"Run {jRun.RunID} created!");
-
-        }
+       
         public RunInformation Read(int runID)
         {
-            var us = from x in ctx.Runs
-                     where x.RunID.Equals(runID)
-                     select x;
+            var filter = Builders<BsonDocument>.Filter.Eq("RunID", runID);
+            var doc = ctx.Find(filter).FirstOrDefault();
 
-            RunInformation ri = us.First();
+            string es = doc.ToJson();
+            string ese = es.Trim('{');
+            string eese = ese.Trim('}');
+            string[] jj = eese.Split(',');
 
-            Console.WriteLine($"Run {ri.RunID} read!");
+            List<string> lkj = new List<string>();
 
-            return ri;
-        }
-        public IQueryable<RunInformation> ReadAll()
-        {
-            var us = from x in ctx.Runs
-                     select x;
+            RunInformation run = new RunInformation();
 
-            IQueryable<RunInformation> list = us.AsQueryable().Select(x => x);
-
-            Console.WriteLine("All runs read!");
-
-            return list;
-        }
-        public void Update(string json, int runID)
-        {
-            RunInformation jRun = JsonConvert.DeserializeObject<RunInformation>(json);
-
-            if (JsonConvert.DeserializeObject<RunInformation>(json).Distance < 0)
+            for (int j = 0; j < jj.Length; j++)
             {
-                throw new NegativeDistanceException();
-            }
-            else if (JsonConvert.DeserializeObject<RunInformation>(json).Location == null)
-            {
-                throw new MissingLocationException();
-            }
-            else if (JsonConvert.DeserializeObject<RunInformation>(json).UserID < 0)
-            {
-                throw new WrongUserIDException();
+                string[] ll = jj[j].Split(':');
+                lkj.Add(ll[1].ToString());
             }
 
-            RunInformation oldRun = ctx.Runs
-                .First(x => x.RunID.Equals(runID));
-
-            ctx.Runs.Remove(oldRun);
-
-            jRun.RunID = oldRun.RunID;
-            jRun.userInfo = oldRun.userInfo;
- 
-            ctx.Add(jRun);
-            ctx.SaveChanges();
-
-            Console.WriteLine($"Run {jRun.RunID} added!");
-        }
-        public void Delete(int runID)
-        {
-
-            var us = from x in ctx.Runs
-                     select x;
-
-            foreach (var item in us)
+            for (int i = 0; i < lkj.Count; i++)
             {
-                if (item.RunID.Equals(runID))
-                {
-                    ctx.Remove(item);
-                    Console.WriteLine($"Run {runID} deleted!");
-                }
+                Console.WriteLine(lkj[i].ToString());
             }
-            ctx.SaveChanges();
+
+            run._id = lkj[0];
+            run.RunID = int.Parse(lkj[1]);
+            run.UserID = int.Parse(lkj[2]);
+            run.Distance = double.Parse(lkj[3]);
+            run.Time = lkj[4];
+            run.IsCompetition = bool.Parse(lkj[5]);
+            run.Location = lkj[6];
+
+            Console.WriteLine($"User {runID} read!");
+
+            return run;
         }
+        
 
 
     }

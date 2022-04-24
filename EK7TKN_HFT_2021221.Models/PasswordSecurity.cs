@@ -17,6 +17,7 @@ namespace EK7TKN_HFT_2021221.Models
         public int PassId { get; set; }
         [ForeignKey(nameof(UserInformation))]
         public int UserId { get; set; }
+        public string _id { get; set; }
         public string RecoverPhoneNumber { get; set; }
         public virtual UserInformation userInformation { get; set; }
         public string TotallySecuredVeryHashedPassword { get; set; }

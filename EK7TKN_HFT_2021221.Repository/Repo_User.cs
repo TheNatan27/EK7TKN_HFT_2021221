@@ -1,6 +1,7 @@
-﻿using EK7TKN_HFT_2021221.Data;
-using EK7TKN_HFT_2021221.Models;
+﻿using EK7TKN_HFT_2021221.Models;
 using Microsoft.EntityFrameworkCore;
+using MongoDB.Bson;
+using MongoDB.Driver;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -28,97 +29,60 @@ namespace EK7TKN_HFT_2021221.Repository
 
     public class Repo_User : AbRepo<UserInformation>, IUserRepository
     {
-        xDbContext ctx;
-        public Repo_User(xDbContext context) : base(context)
+        MongoClient client;
+        IMongoDatabase mDbContext;
+        IMongoCollection<BsonDocument> ctx;
+
+        public Repo_User()
         {
-            this.ctx = context;
+            this.client = new MongoClient("mongodb+srv://TheNatan28:vgMeikS7-ME7uuJ@clusterl02.jg4jv.mongodb.net/myFirstDatabase?retryWrites=true&w=majority"
+);
+            this.mDbContext = client.GetDatabase("mDbContext");
+            this.ctx = mDbContext.GetCollection<BsonDocument>("userTable");
         }
 
         //CRUD Methods
 
-        public void Create(string json)
-        {
-            UserInformation jUser = JsonConvert.DeserializeObject<UserInformation>(json);
 
-            if (JsonConvert.DeserializeObject<UserInformation>(json).Full_Name== null)
-            {
-                throw new MissingNameException();
-            }
-            else if (JsonConvert.DeserializeObject<UserInformation>(json).Email == null)
-            {
-                throw new MissingEmailException();
-            }
-
-            ctx.Users.Attach(jUser);
-            ctx.SaveChanges();
-            Console.WriteLine($"User {jUser.UserID} added!");
-      
-        }
         public UserInformation Read(int userID)
         {
+            var filter = Builders<BsonDocument>.Filter.Eq("UserID",userID);
+            var doc = ctx.Find(filter).FirstOrDefault();
 
-            var us = from x in ctx.Users
-                     where x.UserID.Equals(userID)
-                     select x;
+            string es = doc.ToJson();
+            string ese = es.Trim('{');
+            string eese = ese.Trim('}');
+            string[] jj = eese.Split(',');
 
-            UserInformation ri = us.First();
+            List<string> lkj = new List<string>();
+
+            UserInformation user = new UserInformation();
+
+            for (int j = 0; j < jj.Length; j++)
+            {
+                string[] ll = jj[j].Split(':');
+                lkj.Add(ll[1].ToString());
+            }
+
+            for (int i = 0; i < lkj.Count; i++)
+            {
+                Console.WriteLine(lkj[i].ToString());
+            }
+
+            user._id = lkj[0];
+            user.UserID = int.Parse(lkj[1]);
+            user.Full_Name= lkj[2];
+            user.Age = int.Parse(lkj[3]);
+            user.Weight = int.Parse(lkj[4]);
+            user.Height = int.Parse(lkj[5]);
+            user.Email = lkj[6];
+            user.Premium = bool.Parse(lkj[7]);
+
             Console.WriteLine($"User {userID} read!");
 
-            return ri;
+            return user;
         }
-        public IQueryable<UserInformation> ReadAll()
-        {
-            var us = from x in ctx.Users
-                     select x;
-
-            IQueryable<UserInformation> list = us.AsQueryable().Select(x => x);
-
-            Console.WriteLine("All users read!");
-
-            return list;
-        }
-        public void Update(string json, int userID)
-        {
-            UserInformation jUser = JsonConvert.DeserializeObject<UserInformation>(json);
-
-            if (JsonConvert.DeserializeObject<UserInformation>(json).Full_Name == null)
-            {
-                throw new MissingNameException();
-            }
-            else if (JsonConvert.DeserializeObject<UserInformation>(json).Email == null)
-            {
-                throw new MissingEmailException();
-            }
-            
-            UserInformation oldUser = ctx.Users
-                .First(x => x.UserID.Equals(userID));
-
-            ctx.Users.Remove(oldUser);
-
-            jUser.runInfo = oldUser.runInfo;
-            jUser.UserID = oldUser.UserID;
-
-            ctx.Users.Add(jUser);
-            ctx.SaveChanges();
-
-            Console.WriteLine($"User {jUser.UserID} updated!");
-        }
-        public void Delete(int userID)
-        {
-
-            var us = from x in ctx.Users
-                     select x;
-
-            foreach (var item in us)
-            {
-                if (item.UserID.Equals(userID))
-                {
-                    ctx.Remove(item);
-                    Console.WriteLine($"User {userID} deleted!");
-                }
-            }
-            ctx.SaveChanges();
-        }
+ 
 
 
     }

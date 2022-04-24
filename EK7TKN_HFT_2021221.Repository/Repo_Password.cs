@@ -1,6 +1,7 @@
-﻿using EK7TKN_HFT_2021221.Data;
-using EK7TKN_HFT_2021221.Models;
+﻿using EK7TKN_HFT_2021221.Models;
 using Microsoft.EntityFrameworkCore;
+using MongoDB.Bson;
+using MongoDB.Driver;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -28,106 +29,58 @@ namespace EK7TKN_HFT_2021221.Repository
     }
     public class Repo_Password : AbRepo<Repo_Password>, IPassRepository
     {
-        xDbContext ctx;
-        public Repo_Password(xDbContext context) : base(context)
+        MongoClient client;
+        IMongoDatabase mDbContext;
+        IMongoCollection<BsonDocument> ctx;
+        public Repo_Password()
         {
-            this.ctx = context;
+            this.client = new MongoClient("mongodb+srv://TheNatan28:vgMeikS7-ME7uuJ@clusterl02.jg4jv.mongodb.net/myFirstDatabase?retryWrites=true&w=majority"
+);
+            this.mDbContext = client.GetDatabase("mDbContext");
+            this.ctx = mDbContext.GetCollection<BsonDocument>("passTable");
+
         }
 
         //CRUD Methods
-        public void Create(string json)
-        {
-            PasswordSecurity jPass = JsonConvert.DeserializeObject<PasswordSecurity>(json);
-
-            if (JsonConvert.DeserializeObject<PasswordSecurity>(json).TotallySecuredVeryHashedPassword == null)
-            {
-                throw new MissingPasswordException();
-            }
-            else if (JsonConvert.DeserializeObject<PasswordSecurity>(json).RecoverPhoneNumber == null)
-            {
-                throw new MissingPhoneNumberException();
-            }
-            else if (JsonConvert.DeserializeObject<PasswordSecurity>(json).UserId < 1)
-            {
-                throw new WrongUserIDException();
-            }
-
-            ctx.Passwords.Attach(jPass);
-            ctx.SaveChanges();
-            Console.WriteLine($"Password {jPass.PassId} created!");
-
-        }
-        public PasswordSecurity Read(int userID)
+       
+        public PasswordSecurity Read(int passId)
         {
 
-            var us = from x in ctx.Passwords
-                     where x.UserId.Equals(userID)
-                     select x;
+            var filter = Builders<BsonDocument>.Filter.Eq("PassId", passId);
+            var doc = ctx.Find(filter).FirstOrDefault();
 
-            PasswordSecurity ri = us.First();
+            string es = doc.ToJson();
+            string ese = es.Trim('{');
+            string eese = ese.Trim('}');
+            string[] jj = eese.Split(',');
 
-            Console.WriteLine($"Password {ri.PassId} read!");
+            List<string> lkj = new List<string>();
 
-            return ri;
+            PasswordSecurity pass = new PasswordSecurity();
 
-        }
-        public IQueryable<PasswordSecurity> ReadAll()
-        {
-            var us = from x in ctx.Passwords
-                     select x;
-
-            IQueryable<PasswordSecurity> list = us.AsQueryable().Select(x => x);
-
-            Console.WriteLine("All passwords read!");
-
-            return list;
-        }
-        public void Update(string json, int passID)
-        {
-            PasswordSecurity jPass = JsonConvert.DeserializeObject<PasswordSecurity>(json);
-
-            if (JsonConvert.DeserializeObject<PasswordSecurity>(json).TotallySecuredVeryHashedPassword == null)
+            for (int j = 0; j < jj.Length; j++)
             {
-                throw new MissingPasswordException();
-            }
-            else if (JsonConvert.DeserializeObject<PasswordSecurity>(json).RecoverPhoneNumber == null)
-            {
-                throw new MissingPhoneNumberException();
-            }
-            else if (JsonConvert.DeserializeObject<PasswordSecurity>(json).UserId < 1)
-            {
-                throw new WrongUserIDException();
+                string[] ll = jj[j].Split(':');
+                lkj.Add(ll[1].ToString());
             }
 
-            PasswordSecurity oldPass = ctx.Passwords
-                .First(x => x.PassId.Equals(passID));
-
-            ctx.Passwords.Remove(oldPass);
-
-            jPass.PassId = oldPass.PassId;
-            jPass.userInformation = oldPass.userInformation;
-
-            ctx.Passwords.Add(jPass);
-            ctx.SaveChanges();
-
-            Console.WriteLine($"Password {jPass.PassId} updated!");
-        }
-        public void Delete(int passId)
-        {
-            var us = from x in ctx.Passwords
-                     select x;
- 
-            foreach (var item in us)
+            for (int i = 0; i < lkj.Count; i++)
             {
-                if (item.UserId.Equals(passId))
-                {
-                    ctx.Remove(item);
-                    Console.WriteLine($"Password {passId} deleted!");
-                }
+                Console.WriteLine(lkj[i].ToString());
             }
-            ctx.SaveChanges();
+
+            pass._id = lkj[0];
+            pass.PassId = int.Parse(lkj[1]);
+            pass.UserId = int.Parse(lkj[2]);
+            pass.RecoverPhoneNumber = lkj[3];
+            pass.TotallySecuredVeryHashedPassword = lkj[4];
+
+            Console.WriteLine($"User {passId} read!");
+
+            return pass;
+
         }
-        
+       
 
     }
 }

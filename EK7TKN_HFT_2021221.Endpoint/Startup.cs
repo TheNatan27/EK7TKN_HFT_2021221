@@ -1,4 +1,3 @@
-using EK7TKN_HFT_2021221.Data;
 using EK7TKN_HFT_2021221.Logic;
 using EK7TKN_HFT_2021221.Models;
 using EK7TKN_HFT_2021221.Repository;
@@ -30,7 +29,6 @@ namespace EK7TKN_HFT_2021221.Endpoint
             services.AddScoped<IUserLogic, Logic_User>();
             services.AddScoped<IUserRepository, Repo_User>();
 
-            services.AddScoped<xDbContext, xDbContext >();
 
             services.AddControllers().AddNewtonsoftJson();
 

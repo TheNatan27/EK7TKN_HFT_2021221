@@ -19,6 +19,7 @@ namespace EK7TKN_HFT_2021221.Models
         public int UserID { get; set; }
         [NotMapped]
         public virtual UserInformation userInfo { get; set; }
+        public string _id { get; set; }
         public double Distance { get; set; }
         public string Time { get; set; }
         public bool IsCompetition { get; set; }

@@ -14,6 +14,7 @@ namespace EK7TKN_HFT_2021221.Models
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        public string _id { get; set; }
         public int UserID { get; set; }
         public string Full_Name { get; set; }
         public int Age { get; set; }
