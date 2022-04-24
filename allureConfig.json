@@ -1,0 +1,11 @@
+{
+  "allure": {
+    "directory": "allure-testreportt"
+  },
+    "labels": {
+      "owner": "^author:?(.+)",
+      "severity": "^(normal|blocker|critical|minor|trivial)"
+    },
+
+  }
+}

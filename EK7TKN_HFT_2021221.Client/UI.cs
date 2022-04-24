@@ -175,7 +175,8 @@ namespace EK7TKN_HFT_2021221.Client
                 Console.WriteLine(item);
             }
             Console.WriteLine(" <==  Press enter to go back");
-            Console.ReadLine();        }
+            Console.ReadLine();
+        }
 
         //Runs
         public void AllRuns()
@@ -320,7 +321,8 @@ namespace EK7TKN_HFT_2021221.Client
                 Console.WriteLine(item);
             }
             Console.WriteLine(" <==  Press enter to go back");
-            Console.ReadLine();        }
+            Console.ReadLine();
+        }
 
         //Passwords
         public void AllPasswords()
@@ -461,7 +463,8 @@ namespace EK7TKN_HFT_2021221.Client
                 Console.WriteLine(item);
             }
             Console.WriteLine(" <==  Press enter to go back");
-            Console.ReadLine();        }
+            Console.ReadLine();
+        }
 
     }
 }
