@@ -5,50 +5,74 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WPFApp"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid Background="#FFCFE4DB">
+        Title="MainWindow" Height="720" Width="1200">
+
+    <Window.DataContext >
+        <local:ViewModel/>
+    </Window.DataContext>
+
+    <Grid >
 
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="60"></ColumnDefinition>
-            <ColumnDefinition Width="240"></ColumnDefinition>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="6*"/>
+            <ColumnDefinition Width="6*"/>
+            <ColumnDefinition Width="6*"/>
+            <ColumnDefinition Width="6*"/>
+            <ColumnDefinition Width="1*"/>
         </Grid.ColumnDefinitions>
-
         <Grid.RowDefinitions>
-            <RowDefinition Height="48"></RowDefinition>
-            <RowDefinition Height="382"></RowDefinition>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="7*"/>
+            <RowDefinition Height="5*"/>
+            <RowDefinition Height="1*"/>
         </Grid.RowDefinitions>
-        <StackPanel Grid.Column="1" Grid.Row="1" Margin="0,0,0,29" >
-            <Label Content="Name" Background="#FF45CAD1"></Label>
-            <Label x:Name="name_lbl"  Height="24" Background="White"/>
-            <Label Content="Email" Background="#FF45CAD1"></Label>
-            <TextBox x:Name="email_lbl" Height="19"></TextBox>
-            <Label Content="Age" Background="#FF45CAD1"></Label>
-            <TextBlock x:Name="age_lbl" Height="25" Background="White"></TextBlock>
-            <Label Content="Weight" Background="#FF45CAD1"></Label>
-            <TextBox x:Name="weight_txb" Height="26"/>
-            <Label Content="Height" Background="#FF45CAD1"></Label>
-            <TextBox x:Name="height_tb" Height="25"/>
-            <Label Content="User ID" Background="#FF45CAD1"></Label>
-            <TextBlock x:Name="id_tb" Height="24" Background="#FFF7F0F0" />
-            <Label Content="Premium" Background="#FF45CAD1"></Label>
-            <CheckBox x:Name="check_premium" Background="White"></CheckBox>
+        <ListBox Grid.Column="1" Grid.Row="1" d:ItemsSource="{Binding usersToDisplay}" SelectionChanged="ListBox_SelectionChanged"/>
+        <ListBox Grid.Column="2" Grid.Row="1" d:ItemsSource="{Binding runsToDisplay}"/>
+        <ListBox Grid.Column="3" Grid.Row="1" d:ItemsSource="{Binding passwordSecurity}"/>
+        <StackPanel Grid.Column="1" Grid.Row="2">
+            <Button Content="Button" Command="{Binding readAUser}"/>
+            <Button Content="Button" Command="{Binding addAUser}"/>
+            <Button Content="Button" Command="{Binding updateUser}"/>
+            <Button Content="Button" Command="{Binding deleteUser}"/>
+            <Button Content="Button" Command="{Binding readRunsOfUser}"/>
+            <Button Content="Button" Command="{Binding getEmailOfWeakPasswordUsers}"/>
+            <Button Content="Button" Command="{Binding getCompetitorsEmailAddress}"/>
+            <Button Content="Button" Command="{Binding getAmericanUsersNames}"/>
+            <Button Content="Button" Command="{Binding getLongDistanceCompetitorsNames}"/>
+            <Button Content="Button" Command="{Binding getNameOfLongDistanceOldRunners}"/>
+
         </StackPanel>
-        <Button Content="Save Changes" Grid.Column="1" Margin="273,265,-193,45" Grid.Row="1" Click="btn_save_changes"/>
-        <Button x:Name="Login" Content="Login" Grid.Column="1" Margin="638,265,-458,45" Grid.Row="1" Click="btn_login"/>
-        <Button Content="Refresh" Grid.Column="1" Margin="458,265,-278,45" Grid.Row="1" Click="btn_refresh"/>
-        <ListBox x:Name="runs_list" Grid.Column="1" Grid.Row="1" Margin="273,0,-193,162"/>
-        <StackPanel DataContext="{Binding ElementName=runs_list, Path=SelectedItem}" Margin="458,0,-458,125" Grid.Column="1" Height="281" VerticalAlignment="Bottom" Grid.RowSpan="2" >
-            <Label Content="Time" Height="28"/>
-            <Label Content="{Binding ElementName=display_connector, Path=DataContext.Time}" x:Name="time_run" Height="28" />
-            <Label Content="Distance" Height="28"/>
-            <Label Content="{Binding ElementName=display_connector, Path=DataContext.Distance}" x:Name="distance_run" Height="28"/>
-            <Label Content="Location" Height="28"/>
-            <Label Content="{Binding ElementName=display_connector, Path=DataContext.Location}" x:Name="location_run" Height="28"/>
-            <Label Content="Competition?"/>
-            <Label x:Name="competition_run" Height="28"/>
-            <Label x:Name="display_connector" Content="{Binding ElementName=runs_list, Path=SelectedItem.RunID}" Height="28"/>
-            <Label x:Name="competition_run2" Height="28"/>
+        <StackPanel Grid.Column="2" Grid.Row="2">
+            <Button Content="Button" Command="{Binding readARun}"/>
+            <Button Content="Button" Command="{Binding addARun}"/>
+            <Button Content="Button" Command="{Binding updateRun}"/>
+            <Button Content="Button" Command="{Binding deleteRun}"/>
+            <Button Content="Button" Command="{Binding getRunIDOfPremiumUsers}"/>
+            <Button Content="Button" Command="{Binding getTimeOfPremiumCompetitors}"/>
+            <Button Content="Button" Command="{Binding getRunIDOfLongDistanceJuniorRunners}"/>
+            <Button Content="Button" Command="{Binding getLocationOfChonkers}"/>
+            <Button Content="Button" Command="{Binding getLocationOfJuniorPremiumUsers}"/>
         </StackPanel>
+        <StackPanel Grid.Column="3" Grid.Row="2">
+            <Button Content="Button" Command="{Binding readAPass}"/>
+            <Button Content="Button" Command="{Binding addAPass}"/>
+            <Button Content="Button" Command="{Binding updatePass}"/>
+            <Button Content="Button" Command="{Binding deletePass}"/>
+            <Button Content="Button" Command="{Binding getOldPeoplesPassID}"/>
+            <Button Content="Button" Command="{Binding getOldPeoplesPassIDWithWeakPassword}"/>
+            <Button Content="Button" Command="{Binding getPassIDOfPremiumUsers}"/>
+            <Button Content="Button" Command="{Binding getPhoneNumberOfPremiumUsers}"/>
+            <Button Content="Button" Command="{Binding getPhoneNumberOfCompetitors}"/>
+        </StackPanel>
+        <StackPanel Grid.Column="4" Grid.Row="2">
+            <Button Content="Button"/>
+            <Button Content="Button"/>
+            <Button Content="Button"/>
+            <Button Content="Button"/>
+        </StackPanel>
+        <StackPanel Grid.Column="4" Grid.Row="1"/>
+        <Button Command="{Binding readAllUsers}" Grid.Column="1" Content="Button" HorizontalAlignment="Left" Margin="10,0,0,0" VerticalAlignment="Center" Width="85"/>
 
     </Grid>
 </Window>
