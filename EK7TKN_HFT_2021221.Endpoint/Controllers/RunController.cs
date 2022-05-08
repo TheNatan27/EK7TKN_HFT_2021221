@@ -1,6 +1,8 @@
+using EK7TKN_HFT_2021221.Endpoint.Services;
 using EK7TKN_HFT_2021221.Logic;
 using EK7TKN_HFT_2021221.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.SignalR;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.InteropServices;
@@ -11,10 +13,12 @@ using System.Runtime.InteropServices;
 public class RunController : ControllerBase
 {
     IRunLogic run;
+    IHubContext<SignalRHub> hub;
 
-    public RunController(IRunLogic rl)
+    public RunController(IRunLogic rl, IHubContext<SignalRHub> hub)
     {
         this.run = rl;
+        this.hub = hub;
     }
 
     #region crud methods
@@ -38,12 +42,14 @@ public class RunController : ControllerBase
     public void Post([FromBody] string json)
     {
         run.Create(json);
+        this.hub.Clients.All.SendAsync("RunCreated", json);
     }
     // POST /put
     [HttpPut("put/{id}")]
     public void Update([FromBody] string json, int id)
     {
         run.Update(json, id);
+        this.hub.Clients.All.SendAsync("RunUpdated", json);
     }
 
 
@@ -51,8 +57,10 @@ public class RunController : ControllerBase
     [HttpDelete("delete/{id}")]
     public void Delete(int id)
     {
+        var runToDelet = run.Read(id);
         run.Delete(id);
         System.Console.WriteLine("Run deleted!");
+        this.hub.Clients.All.SendAsync("RunDeleted", runToDelet);
     }
     #endregion
 

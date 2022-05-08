@@ -1,6 +1,8 @@
+using EK7TKN_HFT_2021221.Endpoint.Services;
 using EK7TKN_HFT_2021221.Logic;
 using EK7TKN_HFT_2021221.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.SignalR;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.InteropServices;
@@ -11,10 +13,12 @@ using System.Runtime.InteropServices;
 public class UserController : ControllerBase
 {
     IUserLogic user;
+    IHubContext<SignalRHub> hub;
 
-    public UserController(IUserLogic uli)
+    public UserController(IUserLogic uli, IHubContext<SignalRHub> hub)
     {
         this.user= uli;
+        this.hub = hub;
     }
 
     #region crud methods
@@ -37,6 +41,7 @@ public class UserController : ControllerBase
     public void PostCreate([FromBody] string json)
     {
         user.Create(json);
+        this.hub.Clients.All.SendAsync("UserCreated", json);
     }
 
     // PUT update user
@@ -44,13 +49,16 @@ public class UserController : ControllerBase
     public void PostUpdate([FromBody] string json, int id)
     {
         user.Update(json, id);
+        this.hub.Clients.All.SendAsync("UserUpdated", json);
     }
 
     // DELETE /delete/id
     [HttpDelete("delete/{id}")]
     public void Delete(int id)
     {
+        var userToDelet = user.Read(id);
         user.Delete(id);
+        this.hub.Clients.All.SendAsync("UserDeleted", userToDelet);
     }
 
     #endregion

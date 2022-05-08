@@ -3,7 +3,7 @@
     "windowsAuthentication": false,
     "anonymousAuthentication": true,
     "iisExpress": {
-      "applicationUrl": "http://localhost:62000",
+      "applicationUrl": "http://localhost:12307",
       "sslPort": 0
     }
   },
@@ -11,15 +11,16 @@
     "IIS Express": {
       "commandName": "IISExpress",
       "launchBrowser": true,
+      "launchUrl": "index.html",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
     },
-    "EK7TKN_HFT_2021221.Endpoint": {
+    "EK7TKN_JSClient": {
       "commandName": "Project",
       "dotnetRunMessages": "true",
       "launchBrowser": true,
-      "launchUrl": "pass",
+      "launchUrl": "index.html",
       "applicationUrl": "http://localhost:5000",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"

@@ -1,6 +1,8 @@
+using EK7TKN_HFT_2021221.Endpoint.Services;
 using EK7TKN_HFT_2021221.Logic;
 using EK7TKN_HFT_2021221.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.SignalR;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.InteropServices;
@@ -12,10 +14,11 @@ using System.Threading.Tasks;
 public class PassController : ControllerBase
 {
     IPassLogic pass;
-
-    public PassController(IPassLogic pl)
+    IHubContext<SignalRHub> hub;
+    public PassController(IPassLogic pl, IHubContext<SignalRHub> hub)
     {
         this.pass = pl;
+        this.hub = hub;
     }
 
     #region crud methods
@@ -39,7 +42,7 @@ public class PassController : ControllerBase
     public void Post ([FromBody] string json)
     {
         pass.Create(json);
-
+        this.hub.Clients.All.SendAsync("PasswordCreated", json);
     }
     
     // PUT /put
@@ -47,13 +50,18 @@ public class PassController : ControllerBase
     public void Update([FromBody] string json, int id)
     {
         pass.Update(json, id);
+        this.hub.Clients.All.SendAsync("PasswordUpdated", json);
+
     }
 
     // DELETE /delete/od
     [HttpDelete("delete/{id}")]
     public void Delete(int id)
     {
+        var passToDelete = pass.Read(id);
         pass.Delete(id);
+        this.hub.Clients.All.SendAsync("PasswordDeleted", passToDelete);
+
     }
 
     #endregion

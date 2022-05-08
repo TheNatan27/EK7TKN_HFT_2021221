@@ -12,6 +12,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc.NewtonsoftJson;
+using EK7TKN_HFT_2021221.Endpoint.Services;
+using Microsoft.AspNetCore.Diagnostics;
 
 namespace EK7TKN_HFT_2021221.Endpoint
 {
@@ -32,6 +34,8 @@ namespace EK7TKN_HFT_2021221.Endpoint
 
             services.AddScoped<xDbContext, xDbContext >();
 
+            services.AddSignalR();
+
             services.AddControllers().AddNewtonsoftJson();
 
 
@@ -45,6 +49,22 @@ namespace EK7TKN_HFT_2021221.Endpoint
                 app.UseDeveloperExceptionPage();
             }
 
+
+            app.UseExceptionHandler(c => c.Run(async context =>
+            {
+                var exception = context.Features
+                    .Get<IExceptionHandlerPathFeature>()
+                    .Error;
+                var response = new { Msg = exception.Message };
+                await context.Response.WriteAsJsonAsync(response);
+            }));
+            app.UseCors(x => x
+                .AllowCredentials()
+                .AllowAnyMethod()
+                .AllowAnyHeader()
+                .WithOrigins("http://localhost:12307"));
+
+
             app.UseRouting();
 
             
@@ -52,6 +72,7 @@ namespace EK7TKN_HFT_2021221.Endpoint
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
+                endpoints.MapHub<SignalRHub>("/hub");
             });
         }
     }
