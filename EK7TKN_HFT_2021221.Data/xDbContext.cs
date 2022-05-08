@@ -9,9 +9,9 @@ namespace EK7TKN_HFT_2021221.Data
     {
         //Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\Database1.mdf;Integrated Security=True
 
-        public virtual DbSet<RunInformation> Runs { get; set; }
-        public virtual DbSet<PasswordSecurity> Passwords { get; set; }
-        public virtual DbSet<UserInformation> Users { get; set; }
+        public  DbSet<RunInformation> Runs { get; set; }
+        public  DbSet<PasswordSecurity> Passwords { get; set; }
+        public  DbSet<UserInformation> Users { get; set; }
 
         public xDbContext(DbContextOptions<xDbContext> options) : base(options)
         {

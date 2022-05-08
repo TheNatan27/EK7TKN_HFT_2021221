@@ -3,23 +3,24 @@
 
 // Write your JavaScript code.
 
-let actors = [];
+let results = [];
+let users = [];
 let connection = null;
-getdata();
-setupSignalR();
 
+setupSignalR();
+getdata();
 
 function setupSignalR() {
     connection = new signalR.HubConnectionBuilder()
-        .withUrl("http://localhost:62000/hub")
+        .withUrl("http://localhost:12307/hub")
         .configureLogging(signalR.LogLevel.Information)
         .build();
 
-    connection.on("ActorCreated", (user, message) => {
+    connection.on("UserCreated", (user, message) => {
         getdata();
     });
 
-    connection.on("ActorDeleted", (user, message) => {
+    connection.on("UserDeleted", (user, message) => {
         getdata();
     });
 
@@ -42,28 +43,31 @@ async function start() {
 };
 
 async function getdata() {
-    await fetch('http://localhost:53910/actor')
+    await fetch('http://localhost:5000/user')
         .then(x => x.json())
         .then(y => {
-            actors = y;
-            //console.log(actors);
+            users = y;
+            console.log(users);
             display();
         });
 }
 
 function display() {
     document.getElementById('resultarea').innerHTML = "";
-    actors.forEach(t => {
+    users.forEach(t => {
         document.getElementById('resultarea').innerHTML +=
-            "<tr><td>" + t.actorId + "</td><td>"
-            + t.actorName + "</td><td>" +
-            `<button type="button" onclick="remove(${t.actorId})">Delete</button>`
-            + "</td></tr>";
+            "<tr><td>" + t.userID + "</td><td>" +
+        t.full_Name + "</td><td>" +
+        t.age + "</td><td>" +
+            t.weight + "</td><td>" +
+            t.height + "</td><td>" +
+            t.email + "</td><td>" +
+            `<button type="button" onclick="remove(${t.userID})">Delete</button>` + "</td><td>";
     });
 }
 
 function remove(id) {
-    fetch('http://localhost:53910/actor/' + id, {
+    fetch('http://localhost:5000/user/delete/' + id, {
         method: 'DELETE',
         headers: { 'Content-Type': 'application/json', },
         body: null
@@ -78,12 +82,21 @@ function remove(id) {
 }
 
 function create() {
-    let name = document.getElementById('actorname').value;
-    fetch('http://localhost:53910/actor', {
+    let name = document.getElementById('username').value;
+    let age = document.getElementById('agenumber').value;
+    let weight = document.getElementById('weightnumber').value;
+    let height = document.getElementById('heightnumber').value;
+    let email = document.getElementById('emailinput').value;
+    let premium = document.getElementById('premiumcheck').value;
+    fetch('http://localhost:5000/user', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', },
         body: JSON.stringify(
-            { actorName: name })
+            {
+                full_Name: name, Age: age, Weight: weight,
+                Height: height, Email: email, Premium: premium
+                
+            })
     })
         .then(response => response)
         .then(data => {

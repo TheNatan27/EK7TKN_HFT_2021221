@@ -9,10 +9,10 @@ namespace EK7TKN_HFT_2021221.Logic
 {
     public interface IUserLogic 
     {
-        public void Create(string json);
+        public void Create(UserInformation json);
         public void Delete(int userID);
         public UserInformation Read(int userID);
-        public void Update(string json, int userID);
+        public void Update(UserInformation user);
         public IQueryable<UserInformation> ReadAll();
 
         public IEnumerable<KeyValuePair<int, string>> ReadRunsOfUser(int userID);

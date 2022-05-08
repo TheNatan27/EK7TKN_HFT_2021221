@@ -32,7 +32,7 @@ namespace EK7TKN_HFT_2021221.Repository
             Console.WriteLine("Error: Wrong user id provided");
         }
     }
-    public class Repo_Run : AbRepo<RunInformation>, IRunRepository
+    public class Repo_Run : AbRepo<RunInformation>, IRepository<RunInformation>
     {
         xDbContext ctx;
         public Repo_Run(xDbContext context) : base(context)
@@ -42,101 +42,27 @@ namespace EK7TKN_HFT_2021221.Repository
 
         //CRUD Methods
 
-        public void Create(string json)
+        public override RunInformation Read(int id)
         {
-
-            RunInformation jRun = JsonConvert.DeserializeObject<RunInformation>(json);
-            
-            if (JsonConvert.DeserializeObject<RunInformation>(json).Distance < 0)
-            {
-                throw new NegativeDistanceException();
-            }
-            else if (JsonConvert.DeserializeObject<RunInformation>(json).Location == null)
-            {
-                throw new MissingLocationException();
-            }
-            else if (JsonConvert.DeserializeObject<RunInformation>(json).UserID < 0)
-            {
-                throw new WrongUserIDException();
-            }
-
-            ctx.Runs.Attach(jRun);
-            ctx.SaveChanges();
-            Console.WriteLine($"Run {jRun.RunID} created!");
-
+            return ctx.Runs.FirstOrDefault(x => x.RunID == id);
         }
-        public RunInformation Read(int runID)
+        public override void Update(RunInformation item)
         {
-            var us = from x in ctx.Runs
-                     where x.RunID.Equals(runID)
-                     select x;
-
-            RunInformation ri = us.First();
-
-            Console.WriteLine($"Run {ri.RunID} read!");
-
-            return ri;
-        }
-        public IQueryable<RunInformation> ReadAll()
-        {
-            var us = from x in ctx.Runs
-                     select x;
-
-            IQueryable<RunInformation> list = us.AsQueryable().Select(x => x);
-
-            Console.WriteLine("All runs read!");
-
-            return list;
-        }
-        public void Update(string json, int runID)
-        {
-            RunInformation jRun = JsonConvert.DeserializeObject<RunInformation>(json);
-
-            if (JsonConvert.DeserializeObject<RunInformation>(json).Distance < 0)
+            var old = Read(item.RunID);
+            if (old == null)
             {
-                throw new NegativeDistanceException();
+                throw new ArgumentException("Item not exist..");
             }
-            else if (JsonConvert.DeserializeObject<RunInformation>(json).Location == null)
+            foreach (var prop in old.GetType().GetProperties())
             {
-                throw new MissingLocationException();
-            }
-            else if (JsonConvert.DeserializeObject<RunInformation>(json).UserID < 0)
-            {
-                throw new WrongUserIDException();
-            }
-
-            RunInformation oldRun = ctx.Runs
-                .First(x => x.RunID.Equals(runID));
-
-            ctx.Runs.Remove(oldRun);
-
-            jRun.RunID = oldRun.RunID;
-            jRun.userInfo = oldRun.userInfo;
- 
-            ctx.Add(jRun);
-            ctx.SaveChanges();
-
-            Console.WriteLine($"Run {jRun.RunID} added!");
-        }
-        public void Delete(int runID)
-        {
-
-            var us = from x in ctx.Runs
-                     select x;
-
-            foreach (var item in us)
-            {
-                if (item.RunID.Equals(runID))
+                if (prop.GetAccessors().FirstOrDefault(t => t.IsVirtual) == null)
                 {
-                    ctx.Remove(item);
-                    Console.WriteLine($"Run {runID} deleted!");
+                    prop.SetValue(old, prop.GetValue(item));
                 }
             }
             ctx.SaveChanges();
         }
 
-
     }
 
-    
 }

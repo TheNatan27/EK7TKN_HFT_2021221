@@ -14,7 +14,7 @@ namespace EK7TKN_HFT_2021221.Logic
         Repo_Password passwordRepo;
         Repo_Run runRepo;
         Repo_User userRepo;
-        public Logic_Password(IUserRepository user, IPassRepository pass, IRunRepository run) 
+        public Logic_Password(IRepository<UserInformation> user, IRepository<PasswordSecurity> pass, IRepository<RunInformation> run) 
         {
             this.userRepo = (Repo_User)user;
             this.passwordRepo = (Repo_Password)pass;
@@ -137,7 +137,7 @@ namespace EK7TKN_HFT_2021221.Logic
             
 
         //CRUD Methods
-        public void Create(string json)
+        public void Create(PasswordSecurity json)
         {
             passwordRepo.Create(json);
         }
@@ -152,9 +152,9 @@ namespace EK7TKN_HFT_2021221.Logic
             return passwordRepo.Read(userId);
         }
 
-        public void Update(string json, int userId)
+        public void Update(PasswordSecurity json)
         {
-            passwordRepo.Update(json, userId);
+            passwordRepo.Update(json);
         }
         public IQueryable<PasswordSecurity> ReadAll()
         {

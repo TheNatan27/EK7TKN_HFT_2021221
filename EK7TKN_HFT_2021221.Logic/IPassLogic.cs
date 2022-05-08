@@ -10,11 +10,11 @@ namespace EK7TKN_HFT_2021221.Logic
 {
     public interface IPassLogic 
     {
-        public void Create(string json);
+        public void Create(PasswordSecurity json);
 
         public IQueryable<PasswordSecurity> ReadAll();
         public void Delete(int passId);
-        public void Update(string json, int userId);
+        public void Update(PasswordSecurity json);
         public PasswordSecurity Read(int userId);
 
         public IEnumerable<int> GetOldPeoplesPassID();

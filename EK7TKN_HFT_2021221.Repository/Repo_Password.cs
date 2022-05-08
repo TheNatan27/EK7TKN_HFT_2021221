@@ -26,7 +26,7 @@ namespace EK7TKN_HFT_2021221.Repository
             Console.WriteLine("Error: No email provided");
         }
     }
-    public class Repo_Password : AbRepo<Repo_Password>, IPassRepository
+    public class Repo_Password : AbRepo<PasswordSecurity>, IRepository<PasswordSecurity>
     {
         xDbContext ctx;
         public Repo_Password(xDbContext context) : base(context)
@@ -35,99 +35,27 @@ namespace EK7TKN_HFT_2021221.Repository
         }
 
         //CRUD Methods
-        public void Create(string json)
+
+        public override PasswordSecurity Read(int id)
         {
-            PasswordSecurity jPass = JsonConvert.DeserializeObject<PasswordSecurity>(json);
-
-            if (JsonConvert.DeserializeObject<PasswordSecurity>(json).TotallySecuredVeryHashedPassword == null)
-            {
-                throw new MissingPasswordException();
-            }
-            else if (JsonConvert.DeserializeObject<PasswordSecurity>(json).RecoverPhoneNumber == null)
-            {
-                throw new MissingPhoneNumberException();
-            }
-            else if (JsonConvert.DeserializeObject<PasswordSecurity>(json).UserId < 1)
-            {
-                throw new WrongUserIDException();
-            }
-
-            ctx.Passwords.Attach(jPass);
-            ctx.SaveChanges();
-            Console.WriteLine($"Password {jPass.PassId} created!");
-
+            return ctx.Passwords.FirstOrDefault(x => x.PassId == id);
         }
-        public PasswordSecurity Read(int userID)
+        public override void Update(PasswordSecurity item)
         {
-
-            var us = from x in ctx.Passwords
-                     where x.UserId.Equals(userID)
-                     select x;
-
-            PasswordSecurity ri = us.First();
-
-            Console.WriteLine($"Password {ri.PassId} read!");
-
-            return ri;
-
-        }
-        public IQueryable<PasswordSecurity> ReadAll()
-        {
-            var us = from x in ctx.Passwords
-                     select x;
-
-            IQueryable<PasswordSecurity> list = us.AsQueryable().Select(x => x);
-
-            Console.WriteLine("All passwords read!");
-
-            return list;
-        }
-        public void Update(string json, int passID)
-        {
-            PasswordSecurity jPass = JsonConvert.DeserializeObject<PasswordSecurity>(json);
-
-            if (JsonConvert.DeserializeObject<PasswordSecurity>(json).TotallySecuredVeryHashedPassword == null)
+            var old = Read(item.PassId);
+            if (old == null)
             {
-                throw new MissingPasswordException();
+                throw new ArgumentException("Item not exist..");
             }
-            else if (JsonConvert.DeserializeObject<PasswordSecurity>(json).RecoverPhoneNumber == null)
+            foreach (var prop in old.GetType().GetProperties())
             {
-                throw new MissingPhoneNumberException();
-            }
-            else if (JsonConvert.DeserializeObject<PasswordSecurity>(json).UserId < 1)
-            {
-                throw new WrongUserIDException();
-            }
-
-            PasswordSecurity oldPass = ctx.Passwords
-                .First(x => x.PassId.Equals(passID));
-
-            ctx.Passwords.Remove(oldPass);
-
-            jPass.PassId = oldPass.PassId;
-            jPass.userInformation = oldPass.userInformation;
-
-            ctx.Passwords.Add(jPass);
-            ctx.SaveChanges();
-
-            Console.WriteLine($"Password {jPass.PassId} updated!");
-        }
-        public void Delete(int passId)
-        {
-            var us = from x in ctx.Passwords
-                     select x;
- 
-            foreach (var item in us)
-            {
-                if (item.UserId.Equals(passId))
+                if (prop.GetAccessors().FirstOrDefault(t => t.IsVirtual) == null)
                 {
-                    ctx.Remove(item);
-                    Console.WriteLine($"Password {passId} deleted!");
+                    prop.SetValue(old, prop.GetValue(item));
                 }
             }
             ctx.SaveChanges();
         }
-        
 
     }
 }

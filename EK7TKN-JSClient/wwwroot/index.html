@@ -5,6 +5,48 @@
     <title></title>
 </head>
 <body>
-    <h1>Hello Web!?</h1>
+    <h1>Catalog</h1>
+ 
+    <div id="userdiv">
+        <label>User Name</label>
+        <input type="text" id="username" />
+        <label>Age</label>
+        <input type="number" id="agenumber" />
+        <label>Weight</label>
+        <input type="number" id="weightnumber" />
+        <label>Height</label>
+        <input type="number" id="heightnumber" />
+        <label>Email</label>
+        <input type="text" id="emailinput" />
+        <label>Is premium?</label>
+        <input type="checkbox" id="premiumcheck" />
+        <br />
+        <button type="button" onclick="create()">Create User</button>
+        <button type="button" onclick="create()">Edit User</button>
+        <br />
+        <label>Read a user:</label>
+        <input type="number" id="readthisnumber" />
+        <button type="button" onclick="create()">Read a User</button>
+
+    </div>
+    
+
+    <table>
+        <thead>
+            <tr>
+                <th>User ID</th>
+                <th>Full Name</th>
+                <th>Age</th>
+                <th>Weight</th>
+                <th>Height</th>
+                <th>Email</th>
+            </tr>
+        </thead>
+        <tbody id="resultarea">
+        </tbody>
+    </table>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/microsoft-signalr/6.0.1/signalr.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>

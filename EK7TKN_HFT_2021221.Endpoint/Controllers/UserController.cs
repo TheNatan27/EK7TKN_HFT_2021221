@@ -26,6 +26,7 @@ public class UserController : ControllerBase
     [HttpGet]
     public IEnumerable<UserInformation> GetAll()
     {
+        System.Console.WriteLine("all users read");
         return user.ReadAll();
     }
 
@@ -37,18 +38,20 @@ public class UserController : ControllerBase
     }
 
     // POST /post
-    [HttpPost("post")]
-    public void PostCreate([FromBody] string json)
+    [HttpPost]
+    public void PostCreate([FromBody] UserInformation json)
     {
-        user.Create(json);
+        //user.Create(json);
+        System.Console.WriteLine($"user {json.Full_Name} created");
+        this.user.Create(json);
         this.hub.Clients.All.SendAsync("UserCreated", json);
     }
 
     // PUT update user
-    [HttpPut("put/{id}")]
-    public void PostUpdate([FromBody] string json, int id)
+    [HttpPut("put")]
+    public void PostUpdate([FromBody] UserInformation json)
     {
-        user.Update(json, id);
+        user.Update(json);
         this.hub.Clients.All.SendAsync("UserUpdated", json);
     }
 
@@ -59,6 +62,7 @@ public class UserController : ControllerBase
         var userToDelet = user.Read(id);
         user.Delete(id);
         this.hub.Clients.All.SendAsync("UserDeleted", userToDelet);
+        System.Console.WriteLine($"user {id} deleted");
     }
 
     #endregion
