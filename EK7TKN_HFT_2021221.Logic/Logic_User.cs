@@ -137,6 +137,7 @@ namespace EK7TKN_HFT_2021221.Logic
         //CRUD Methods
         public void Create(UserInformation json)
         {
+
             userRepo.Create(json);
         }
 
