@@ -1,5 +1,6 @@
 ﻿using EK7TKN_HFT_2021221.Models;
 using EK7TKN_HFT_2021221.Repository;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -135,10 +136,21 @@ namespace EK7TKN_HFT_2021221.Logic
         }
 
         //CRUD Methods
-        public void Create(UserInformation json)
+        public void Create(string json)
         {
+            UserInformation jUser = JsonConvert.DeserializeObject<UserInformation>(json);
 
-            userRepo.Create(json);
+            if (JsonConvert.DeserializeObject<UserInformation>(json).Full_Name == null)
+            {
+                throw new MissingNameException();
+            }
+            else if (JsonConvert.DeserializeObject<UserInformation>(json).Email == null)
+            {
+                throw new MissingEmailException();
+            }
+
+            Console.WriteLine($"User {jUser.UserID} added!");
+            userRepo.Create(jUser);
         }
 
         public void Delete(int userID)
@@ -151,9 +163,21 @@ namespace EK7TKN_HFT_2021221.Logic
             return userRepo.Read(userID);
         }
 
-        public void Update(UserInformation user)
+        public void Update(string json)
         {
-            userRepo.Update(user);
+            UserInformation jUser = JsonConvert.DeserializeObject<UserInformation>(json);
+
+            if (JsonConvert.DeserializeObject<UserInformation>(json).Full_Name == null)
+            {
+                throw new MissingNameException();
+            }
+            else if (JsonConvert.DeserializeObject<UserInformation>(json).Email == null)
+            {
+                throw new MissingEmailException();
+            }
+
+            Console.WriteLine($"User {jUser.UserID} updated!");
+            userRepo.Update(jUser);
         }
         public IQueryable<UserInformation> ReadAll()
         {

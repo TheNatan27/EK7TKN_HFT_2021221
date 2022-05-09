@@ -88,6 +88,13 @@ function create() {
     let height = document.getElementById('heightnumber').value;
     let email = document.getElementById('emailinput').value;
     let premium = document.getElementById('premiumcheck').value;
+
+    let json = JSON.stringify(
+        {
+            full_Name: name, Age: age, Weight: weight,
+            Height: height, Email: email, Premium: premium
+
+        });
     fetch('http://localhost:5000/user', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', },

@@ -49,7 +49,7 @@ public class UserController : ControllerBase
 
     // PUT update user
     [HttpPut("put")]
-    public void PostUpdate([FromBody] UserInformation json)
+    public void PostUpdate([FromBody] string json)
     {
         user.Update(json);
         this.hub.Clients.All.SendAsync("UserUpdated", json);
