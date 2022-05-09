@@ -82,28 +82,28 @@ function remove(id) {
 }
 
 function create() {
+    let userID = 0;
     let name = document.getElementById('username').value;
-    let age = document.getElementById('agenumber').value;
-    let weight = document.getElementById('weightnumber').value;
-    let height = document.getElementById('heightnumber').value;
+    let age = 56;
+    let weight = 45.4;
+    let height = 23;
     let email = document.getElementById('emailinput').value;
-    let premium = document.getElementById('premiumcheck').value;
+    let premium = false;
+    let runinfo = null;
 
     let json = JSON.stringify(
         {
-            full_Name: name, Age: age, Weight: weight,
-            Height: height, Email: email, Premium: premium
-
+            UserID: userID,
+            Full_Name: name, Age: age, Weight: weight,
+            Height: height, Email: email, Premium: premium,
+            runInfo: runinfo
         });
-    fetch('http://localhost:5000/user', {
+    console.log(json.toString());
+    console.log(typeof json);
+    fetch('http://localhost:5000/User', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', },
-        body: JSON.stringify(
-            {
-                full_Name: name, Age: age, Weight: weight,
-                Height: height, Email: email, Premium: premium
-                
-            })
+        body: json
     })
         .then(response => response)
         .then(data => {
