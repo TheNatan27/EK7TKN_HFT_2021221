@@ -39,12 +39,12 @@ public class UserController : ControllerBase
 
     // POST /post
     [HttpPost]
-    public void PostCreate([FromBody] string json)
+    public void PostCreate(string json)
     {
         //user.Create(json);
         System.Console.WriteLine($"user {json} created");
-        this.user.Create(json);
-        this.hub.Clients.All.SendAsync("UserCreated", json);
+        //this.user.Create(json);
+        //this.hub.Clients.All.SendAsync("UserCreated", json);
     }
 
     // PUT update user
