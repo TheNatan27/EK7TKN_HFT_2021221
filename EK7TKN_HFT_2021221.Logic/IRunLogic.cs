@@ -9,10 +9,10 @@ namespace EK7TKN_HFT_2021221.Logic
 {
     public interface IRunLogic 
     {
-        public void Create(RunInformation json);
+        public void Create(string json);
         public IQueryable<RunInformation> ReadAll();
         public RunInformation Read(int runID);
-        public void Update(RunInformation json);
+        public void Update(string json);
         public void Delete(int runID);
 
         public IEnumerable<string> GetTimeOfPremiumCompetitors();

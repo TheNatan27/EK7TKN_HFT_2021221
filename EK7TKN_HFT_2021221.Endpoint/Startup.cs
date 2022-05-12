@@ -38,27 +38,26 @@ namespace EK7TKN_HFT_2021221.Endpoint
 
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllers();
+            services.AddTransient<xDbContext>();
 
-            services.AddScoped<IPassLogic, Logic_Password>();
-            services.AddScoped<IRepository<PasswordSecurity>, Repo_Password>();
+            services.AddTransient<IRepository<PasswordSecurity>, Repo_Password>();
+            services.AddTransient<IRepository<RunInformation>, Repo_Run>();
+            services.AddTransient<IRepository<UserInformation>, Repo_User>();
 
-            services.AddScoped<IRunLogic, Logic_Run>();
-            services.AddScoped<IRepository<RunInformation>, Repo_Run>();
-
-            services.AddScoped<IUserLogic, Logic_User>();
-            services.AddScoped<IRepository<UserInformation>, Repo_User>();
-
-            services.AddScoped<xDbContext, xDbContext >();
+            services.AddTransient<IRunLogic, Logic_Run>();
+            services.AddTransient<IPassLogic, Logic_Password>();
+            services.AddTransient<IUserLogic, Logic_User>();
 
             services.AddSignalR();
-     
+
+            services.AddControllers();
             services.AddControllers().AddNewtonsoftJson();
 
             services.AddSwaggerGen(c =>
             {
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "MovieDbApp.Endpoint", Version = "v1" });
+                c.SwaggerDoc("v1", new OpenApiInfo { Title = "Project.Endpoint", Version = "v1" });
             });
+
 
         }
 

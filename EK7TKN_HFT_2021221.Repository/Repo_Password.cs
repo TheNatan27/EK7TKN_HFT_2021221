@@ -42,18 +42,15 @@ namespace EK7TKN_HFT_2021221.Repository
         }
         public override void Update(PasswordSecurity item)
         {
-            var old = Read(item.PassId);
-            if (old == null)
-            {
-                throw new ArgumentException("Item not exist..");
-            }
-            foreach (var prop in old.GetType().GetProperties())
-            {
-                if (prop.GetAccessors().FirstOrDefault(t => t.IsVirtual) == null)
-                {
-                    prop.SetValue(old, prop.GetValue(item));
-                }
-            }
+            PasswordSecurity oldPass = ctx.Passwords
+              .First(x => x.PassId.Equals(item.PassId));
+
+            ctx.Passwords.Remove(oldPass);
+
+            item.userInformation = oldPass.userInformation;
+            item.UserId = oldPass.UserId;
+            item.PassId = oldPass.PassId;
+            ctx.Passwords.Add(item);
             ctx.SaveChanges();
         }
 

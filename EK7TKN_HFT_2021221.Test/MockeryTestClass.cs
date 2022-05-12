@@ -57,11 +57,11 @@ new RunInformation() { RunID=   10  ,UserID=    3   ,Distance=  42.3    ,Time="0
             #region users
             List<UserInformation> testUserData = new List<UserInformation>
             {
-new UserInformation() { Full_Name="	Chrisse Lacroix	",Email="	clacroix0@europa.eu	",Age=  64  ,Height=    185 ,Weight=    103 ,UserID=    1   ,Premium=   true   },
-new UserInformation() { Full_Name="	Ivett Raddish	",Email="	iraddish1@webnode.com	",Age=  51  ,Height=    168 ,Weight=    92  ,UserID=    2   ,Premium=   true   },
-new UserInformation() { Full_Name="	Lief Sheirlaw	",Email="	lsheirlaw2@addtoany.com	",Age=  58  ,Height=    173 ,Weight=    66  ,UserID=    3   ,Premium=   false   },
-new UserInformation() { Full_Name="	Tiff Weems	",Email="	tweems3@addtoany.com	",Age=  55  ,Height=    184 ,Weight=    80  ,UserID=    4   ,Premium=   false   },
-new UserInformation() { Full_Name="	Nada Grgic	",Email="	ngrgic4@sitemeter.com	",Age=  66  ,Height=    187 ,Weight=    82  ,UserID=    5   ,Premium=   false   }
+new UserInformation() { full_Name="	Chrisse Lacroix	",email="	clacroix0@europa.eu	",age=  64  ,height=    185 ,weight=    103 ,userID=    1   ,premium=   true   },
+new UserInformation() { full_Name="	Ivett Raddish	",email="	iraddish1@webnode.com	",age=  51  ,height=    168 ,weight=    92  ,userID=    2   ,premium=   true   },
+new UserInformation() { full_Name="	Lief Sheirlaw	",email="	lsheirlaw2@addtoany.com	",age=  58  ,height=    173 ,weight=    66  ,userID=    3   ,premium=   false   },
+new UserInformation() { full_Name="	Tiff Weems	",email="	tweems3@addtoany.com	",age=  55  ,height=    184 ,weight=    80  ,userID=    4   ,premium=   false   },
+new UserInformation() { full_Name="	Nada Grgic	",email="	ngrgic4@sitemeter.com	",age=  66  ,height=    187 ,weight=    82  ,userID=    5   ,premium=   false   }
             };
 
             IQueryable<UserInformation> quaUser = testUserData.AsQueryable();

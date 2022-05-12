@@ -52,11 +52,11 @@ namespace EK7TKN_HFT_2021221.Client
             string email = Console.ReadLine();
 
             UserInformation newUser = new UserInformation() {
-                Full_Name = first, 
-                Age = age, 
-                Weight = weight, 
-                Height = height, 
-                Email = email };
+                full_Name = first, 
+                age = age, 
+                weight = weight, 
+                height = height, 
+                email = email };
 
             string jsonUser = JsonConvert.SerializeObject(newUser);
 
@@ -83,11 +83,11 @@ namespace EK7TKN_HFT_2021221.Client
 
             UserInformation newUser = new UserInformation()
             {
-                Full_Name = first,
-                Age = age,
-                Weight = weight,
-                Height = height,
-                Email = email
+                full_Name = first,
+                age = age,
+                weight = weight,
+                height = height,
+                email = email
             };
 
             string jsonUser = JsonConvert.SerializeObject(newUser);

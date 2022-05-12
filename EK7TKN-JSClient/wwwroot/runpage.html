@@ -1,0 +1,50 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+</head>
+<body>
+    <h1>Catalog</h1>
+
+    <div id="userdiv">
+        <button type="button" onclick="display()">Read all Runs</button>
+        <br />
+        <label>Distance</label>
+        <input type="number" id="distance_number" />
+        <label>Time</label>
+        <input type="text" id="time_t" />
+        <label>Location</label>
+        <input type="text" id="location_text" />
+        <br />
+        <button type="button" onclick="create()">Create </button>
+        <button type="button" onclick="edit()">Edit </button>
+        <br />
+        <label>User ID:</label>
+        <input type="number" id="readthisnumber" />
+        <label>Run ID:</label>
+        <input type="number" id="runidnumber" />
+        <button type="button" onclick="readone()">Read a </button>
+
+    </div>
+
+
+    <table>
+        <thead>
+            <tr>
+                <th>User ID</th>
+                <th>Run ID</th>
+                <th>Distance</th>
+                <th>Time</th>
+                <th>IsCompetition</th>
+                <th>Location</th>
+            </tr>
+        </thead>
+        <tbody id="resultarea">
+        </tbody>
+    </table>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/microsoft-signalr/6.0.1/signalr.js"></script>
+    <script src="run.js"></script>
+</body>
+</html>

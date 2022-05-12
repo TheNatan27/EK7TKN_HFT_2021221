@@ -38,18 +38,18 @@ namespace EK7TKN_HFT_2021221.Repository
 
         public override UserInformation Read(int id)
         {
-            return ctx.Users.FirstOrDefault(x => x.UserID == id);
+            return ctx.Users.FirstOrDefault(x => x.userID == id);
         }
         public override void Update(UserInformation item)
         {
             UserInformation oldUser = ctx.Users
-              .First(x => x.UserID.Equals(item.UserID));
+              .First(x => x.userID.Equals(item.userID));
 
             ctx.Users.Remove(oldUser);
 
             item.runInfo = oldUser.runInfo;
             item
-                .UserID = oldUser.UserID;
+                .userID = oldUser.userID;
             ctx.Users.Add(item);
             ctx.SaveChanges();
         }

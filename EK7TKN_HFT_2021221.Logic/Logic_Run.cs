@@ -1,5 +1,6 @@
 ﻿using EK7TKN_HFT_2021221.Models;
 using EK7TKN_HFT_2021221.Repository;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -47,8 +48,8 @@ namespace EK7TKN_HFT_2021221.Logic
 
             var sue = from r in runRepo.ReadAll()
                       join u in userRepo.ReadAll()
-                      on r.UserID equals u.UserID
-                      where u.Premium.Equals(true)
+                      on r.UserID equals u.userID
+                      where u.premium.Equals(true)
                       select r.RunID;
 
             foreach (var item in sue)
@@ -64,8 +65,8 @@ namespace EK7TKN_HFT_2021221.Logic
 
             var sue = from r in runRepo.ReadAll()
                       join u in userRepo.ReadAll()
-                      on r.UserID equals u.UserID
-                      where (r.IsCompetition.Equals(true) && u.Premium.Equals(true))
+                      on r.UserID equals u.userID
+                      where (r.IsCompetition.Equals(true) && u.premium.Equals(true))
                       select r.Time;
 
             foreach (var item in sue)
@@ -82,8 +83,8 @@ namespace EK7TKN_HFT_2021221.Logic
 
             var sue = from r in runRepo.ReadAll()
                       join u in userRepo.ReadAll()
-                      on r.UserID equals u.UserID
-                      where (longLista.Contains(r.RunID) && u.Age < 18)
+                      on r.UserID equals u.userID
+                      where (longLista.Contains(r.RunID) && u.age < 18)
                       select r.RunID;
 
             foreach (var item in sue)
@@ -99,8 +100,8 @@ namespace EK7TKN_HFT_2021221.Logic
 
             var sue = from r in runRepo.ReadAll()
                       join u in userRepo.ReadAll()
-                      on r.UserID equals u.UserID
-                      where u.Weight > 90 && u.Height < 170
+                      on r.UserID equals u.userID
+                      where u.weight > 90 && u.height < 170
                       select r.Location;
 
 
@@ -117,8 +118,8 @@ namespace EK7TKN_HFT_2021221.Logic
 
             var sue = from r in runRepo.ReadAll()
                       join u in userRepo.ReadAll()
-                      on r.UserID equals u.UserID
-                      where (u.Age < 18 && u.Premium.Equals(true))
+                      on r.UserID equals u.userID
+                      where (u.age < 18 && u.premium.Equals(true))
                       select r.Location;
 
             foreach (var item in sue)
@@ -132,9 +133,10 @@ namespace EK7TKN_HFT_2021221.Logic
 
 
         //Non CRUD Methods
-        public void Create(RunInformation json)
+        public void Create(string json)
         {
-            runRepo.Create(json);
+            RunInformation jRun = JsonConvert.DeserializeObject<RunInformation>(json);
+            runRepo.Create(jRun);
         }
 
         public void Delete(int runID)
@@ -147,9 +149,10 @@ namespace EK7TKN_HFT_2021221.Logic
             return runRepo.Read(runID);
         }
 
-        public void Update(RunInformation json)
+        public void Update(string json)
         {
-            runRepo.Update(json);
+            RunInformation jRun = JsonConvert.DeserializeObject<RunInformation>(json);
+            runRepo.Update(jRun);
         }
         public IQueryable<RunInformation> ReadAll()
         {

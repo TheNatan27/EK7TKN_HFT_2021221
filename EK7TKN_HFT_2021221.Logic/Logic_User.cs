@@ -39,7 +39,7 @@ namespace EK7TKN_HFT_2021221.Logic
 
             var oke = from u in userRepo.ReadAll()
                       join r in runRepo.ReadAll()
-                      on u.UserID equals r.UserID
+                      on u.userID equals r.UserID
                       where r.UserID.Equals(userID)
                       select new KeyValuePair<int, string>(
                           r.RunID, r.Time);
@@ -56,13 +56,13 @@ namespace EK7TKN_HFT_2021221.Logic
 
             var sue = from u in userRepo.ReadAll()
                       join p in passwordRepo.ReadAll()
-                      on u.UserID equals p.UserId
+                      on u.userID equals p.UserId
                       where p.TotallySecuredVeryHashedPassword.Length < 10
                       select u;
 
             foreach (var item in sue)
             {
-                lista.Add(item.Email);
+                lista.Add(item.email);
             }
             return (lista);
         }
@@ -72,9 +72,9 @@ namespace EK7TKN_HFT_2021221.Logic
 
             var oke = from u in userRepo.ReadAll()
                       join r in runRepo.ReadAll()
-                      on u.UserID equals r.UserID
+                      on u.userID equals r.UserID
                       where r.IsCompetition.Equals(true)
-                      select u.Email;
+                      select u.email;
 
             foreach (var item in oke)
             {
@@ -89,9 +89,9 @@ namespace EK7TKN_HFT_2021221.Logic
 
             var oke = from u in userRepo.ReadAll()
                       join r in runRepo.ReadAll()
-                      on u.UserID equals r.UserID
+                      on u.userID equals r.UserID
                       where r.Location.Contains("United States")
-                      select u.Full_Name;
+                      select u.full_Name;
 
             foreach (var item in oke)
             {
@@ -106,9 +106,9 @@ namespace EK7TKN_HFT_2021221.Logic
 
             var oke = from u in userRepo.ReadAll()
                       join r in runRepo.ReadAll()
-                      on u.UserID equals r.UserID
+                      on u.userID equals r.UserID
                       where r.IsCompetition.Equals(true) && r.Distance>30
-                      select u.Full_Name;
+                      select u.full_Name;
 
             foreach (var item in oke)
             {
@@ -123,9 +123,9 @@ namespace EK7TKN_HFT_2021221.Logic
 
             var oke = from u in userRepo.ReadAll()
                       join r in runRepo.ReadAll()
-                      on u.UserID equals r.UserID
-                      where r.Distance > 30 && u.Age > 70
-                      select u.Full_Name;
+                      on u.userID equals r.UserID
+                      where r.Distance > 30 && u.age > 70
+                      select u.full_Name;
 
             foreach (var item in oke)
             {
@@ -138,18 +138,19 @@ namespace EK7TKN_HFT_2021221.Logic
         //CRUD Methods
         public void Create(string json)
         {
+            Console.WriteLine(json);
             UserInformation jUser = JsonConvert.DeserializeObject<UserInformation>(json);
 
-            if (JsonConvert.DeserializeObject<UserInformation>(json).Full_Name == null)
+            if (JsonConvert.DeserializeObject<UserInformation>(json).full_Name == null)
             {
                 throw new MissingNameException();
             }
-            else if (JsonConvert.DeserializeObject<UserInformation>(json).Email == null)
+            else if (JsonConvert.DeserializeObject<UserInformation>(json).email == null)
             {
                 throw new MissingEmailException();
             }
 
-            Console.WriteLine($"User {jUser.UserID} added!");
+            Console.WriteLine($"User {jUser.userID} added!");
             userRepo.Create(jUser);
         }
 
@@ -167,16 +168,16 @@ namespace EK7TKN_HFT_2021221.Logic
         {
             UserInformation jUser = JsonConvert.DeserializeObject<UserInformation>(json);
 
-            if (JsonConvert.DeserializeObject<UserInformation>(json).Full_Name == null)
+            if (JsonConvert.DeserializeObject<UserInformation>(json).full_Name == null)
             {
                 throw new MissingNameException();
             }
-            else if (JsonConvert.DeserializeObject<UserInformation>(json).Email == null)
+            else if (JsonConvert.DeserializeObject<UserInformation>(json).email == null)
             {
                 throw new MissingEmailException();
             }
 
-            Console.WriteLine($"User {jUser.UserID} updated!");
+            Console.WriteLine($"User {jUser.userID} updated!");
             userRepo.Update(jUser);
         }
         public IQueryable<UserInformation> ReadAll()

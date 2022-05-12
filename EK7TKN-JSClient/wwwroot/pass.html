@@ -6,22 +6,19 @@
 </head>
 <body>
     <h1>Catalog</h1>
- 
+
     <div id="userdiv">
         <button type="button" onclick="display()">Read all</button>
-        <button type="button" onclick="redirect1()">Runs Page</button>
-        <button type="button" onclick="redirect2()">Pass Page</button>
+        <button type="button" onclick="redirect()">Runs Page</button>
         <br />
-        <label>User Name</label>
-        <input type="text" id="username" />
-        <label>Age</label>
-        <input type="number" id="agenumber" />
-        <label>Weight</label>
-        <input type="number" id="weightnumber" />
-        <label>Height</label>
-        <input type="number" id="heightnumber" />
-        <label>Email</label>
-        <input type="text" id="emailinput" />
+        <label>User ID</label>
+        <input type="number" id="userid_" />
+        <label>Pass ID</label>
+        <input type="number" id="passid_" />
+        <label>Phone number</label>
+        <input type="text" id="phone_" />
+        <label>Password</label>
+        <input type="text" id="password_" />
         <br />
         <button type="button" onclick="create()">Create </button>
         <button type="button" onclick="edit()">Edit </button>
@@ -31,17 +28,15 @@
         <button type="button" onclick="readone()">Read a </button>
 
     </div>
-    
+
 
     <table>
         <thead>
             <tr>
                 <th>User ID</th>
-                <th>Full Name</th>
-                <th>Age</th>
-                <th>Weight</th>
-                <th>Height</th>
-                <th>Email</th>
+                <th>Pass ID</th>
+                <th>RecoverPhoneNumber</th>
+                <th>TotallySecuredVeryHashedPassword</th>
             </tr>
         </thead>
         <tbody id="resultarea">
@@ -49,6 +44,6 @@
     </table>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/microsoft-signalr/6.0.1/signalr.js"></script>
-    <script src="script.js"></script>
+    <script src="pass.js"></script>
 </body>
 </html>

@@ -1,5 +1,6 @@
 ﻿using EK7TKN_HFT_2021221.Models;
 using EK7TKN_HFT_2021221.Repository;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -47,8 +48,8 @@ namespace EK7TKN_HFT_2021221.Logic
 
             var sue = from p in passwordRepo.ReadAll()
                       join u in userRepo.ReadAll()
-                      on p.UserId equals u.UserID
-                      where u.Age > 60
+                      on p.UserId equals u.userID
+                      where u.age > 60
                       select p.PassId;
 
             foreach (var item in sue)
@@ -67,7 +68,7 @@ namespace EK7TKN_HFT_2021221.Logic
 
             var sue = from p in passwordRepo.ReadAll()
                       join u in userRepo.ReadAll()
-                      on p.UserId equals u.UserID
+                      on p.UserId equals u.userID
                       where oldLista.Contains(p.PassId) && weakLista.Contains(p.PassId)
                       select p.PassId;
 
@@ -84,8 +85,8 @@ namespace EK7TKN_HFT_2021221.Logic
 
             var sue = from p in passwordRepo.ReadAll()
                       join u in userRepo.ReadAll()
-                      on p.UserId equals u.UserID
-                      where u.Premium.Equals(true)
+                      on p.UserId equals u.userID
+                      where u.premium.Equals(true)
                       select p.PassId;
 
             foreach (var item in sue)
@@ -102,8 +103,8 @@ namespace EK7TKN_HFT_2021221.Logic
 
             var sue = from p in passwordRepo.ReadAll()
                       join u in userRepo.ReadAll()
-                      on p.UserId equals u.UserID
-                      where u.Premium.Equals(true)
+                      on p.UserId equals u.userID
+                      where u.premium.Equals(true)
                       select p;
 
             foreach (var item in sue)
@@ -121,9 +122,9 @@ namespace EK7TKN_HFT_2021221.Logic
 
             var sue = from p in passwordRepo.ReadAll()
                       join u in userRepo.ReadAll()
-                      on p.UserId equals u.UserID
+                      on p.UserId equals u.userID
                       join r in runRepo.ReadAll()
-                      on u.UserID equals r.UserID
+                      on u.userID equals r.UserID
                       where r.IsCompetition.Equals(true)
                       select p.RecoverPhoneNumber;
 
@@ -137,9 +138,11 @@ namespace EK7TKN_HFT_2021221.Logic
             
 
         //CRUD Methods
-        public void Create(PasswordSecurity json)
+        public void Create(string json)
         {
-            passwordRepo.Create(json);
+            PasswordSecurity jPass = JsonConvert.DeserializeObject<PasswordSecurity>(json);
+
+            passwordRepo.Create(jPass);
         }
 
         public void Delete(int passId)
@@ -152,9 +155,11 @@ namespace EK7TKN_HFT_2021221.Logic
             return passwordRepo.Read(userId);
         }
 
-        public void Update(PasswordSecurity json)
+        public void Update(string json)
         {
-            passwordRepo.Update(json);
+            PasswordSecurity jPass = JsonConvert.DeserializeObject<PasswordSecurity>(json);
+
+            passwordRepo.Update(jPass);
         }
         public IQueryable<PasswordSecurity> ReadAll()
         {

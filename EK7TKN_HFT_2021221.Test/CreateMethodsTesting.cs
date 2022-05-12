@@ -40,9 +40,9 @@ namespace EK7TKN_HFT_2021221.Test
         public void CreateUser_Test()
         {
             //ARRANGE
-            UserInformation uStandard = new UserInformation() { Full_Name = "	Desiri Wardington	", Email = "	dwardington1@rediff.com	", Age = 27, Height = 179, Weight = 71, UserID = 2, Premium = true };
-            UserInformation uNoname = new UserInformation() { Email = "	kmaynard2@wisc.edu	", Age = 50, Height = 174, Weight = 65, UserID = 3, Premium = true };
-            UserInformation uEmail = new UserInformation() { Full_Name = "	Dale Brannan	", Age = 62, Height = 196, Weight = 66, UserID = 4, Premium = false };
+            UserInformation uStandard = new UserInformation() { full_Name = "	Desiri Wardington	", email = "	dwardington1@rediff.com	", age = 27, height = 179, weight = 71, userID = 2, premium = true };
+            UserInformation uNoname = new UserInformation() { email = "	kmaynard2@wisc.edu	", age = 50, height = 174, weight = 65, userID = 3, premium = true };
+            UserInformation uEmail = new UserInformation() { full_Name = "	Dale Brannan	", age = 62, height = 196, weight = 66, userID = 4, premium = false };
 
             string ustandard = JsonConvert.SerializeObject(uStandard);
             string unoname = JsonConvert.SerializeObject(uNoname);

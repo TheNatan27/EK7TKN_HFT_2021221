@@ -39,15 +39,15 @@ public class PassController : ControllerBase
 
     // POST /post
     [HttpPost("post")]
-    public void Post ([FromBody] PasswordSecurity json)
+    public void Post ([FromBody] string json)
     {
         pass.Create(json);
         this.hub.Clients.All.SendAsync("PasswordCreated", json);
     }
     
     // PUT /put
-    [HttpPut("put/{id}")]
-    public void Update([FromBody] PasswordSecurity json)
+    [HttpPut("put")]
+    public void Update([FromBody] string json)
     {
         pass.Update(json);
         this.hub.Clients.All.SendAsync("PasswordUpdated", json);

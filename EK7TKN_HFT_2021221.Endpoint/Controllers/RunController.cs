@@ -39,14 +39,14 @@ public class RunController : ControllerBase
 
     // POST /post
     [HttpPost("post")]
-    public void Post([FromBody] RunInformation json)
+    public void Post([FromBody] string json)
     {
         run.Create(json);
         this.hub.Clients.All.SendAsync("RunCreated", json);
     }
     // POST /put
-    [HttpPut("put/{id}")]
-    public void Update([FromBody] RunInformation json)
+    [HttpPut("put")]
+    public void Update([FromBody] string json)
     {
         run.Update(json);
         this.hub.Clients.All.SendAsync("RunUpdated", json);
