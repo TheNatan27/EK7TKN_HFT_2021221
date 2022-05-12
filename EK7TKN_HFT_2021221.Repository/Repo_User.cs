@@ -48,7 +48,8 @@ namespace EK7TKN_HFT_2021221.Repository
             ctx.Users.Remove(oldUser);
 
             item.runInfo = oldUser.runInfo;
-            item.UserID = oldUser.UserID;
+            item
+                .UserID = oldUser.UserID;
             ctx.Users.Add(item);
             ctx.SaveChanges();
         }

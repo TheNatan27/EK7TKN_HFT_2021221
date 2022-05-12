@@ -100,16 +100,11 @@ function create() {
             full_Name: name, age: age, weight: weight,
             height: height, email: email, premium: premium,
             runInfo: runinfo
-        });
-    console.log(json.toString());
-    console.log(typeof json);
-    console.log(json);
-    console.log(JSON.parse(json));
-    console.log(JSON.stringify(json));
+        }); 
     fetch('http://localhost:5000/User/post', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', },
-        body: JSON.parse(json)
+        body: json
     })
         .then(response => response)
         .then(data => {
