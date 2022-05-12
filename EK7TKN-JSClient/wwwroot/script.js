@@ -63,6 +63,7 @@ function display() {
             t.height + "</td><td>" +
             t.email + "</td><td>" +
             `<button type="button" onclick="remove(${t.userID})">Delete</button>` + "</td><td>";
+        console.log(t);
     });
 }
 
@@ -89,21 +90,26 @@ function create() {
     let height = 23;
     let email = document.getElementById('emailinput').value;
     let premium = false;
-    let runinfo = null;
+    let runinfo = [];
+
+    
 
     let json = JSON.stringify(
         {
-            UserID: userID,
-            Full_Name: name, Age: age, Weight: weight,
-            Height: height, Email: email, Premium: premium,
+            userID: userID,
+            full_Name: name, age: age, weight: weight,
+            height: height, email: email, premium: premium,
             runInfo: runinfo
         });
     console.log(json.toString());
     console.log(typeof json);
-    fetch('http://localhost:5000/User', {
+    console.log(json);
+    console.log(JSON.parse(json));
+    console.log(JSON.stringify(json));
+    fetch('http://localhost:5000/User/post', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', },
-        body: json
+        body: JSON.parse(json)
     })
         .then(response => response)
         .then(data => {

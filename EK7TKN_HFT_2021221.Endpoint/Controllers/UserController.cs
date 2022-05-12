@@ -38,8 +38,8 @@ public class UserController : ControllerBase
     }
 
     // POST /post
-    [HttpPost]
-    public void PostCreate(string json)
+    [HttpPost("post")]
+    public void PostCreate([FromBody] string json)
     {
         //user.Create(json);
         System.Console.WriteLine($"user {json} created");
